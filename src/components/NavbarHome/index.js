@@ -1,14 +1,78 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function NavbarHome() {
+  let locationList = [
+    "Hồ Chí Minh",
+    "Hà Nội",
+    "Đà Nẵng",
+    "Hải Phòng",
+    "Biên Hòa",
+    "Nha Trang",
+    "Bình Dương",
+    "Phan Thiết",
+    "Hạ Long",
+    "Cần Thơ",
+    "Vũng Tàu",
+    "Quy Nhơn",
+    "Huế",
+    "An Giang",
+    "Bắc Giang",
+    "Bắc Kạn",
+    "Bạc Liêu",
+    "Bắc Ninh",
+    "Bến Tre",
+    "Bình Định",
+    "Bình Phước",
+    "Bình Thuận",
+    "Cà Mau",
+    "Cao Bằng",
+    "Đắk Lắk",
+    "Đắk Nông",
+    "Điện Biên",
+    "Đồng Nai",
+    "Đồng Tháp",
+    "Gia Lai",
+    "Hà Giang",
+    "Hà Nam",
+    "Hà Tĩnh",
+    "Hải Dương",
+    "Hậu Giang",
+    "Hòa Bình",
+    "Hưng Yên",
+    "Khánh Hòa",
+  ];
+  const [state, setState] = useState({ locationBase: locationList[0] });
+
+  const renderListLocation = () => {
+    return locationList.map((item, index) => {
+      return (
+        <button
+          className="dropdown-item"
+          onClick={() => handleOnClick(item)}
+          key={index}
+        >
+          {item}
+        </button>
+      );
+    });
+  };
+
+  const handleOnClick = (location) => {
+    console.log(location);
+    setState({
+      locationBase: location,
+    });
+  };
+
   return (
     <div className="myNavBar">
       <nav className="navbar navbar-expand-md navbar-light" id="navbarHeader">
         {/* logo */}
         <div className="col-md-4 logo-pd">
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" to="/">
             <img src="./img/web-logo.png" alt="logo" />
-          </a>
+          </Link>
         </div>
         {/* phần navbar giữa */}
         <div className="col-md-4">
@@ -58,27 +122,15 @@ export default function NavbarHome() {
                   aria-expanded="false"
                   style={{ backgroundImage: "url(./img/dropdown-icon.png)" }}
                 >
-                  <img src="./img/location-header.png" alt />
-                  Hồ Chí Minh
-                  {/* <img src="./img/dropdown-icon.png" alt=""> */}
+                  <img src="./img/location-header.png" alt="" />
+                  {state.locationBase}
                 </a>
                 <div
                   className="dropdown-menu scrollBarStyle"
                   aria-labelledby="navbarDropdown"
                   id="dropdown-menu"
                 >
-                  <a className="dropdown-item" href="#">
-                    Hồ Chí Minh
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Hà Nội
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Đà Nẵng
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Hải Phòng
-                  </a>
+                  {renderListLocation()}
                 </div>
               </li>
             </ul>

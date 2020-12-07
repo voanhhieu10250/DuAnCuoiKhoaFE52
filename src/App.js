@@ -3,7 +3,6 @@ import "./App.css";
 import AdminTemplate from "./containers/AdminTemplate";
 import AuthPage from "./containers/AdminTemplate/AuthPage";
 import HomeTemplate from "./containers/HomeTemplate";
-import PageNotFound from "./containers/PageNotFound";
 import { routePageNotFound, routesAdmin, routesHome } from "./routes";
 
 function App() {
