@@ -1,0 +1,14 @@
+
+.scrollBarStyle{
+    &::-webkit-scrollbar{
+        width: 4px;
+        background-color: $color-white-2;
+    }
+    &::-webkit-scrollbar-thumb{
+        border-radius: 10px;
+        background-color: $color-gray-2;
+    }
+    &::-webkit-scrollbar-track{
+        border-radius: 7px;
+    }
+}

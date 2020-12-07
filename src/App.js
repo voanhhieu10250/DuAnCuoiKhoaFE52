@@ -1,24 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "./App.css";
+import AdminTemplate from "./containers/AdminTemplate";
+import AuthPage from "./containers/AdminTemplate/AuthPage";
+import HomeTemplate from "./containers/HomeTemplate";
+import PageNotFound from "./containers/PageNotFound";
+import { routePageNotFound, routesAdmin, routesHome } from "./routes";
 
 function App() {
+  const showLayoutHome = (routes) => {
+    if (routes && routes.length > 0) {
+      return routes.map((item, index) => (
+        <HomeTemplate
+          key={index}
+          exact={item.exact}
+          path={item.path}
+          Component={item.component}
+        />
+      ));
+    }
+  };
+
+  const showLayoutAdmin = (routes) => {
+    if (routes && routes.length > 0) {
+      return routes.map((item, index) => (
+        <AdminTemplate
+          key={index}
+          exact={item.exact}
+          path={item.path}
+          Component={item.component}
+        />
+      ));
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div>
+        <Switch>
+          {showLayoutHome(routesHome)}
+          {showLayoutAdmin(routesAdmin)}
+          <Route exact={false} path="/auth" component={AuthPage} />
+          {showLayoutHome(routePageNotFound)}
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
