@@ -27,20 +27,6 @@ export default function NavbarHome() {
     "Bình Thuận",
     "Cà Mau",
     "Cao Bằng",
-    "Đắk Lắk",
-    "Đắk Nông",
-    "Điện Biên",
-    "Đồng Nai",
-    "Đồng Tháp",
-    "Gia Lai",
-    "Hà Giang",
-    "Hà Nam",
-    "Hà Tĩnh",
-    "Hải Dương",
-    "Hậu Giang",
-    "Hòa Bình",
-    "Hưng Yên",
-    "Khánh Hòa",
   ];
   const [state, setState] = useState({ locationBase: locationList[0] });
 
@@ -59,7 +45,6 @@ export default function NavbarHome() {
   };
 
   const handleOnClick = (location) => {
-    console.log(location);
     setState({
       locationBase: location,
     });
@@ -79,22 +64,22 @@ export default function NavbarHome() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav m-auto linkPage">
               <li className="nav-item active">
-                <a className="nav-link navbarLinkHover" href="#">
+                <a className="nav-link navbarLinkHover" href="/">
                   Lịch Chiếu
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link navbarLinkHover" href="#">
+                <a className="nav-link navbarLinkHover" href="/">
                   Cụm rạp
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link navbarLinkHover" href="#">
+                <a className="nav-link navbarLinkHover" href="/">
                   Tin Tức
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link navbarLinkHover" href="#">
+                <a className="nav-link navbarLinkHover" href="/">
                   Ứng dụng
                 </a>
               </li>
@@ -106,7 +91,7 @@ export default function NavbarHome() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item" id="account">
-                <a href="#">
+                <a href="/">
                   <img src="./img/avatar.png" alt="login" />
                   <p className="white m-0">Đăng Nhập</p>
                 </a>
@@ -114,7 +99,7 @@ export default function NavbarHome() {
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
-                  href="#"
+                  href="/"
                   id="navbarDropdown"
                   role="button"
                   data-toggle="dropdown"
@@ -128,7 +113,6 @@ export default function NavbarHome() {
                 <div
                   className="dropdown-menu scrollBarStyle"
                   aria-labelledby="navbarDropdown"
-                  id="dropdown-menu"
                 >
                   {renderListLocation()}
                 </div>

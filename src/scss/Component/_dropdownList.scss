@@ -1,0 +1,24 @@
+.dropdown-menu {
+  max-height: 300px !important;
+  min-width: 160px !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  border-radius: 7px !important;
+  overflow-y: scroll !important;
+  background: $color-white-0 !important;
+  padding: 5px 0 !important;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175) !important;
+  .dropdown-item {
+    @include text($color-black-0, $fs-0, 400);
+    transition: all 0.2s !important;
+    overflow-x: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    &:active {
+      background-color: $color-white-0 !important;
+    }
+    &:hover {
+      background-color: #60c5ef !important;
+      color: $color-white-0 !important;
+    }
+  }
+}

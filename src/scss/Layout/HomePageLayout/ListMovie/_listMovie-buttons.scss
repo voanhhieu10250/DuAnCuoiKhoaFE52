@@ -1,0 +1,46 @@
+#homeMovies .tab-content .content__item .objects {
+  .btnPlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s;
+    background-color: $color-black-1;
+    border: none;
+    border-radius: 50%;
+    img {
+      height: 48px;
+      width: 48px;
+    }
+    &:hover {
+      img {
+        opacity: 0.7;
+      }
+    }
+    &:active,
+    &:focus {
+      outline: none;
+    }
+  }
+  .btnMuaVe {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.2s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    color: $color-white-0;
+    font-size: 18px;
+    padding: 10px;
+    text-align: center;
+    background: linear-gradient(to left, #fb4226, #ce3017 100%);
+    .btnMuaVe:active,
+    .btnMuaVe:focus {
+      outline: none;
+    }
+  }
+}

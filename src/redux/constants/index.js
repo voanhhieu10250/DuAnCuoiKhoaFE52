@@ -1,0 +1,19 @@
+// LIST_MOVIE
+export const LIST_MOVIE_REQUEST = "ListMovieReducer/LIST_MOVIE_REQUEST";
+export const LIST_MOVIE_SUCCESS = "ListMovieReducer/LIST_MOVIE_SUCCESS";
+export const LIST_MOVIE_FAILED = "ListMovieReducer/LIST_MOVIE_FAILED";
+
+//LIST_UPCOMING_MOVIE
+export const LIST_UPCOMING_MOVIE_REQUEST =
+  "ListUpcomingMovieReducer/LIST_UPCOMING_MOVIE_REQUEST";
+export const LIST_UPCOMING_MOVIE_SUCCESS =
+  "ListUpcomingMovieReducer/LIST_UPCOMING_MOVIE_SUCCESS";
+export const LIST_UPCOMING_MOVIE_FAILED =
+  "ListUpcomingMovieReducer/LIST_UPCOMING_MOVIE_FAILED";
+
+// MOVIE_DETAILS
+export const MOVIE_DETAILS_REQUEST =
+  "MovieDetailsReducer/MOVIE_DETAILS_REQUEST";
+export const MOVIE_DETAILS_SUCCESS =
+  "MovieDetailsReducer/MOVIE_DETAILS_SUCCESS";
+export const MOVIE_DETAILS_FAILED = "MovieDetailsReducer/MOVIE_DETAILS_FAILED";

@@ -8,6 +8,18 @@
 //Component
 @import "./Component/button";
 @import "./Component/scroll";
+@import "./Component/carousel";
+@import "./Component/dropdownList";
 
 //Layout
-@import "./Layout/header";
+
+//HomePage
+@import "./Layout/HomePageLayout/headerNavbar";
+@import "./Layout/HomePageLayout/homeSearchTool";
+
+//HomePage - ListMovie Component
+@import "./Layout/HomePageLayout/ListMovie/listMovieTemplate";
+@import "./Layout/HomePageLayout/ListMovie/listMovie-tabContent";
+@import "./Layout/HomePageLayout/ListMovie/listMovie-movieLayout";
+@import "./Layout/HomePageLayout/ListMovie/listMovie-buttons";
+@import "./Layout/HomePageLayout/ListMovie/listMovie-specialEvents";

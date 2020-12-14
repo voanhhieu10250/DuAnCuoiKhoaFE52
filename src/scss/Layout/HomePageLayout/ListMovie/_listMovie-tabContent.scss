@@ -1,0 +1,50 @@
+#homeMovies .tab-content {
+  & > .active {
+    height: auto;
+  }
+  .fade.in {
+    opacity: 1;
+  }
+  .content_part .content__item .objects {
+    padding: 20px 10px 0;
+    margin-bottom: 25px;
+    &:hover {
+      .object_item .film_Info {
+        opacity: 1;
+      }
+      .object_item2 {
+        p {
+          opacity: 0;
+          visibility: hidden;
+        }
+        .btnMuaVe,
+        .offHoverEffect {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+    .object_item,
+    .object_item2 {
+      position: relative;
+    }
+    .filmTitle {
+      transition: all 0.2s;
+      height: 42px;
+      font-size: 16px;
+      color: $color-black-2;
+      line-height: 22px;
+      margin-bottom: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 600;
+    }
+    .filmLength {
+      transition: all 0.2s;
+      font-size: 13px;
+      color: $color-gray-3;
+      margin-top: 8px;
+      margin-bottom: 15px;
+    }
+  }
+}
