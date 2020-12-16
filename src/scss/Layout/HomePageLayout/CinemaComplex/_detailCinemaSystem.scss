@@ -1,0 +1,57 @@
+#listCinemas {
+  min-height: 705px;
+  width: 90.212766%;
+  overflow-y: hidden;
+  flex: 0 0 90.212766%;
+  max-width: 90.212766%;
+  .active .parentListCinemaFilms a.active {
+    opacity: 1;
+    border-color: $color-white-0;
+  }
+  .parentListCinemaFilms {
+    min-height: 705px;
+    width: 282px;
+    border: $border-style-1;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    flex: 0 0 33.254717%;
+    max-width: 33.254717%;
+    flex-wrap: nowrap;
+    overflow-y: scroll;
+    height: 705px;
+    &:first-child a {
+      padding-top: 20px;
+    }
+    .cinema {
+      text-decoration: none;
+      padding: 15px;
+      padding-left: 20px;
+      float: left;
+      clear: both;
+      width: 100%;
+      position: relative;
+      opacity: 0.5;
+      transition: all 0.2s;
+      &:hover {
+        opacity: 1;
+      }
+      .wrapInfo {
+        padding-left: 60px;
+      }
+      span {
+        display: block;
+        line-height: 1.4;
+      }
+    }
+  }
+  .listCinemaFilms {
+    min-height: 705px;
+    width: 566px;
+    border: $border-style-1;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    flex: 0 0 66, 745283%;
+    max-width: 66, 745283%;
+    overflow-y: scroll;
+  }
+}

@@ -5,6 +5,7 @@ const handleExchangeDateString = (stringDate, type) => {
   let dt = date.getDate();
   let hour = date.getHours();
   let minutes = date.getMinutes();
+
   if (dt < 10) {
     dt = "0" + dt;
   }
@@ -18,17 +19,44 @@ const handleExchangeDateString = (stringDate, type) => {
     minutes = "0" + minutes;
   }
   let result = "";
-  if (type === "date") {
-    result = year + "-" + month + "-" + dt;
-  }
-  if (type === "time") {
-    result = hour + ":" + minutes;
-  }
-  if (type === "date/time") {
-    result = {
-      date: year + "-" + month + "-" + dt,
-      time: hour + ":" + minutes,
-    };
+  switch (type) {
+    case "date":
+      result = year + "-" + month + "-" + dt;
+      break;
+
+    case "time":
+      result = hour + ":" + minutes;
+      break;
+
+    case "date/time":
+      result = {
+        date: year + "-" + month + "-" + dt,
+        time: hour + ":" + minutes,
+      };
+      break;
+
+    case "getDate":
+      result = dt;
+      break;
+
+    case "getMonth":
+      result = month;
+      break;
+
+    case "getYear":
+      result = year;
+      break;
+
+    case "getHour":
+      result = hour;
+      break;
+
+    case "getMinute":
+      result = minutes;
+      break;
+
+    default:
+      break;
   }
 
   return result;

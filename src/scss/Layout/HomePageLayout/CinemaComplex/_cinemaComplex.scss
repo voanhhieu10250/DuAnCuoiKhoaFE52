@@ -1,0 +1,49 @@
+.cinemaBlock {
+  padding-bottom: 40px;
+  #homeCinemaComplex {
+    padding-top: 120px;
+    background: url(../../../../img/back-news.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-wrap: wrap;
+    .cinemaImage {
+      width: 50px;
+      float: left;
+    }
+    .nameMovieCinema {
+      font-size: 14px;
+      color: $color-black-2;
+    }
+    .colorCinema {
+      display: inline-block !important;
+      color: #8bc541;
+      &.GLX {
+        color: #f60;
+      }
+      &.CNS {
+        color: #df0d7a;
+      }
+      &.CGV {
+        color: #9c9c9c;
+      }
+      &.MegaGS {
+        color: #e5a813;
+      }
+      &.Lotte {
+        color: #ca4137;
+      }
+    }
+    .infoMovieCinema {
+      font-size: 12px;
+      color: $color-gray-0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .redDetail {
+      color: $color-orange-0;
+      font-size: 12px;
+    }
+  }
+}

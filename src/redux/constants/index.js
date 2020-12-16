@@ -17,3 +17,22 @@ export const MOVIE_DETAILS_REQUEST =
 export const MOVIE_DETAILS_SUCCESS =
   "MovieDetailsReducer/MOVIE_DETAILS_SUCCESS";
 export const MOVIE_DETAILS_FAILED = "MovieDetailsReducer/MOVIE_DETAILS_FAILED";
+
+// CINEMA_COMPLEX
+export const LIST_CINEMA_SYSTEM_REQUEST =
+  "ListCinemaSystemReducer/LIST_CINEMA_SYSTEM_REQUEST";
+export const LIST_CINEMA_SYSTEM_SUCCESS =
+  "ListCinemaSystemReducer/LIST_CINEMA_SYSTEM_SUCCESS";
+export const LIST_CINEMA_SYSTEM_FAILED =
+  "ListCinemaSystemReducer/LIST_CINEMA_SYSTEM_FAILED";
+
+export const LIST_CINEMA_REQUEST = "ListCinemaReducer/LIST_CINEMA_REQUEST";
+export const LIST_CINEMA_SUCCESS = "ListCinemaReducer/LIST_CINEMA_SUCCESS";
+export const LIST_CINEMA_FAILED = "ListCinemaReducer/LIST_CINEMA_FAILED";
+
+export const LIST_SHOWTIMES_REQUEST =
+  "ListShowTimesReducer/LIST_SHOWTIMES_REQUEST";
+export const LIST_SHOWTIMES_SUCCESS =
+  "ListShowTimesReducer/LIST_SHOWTIMES_SUCCESS";
+export const LIST_SHOWTIMES_FAILED =
+  "ListShowTimesReducer/LIST_SHOWTIMES_FAILED";
