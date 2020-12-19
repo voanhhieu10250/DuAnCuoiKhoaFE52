@@ -11,6 +11,8 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.min";
 import "../node_modules/jquery/dist/jquery.slim.min";
 import "../node_modules/popper.js/dist/umd/popper.min";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 import { applyMiddleware, compose, createStore } from "redux";
 import { Provider } from "react-redux";

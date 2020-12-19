@@ -5,6 +5,8 @@ import { actGetListMovieApi } from "../../../redux/actions/actListMovieApi";
 import { actListUpComingMovieApi } from "../../../redux/actions/actListUpComingMovieApi";
 import ErrorBoundary from "../../../components/ErrorBoundary";
 import { actGetListCinemaSystemApi } from "../../../redux/actions/actListCinemaSystemApi";
+import NewsBlock from "./NewsBlock";
+import AppBlock from "./AppBlock";
 
 const CarouselComponent = React.lazy(() =>
   import("../../../components/CarouselComponent")
@@ -46,6 +48,8 @@ export default function HomePage() {
           <CarouselComponent Component={HomeSearchTool} />
           <ListMovieCarousel />
           <CinemaComplex />
+          <NewsBlock />
+          <AppBlock />
         </div>
       </Suspense>
     </ErrorBoundary>

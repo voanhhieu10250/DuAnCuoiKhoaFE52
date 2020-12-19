@@ -1,33 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { locationList } from "../../data";
 
 export default function NavbarHome() {
-  let locationList = [
-    "Hồ Chí Minh",
-    "Hà Nội",
-    "Đà Nẵng",
-    "Hải Phòng",
-    "Biên Hòa",
-    "Nha Trang",
-    "Bình Dương",
-    "Phan Thiết",
-    "Hạ Long",
-    "Cần Thơ",
-    "Vũng Tàu",
-    "Quy Nhơn",
-    "Huế",
-    "An Giang",
-    "Bắc Giang",
-    "Bắc Kạn",
-    "Bạc Liêu",
-    "Bắc Ninh",
-    "Bến Tre",
-    "Bình Định",
-    "Bình Phước",
-    "Bình Thuận",
-    "Cà Mau",
-    "Cao Bằng",
-  ];
   const [state, setState] = useState({ locationBase: locationList[0] });
 
   const renderListLocation = () => {

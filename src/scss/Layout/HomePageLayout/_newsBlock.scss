@@ -1,0 +1,204 @@
+#newsblock {
+  background: url(../../../img/back-news.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding-top: 120px;
+  .tab-content {
+    padding-top: 20px;
+  }
+}
+.navCenter {
+  align-items: center;
+  border: none;
+  justify-content: center;
+  a.nav-link {
+    border: none;
+    background-color: transparent;
+    font-size: $fs-4;
+    line-height: 24px;
+    height: 24px;
+    color: $color-black-2;
+    transition: all 0.2s;
+    height: auto;
+    &.active {
+      color: $color-orange-0;
+      background-color: transparent;
+      font-size: $fs-4 + 4;
+    }
+    &:hover {
+      font-size: $fs-4 + 4;
+    }
+  }
+}
+#newsContent {
+  min-height: 876.219px;
+  .tab-pane {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  .tab-pane.fade {
+    height: 0px;
+    overflow-y: hidden;
+  }
+  .fade.show.active {
+    overflow-y: hidden;
+    height: min-content;
+  }
+  .newsItems:nth-child(5n) {
+    width: 33.33333333%;
+    padding: 0 7.5px;
+    .subItems {
+      display: flex;
+      .newsThumbnail {
+        margin-bottom: 10px;
+        display: inline-block;
+        margin-right: 10px;
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 4px;
+          transition: all 0.2s;
+        }
+      }
+      a {
+        width: calc(100% - 70px);
+        height: max-content;
+        p {
+          width: 100%;
+          margin-bottom: 5px;
+          width: 100%;
+          opacity: 0.7;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          line-height: 20px;
+          height: 42px;
+          font-size: $fs-3 + 1;
+          transition: color 0.2s;
+        }
+      }
+    }
+  }
+  .wrapButtonSeeMoreNews {
+    width: 100%;
+    margin-bottom: 35px;
+    button {
+      font-size: $fs-1 + 1;
+      color: $color-gray-0;
+      border: 1px solid $color-gray-0;
+      border-radius: 4px;
+      text-align: center;
+      background: 0 0;
+      padding: 7px 25px;
+      transition: all 0.2s;
+      margin-top: 35px;
+      margin-bottom: 20px;
+      &:hover {
+        background-color: $color-orange-0;
+        border-color: $color-orange-0;
+        color: $color-white-0;
+      }
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+}
+
+.newsItems {
+  margin-bottom: 20px;
+  padding: 0 7.5px;
+  .newsThumbnail {
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 4px;
+    background-color: $color-white-3;
+    margin-bottom: 10px;
+    img {
+      width: 100%;
+    }
+  }
+  a {
+    color: $color-black-2;
+    transition: all 0.2s;
+    &:hover {
+      text-decoration: none;
+    }
+    p.newsTitle {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 20px;
+      height: 42px;
+      font-size: $fs-3 + 1;
+      transition: color 0.2s;
+      margin-bottom: 5px;
+      font-weight: bold;
+      &:hover {
+        color: $color-orange-0;
+      }
+    }
+  }
+  p.newsDescription {
+    text-align: justify;
+    font-size: $fs-1;
+    color: $color-gray-3;
+    padding: 0 5px 0 0;
+    line-height: 19px;
+    letter-spacing: 0.17;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 55px;
+    margin-bottom: 15px;
+  }
+  .newsVoting {
+    display: flex;
+    .wrapIcon {
+      display: inline-table;
+      margin-right: 25px;
+      cursor: pointer;
+      &:hover img {
+        transform: scale(1.1, 1.1);
+      }
+      img {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+        margin-top: 2px;
+        height: auto;
+        width: 18px;
+        transition: all 0.2s;
+      }
+      span {
+        color: #bbb;
+        font-size: $fs-2;
+        line-height: 1;
+      }
+    }
+  }
+}
+.mainMaxWidth {
+  max-width: 940px;
+  margin: auto;
+  clear: both;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+@media screen and (max-width: 540px) {
+  .navCenter {
+    a.nav-link {
+      font-size: $fs-3 - 1;
+      padding: 10px;
+      &.active {
+        font-size: $fs-4 - 2;
+      }
+    }
+  }
+}

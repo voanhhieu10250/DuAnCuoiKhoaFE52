@@ -1,6 +1,7 @@
 import React from "react";
+import { carouselImages } from "../../data";
 
-export default function CarouselComponent({ Component, ...props }) {
+export default function CarouselComponent({ Component }) {
   return (
     <div className="wrapperTrailer container-fluid">
       <div id="filmsCarousel" className="carousel slide" data-ride="carousel">
@@ -18,7 +19,7 @@ export default function CarouselComponent({ Component, ...props }) {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img
-              src="../../img/ac-quy-doi-dau-deliver-us-from-evil-c16-15994546580686.jpg"
+              src={carouselImages.banner_1}
               className="d-block w-100 trailerImg"
               alt=""
             />
@@ -28,7 +29,7 @@ export default function CarouselComponent({ Component, ...props }) {
           </div>
           <div className="carousel-item">
             <img
-              src="../../img/tenet-15984144207145.png"
+              src={carouselImages.banner_2}
               className="d-block w-100 trailerImg"
               alt=""
             />
@@ -38,7 +39,7 @@ export default function CarouselComponent({ Component, ...props }) {
           </div>
           <div className="carousel-item">
             <img
-              src="../../img/vi-sao-dua-ban-toi-jungle-beat-p-15994654710579.png"
+              src={carouselImages.banner_3}
               className="d-block w-100 trailerImg"
               alt=""
             />
@@ -48,7 +49,7 @@ export default function CarouselComponent({ Component, ...props }) {
           </div>
           <div className="carousel-item">
             <img
-              src="../../img/tenet-15984144207145.png"
+              src={carouselImages.banner_4}
               className="d-block w-100 trailerImg"
               alt=""
             />
@@ -58,13 +59,13 @@ export default function CarouselComponent({ Component, ...props }) {
           </div>
           <div className="carousel-item">
             <img
-              src="../../img/di-nhan-the-he-moi-the-new-mutants-15985202688070.jpg"
+              src={carouselImages.banner_5}
               className="d-block w-100 trailerImg"
               alt=""
             />
-            <button className="btnPlay">
+            {/* <button className="btnPlay">
               <img src="../../img/play-video.png" alt="" />
-            </button>
+            </button> */}
           </div>
         </div>
         <a
