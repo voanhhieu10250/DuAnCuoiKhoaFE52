@@ -41,18 +41,20 @@ function AppBlock() {
             <br />
             <button className="buttonLeft">App miễn phí - Tải về ngay!</button>
             <p className="textUnderApp">
-              TIX có hai phiên bản
+              TIX có hai phiên bản &nbsp;
               <a
                 className="text-white"
                 target="_blank"
+                rel="noopener noreferrer"
                 href="https://itunes.apple.com/us/app/123phim-mua-ve-lien-tay-chon/id615186197?mt=8"
               >
                 iOS
               </a>
-              &amp;&nbsp;
+              &nbsp;&amp;&nbsp;
               <a
                 className="text-white"
                 target="_blank"
+                rel="noopener noreferrer"
                 href="https://play.google.com/store/apps/details?id=vn.com.vng.phim123"
               >
                 Android

@@ -1,73 +1,47 @@
 import React from "react";
-import { carouselImages } from "../../data";
+import { carouselItems } from "../../data";
 
 export default function CarouselComponent({ Component }) {
+  const renderItemDetail = (listData) => {
+    return listData.map((item, index) => (
+      <div
+        className={index === 0 ? "carousel-item active" : "carousel-item"}
+        key={index}
+      >
+        <img src={item.banner} className="d-block w-100 trailerImg" alt="" />
+        {item.playBtn ? (
+          <button className="btnPlay">
+            <img src="./img/play-video.png" alt="" />
+          </button>
+        ) : (
+          ""
+        )}
+      </div>
+    ));
+  };
+
+  const renderListCarouselItem = (listData) => {
+    let tempList = [];
+    for (const index in listData) {
+      tempList.push(
+        <li
+          data-target="#filmsCarousel"
+          data-slide-to={index}
+          className={parseInt(index) === 0 ? "active" : ""}
+          key={index}
+        />
+      );
+    }
+    return tempList;
+  };
+
   return (
     <div className="wrapperTrailer container-fluid">
       <div id="filmsCarousel" className="carousel slide" data-ride="carousel">
         <ol className="carousel-indicators">
-          <li
-            data-target="#filmsCarousel"
-            data-slide-to={0}
-            className="active"
-          />
-          <li data-target="#filmsCarousel" data-slide-to={1} />
-          <li data-target="#filmsCarousel" data-slide-to={2} />
-          <li data-target="#filmsCarousel" data-slide-to={3} />
-          <li data-target="#filmsCarousel" data-slide-to={4} />
+          {renderListCarouselItem(carouselItems)}
         </ol>
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img
-              src={carouselImages.banner_1}
-              className="d-block w-100 trailerImg"
-              alt=""
-            />
-            <button className="btnPlay">
-              <img src="./img/play-video.png" alt="" />
-            </button>
-          </div>
-          <div className="carousel-item">
-            <img
-              src={carouselImages.banner_2}
-              className="d-block w-100 trailerImg"
-              alt=""
-            />
-            <button className="btnPlay">
-              <img src="../../img/play-video.png" alt="" />
-            </button>
-          </div>
-          <div className="carousel-item">
-            <img
-              src={carouselImages.banner_3}
-              className="d-block w-100 trailerImg"
-              alt=""
-            />
-            <button className="btnPlay">
-              <img src="../../img/play-video.png" alt="" />
-            </button>
-          </div>
-          <div className="carousel-item">
-            <img
-              src={carouselImages.banner_4}
-              className="d-block w-100 trailerImg"
-              alt=""
-            />
-            <button className="btnPlay">
-              <img src="../../img/play-video.png" alt="" />
-            </button>
-          </div>
-          <div className="carousel-item">
-            <img
-              src={carouselImages.banner_5}
-              className="d-block w-100 trailerImg"
-              alt=""
-            />
-            {/* <button className="btnPlay">
-              <img src="../../img/play-video.png" alt="" />
-            </button> */}
-          </div>
-        </div>
+        <div className="carousel-inner">{renderItemDetail(carouselItems)}</div>
         <a
           className="carousel-control-prev"
           href="#filmsCarousel"

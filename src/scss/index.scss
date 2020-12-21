@@ -10,11 +10,12 @@
 @import "./Component/scroll";
 @import "./Component/carousel";
 @import "./Component/dropdownList";
+@import "./Component/headerNavbar";
+@import "./Component/footer";
 
 //Layout
 
 //HomePage
-@import "./Layout/HomePageLayout/headerNavbar";
 @import "./Layout/HomePageLayout/homeSearchTool";
 
 //HomePage - ListMovie Component

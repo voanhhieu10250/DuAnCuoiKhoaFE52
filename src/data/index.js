@@ -25,14 +25,23 @@ const locationList = [
   "Cao Bằng",
 ];
 
-const carouselImages = {
-  banner_1:
-    "./img/gia-dinh-chan-to-phieu-luu-ky-bigfoot-family-p-16061896575573.png",
-  banner_2: "./img/nghe-sieu-kho-16077632925121.jpg",
-  banner_3: "./img/tenet-15984144207145.png",
-  banner_4: "./img/vi-sao-dua-ban-toi-jungle-beat-p-15994654710579.png",
-  banner_5: "./img/bhd-star-59k-ve-ca-tuan-16078613140387.png",
-};
+const carouselItems = [
+  {
+    banner:
+      "./img/gia-dinh-chan-to-phieu-luu-ky-bigfoot-family-p-16061896575573.png",
+    playBtn: true,
+  },
+  { banner: "./img/nghe-sieu-kho-16077632925121.jpg", playBtn: true },
+  { banner: "./img/tenet-15984144207145.png", playBtn: true },
+  {
+    banner: "./img/vi-sao-dua-ban-toi-jungle-beat-p-15994654710579.png",
+    playBtn: true,
+  },
+  {
+    banner: "./img/bhd-star-59k-ve-ca-tuan-16078613140387.png",
+    playBtn: false,
+  },
+];
 
 const tabNewsData = [
   {
@@ -208,4 +217,133 @@ const appBlockCarouselImgs = [
   "./img/slide15.jpg",
   "./img/slide16.jpg",
 ];
-export { tabNewsData, carouselImages, appBlockCarouselImgs, locationList };
+
+const listPartner = [
+  {
+    name: "CGV",
+    href: "https://www.cgv.vn/",
+    img: "./img/icons/cgv.png",
+    special: true,
+  },
+  {
+    name: "BHD",
+    href: "http://bhdstar.vn",
+    img: "./img/icons/bhd.png",
+    special: false,
+  },
+  {
+    name: "Galaxy",
+    href: "http://galaxycine.vn",
+    img: "./img/icons/galaxycine.png",
+    special: false,
+  },
+  {
+    name: "Cinestar",
+    href: "http://cinestar.com.vn",
+    img: "./img/icons/cinestar.png",
+    special: false,
+  },
+  {
+    name: "Lotte Cinema",
+    href: "http://lottecinemavn.com",
+    img: "./img/icons/lotte.png",
+    special: false,
+  },
+  {
+    name: "MegaGS",
+    href: "https://www.megagscinemas.vn",
+    img: "./img/icons/megags.png",
+    special: false,
+  },
+  {
+    name: "Beta",
+    href: "https://www.betacineplex.vn/",
+    img: "./img/icons/bt.jpg",
+    special: false,
+  },
+  {
+    name: "DDC",
+    href: "http://ddcinema.vn",
+    img: "./img/icons/ddc.png",
+    special: true,
+  },
+  {
+    name: "Touch Cinema",
+    href: "https://touchcinema.com/",
+    img: "./img/icons/TOUCH.png",
+    special: false,
+  },
+  {
+    name: "Cinemax",
+    href: "https://cinemaxvn.com/",
+    img: "./img/icons/cnx.jpg",
+    special: false,
+  },
+  {
+    name: "Starlight",
+    href: "http://starlight.vn/",
+    img: "./img/icons/STARLIGHT.png",
+    special: false,
+  },
+  {
+    name: "Dcine",
+    href: "https://www.dcine.vn/",
+    img: "./img/icons/dcine.png",
+    special: false,
+  },
+  {
+    name: "ZaloPay",
+    href: "https://zalopay.vn/",
+    img: "./img/icons/zalopay_icon.png",
+    special: false,
+  },
+  {
+    name: "Payoo",
+    href: "https://www.payoo.vn/",
+    img: "./img/icons/payoo.jpg",
+    special: false,
+  },
+  {
+    name: "Vietcombank",
+    href: "https://www.vietcombank.com.vn/",
+    img: "./img/icons/VCB.png",
+    special: false,
+  },
+  {
+    name: "Agribank",
+    href: "http://www.agribank.com.vn/",
+    img: "./img/icons/AGRIBANK.png",
+    special: false,
+  },
+  {
+    name: "Vietinbank",
+    href: "https://www.vietinbank.vn/",
+    img: "./img/icons/VIETTINBANK.png",
+    special: false,
+  },
+  {
+    name: "IVB",
+    href: "https://www.indovinabank.com.vn/",
+    img: "./img/icons/IVB.png",
+    special: false,
+  },
+  {
+    name: "123Go",
+    href: "http://123go.vn",
+    img: "./img/icons/123go.png",
+    special: false,
+  },
+  {
+    name: "La Bàn",
+    href: "http://laban.vn",
+    img: "./img/icons/laban.png",
+    special: false,
+  },
+];
+export {
+  tabNewsData,
+  carouselItems,
+  appBlockCarouselImgs,
+  locationList,
+  listPartner,
+};
