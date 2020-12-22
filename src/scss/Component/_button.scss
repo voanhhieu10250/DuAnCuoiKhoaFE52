@@ -1,38 +1,42 @@
 //a:hover
 .navbarLinkHover {
-    color: $color-black-2 !important; 
-    transition: all 0.2s !important;
-    text-decoration: none !important;
-    margin-right: 5px !important;
-    &:hover {
-        color: $color-orange-0  !important;
-    }
+  color: $color-black-2 !important;
+  transition: all 0.2s !important;
+  text-decoration: none !important;
+  margin-right: 5px !important;
+  &:hover {
+    color: $color-orange-0 !important;
+  }
+}
+
+.activeClass {
+  color: $color-orange-0 !important;
 }
 
 //prevert button size
 .btn_Prev {
-    height: 50px;
-    width: auto;
+  height: 50px;
+  width: auto;
 }
 //next button size
 .btn_Next {
-    height: 50px;
-    width: auto;
+  height: 50px;
+  width: auto;
 }
 
 //age type logo
 .spanRed {
-    font-size: 15px;
-    background-color: $color-orange-0;
-    border-radius: 4px;
-    padding: 2px 5px;
-    color: $color-white-0;
-    min-width: 33px;
-    text-align: center;
-    margin-right: 8px;
+  font-size: 15px;
+  background-color: $color-orange-0;
+  border-radius: 4px;
+  padding: 2px 5px;
+  color: $color-white-0;
+  min-width: 33px;
+  text-align: center;
+  margin-right: 8px;
 }
 .spanGreen {
-    @extend .spanRed;
-    background-color: $color-green-0;
-    padding: 2px 12px;
+  @extend .spanRed;
+  background-color: $color-green-0;
+  padding: 2px 12px;
 }
