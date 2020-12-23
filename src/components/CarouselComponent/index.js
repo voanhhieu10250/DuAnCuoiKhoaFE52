@@ -1,7 +1,27 @@
-import React from "react";
+import React, { Fragment, memo } from "react";
 import { carouselItems } from "../../data";
+import useStyles from "../../styles";
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import Fade from "@material-ui/core/Fade";
 
-export default function CarouselComponent({ Component }) {
+function CarouselComponent({ Component }) {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState({ status: false, id: "" });
+  const handleOpen = (index) => {
+    setOpen({
+      status: true,
+      id: index,
+    });
+  };
+
+  const handleClose = () => {
+    setOpen({
+      status: false,
+      id: "",
+    });
+  };
+
   const renderItemDetail = (listData) => {
     return listData.map((item, index) => (
       <div
@@ -9,15 +29,56 @@ export default function CarouselComponent({ Component }) {
         key={index}
       >
         <img src={item.banner} className="d-block w-100 trailerImg" alt="" />
-        {item.playBtn ? (
-          <button className="btnPlay">
-            <img src="./img/play-video.png" alt="" />
-          </button>
-        ) : (
-          ""
-        )}
+        {item.playBtn ? renderModal(index, item.trailer) : ""}
       </div>
     ));
+  };
+
+  const renderModal = (index, trailer) => {
+    return (
+      <Fragment>
+        <button
+          className="btnPlay"
+          type="button"
+          onClick={() => handleOpen(index)}
+          key={index}
+        >
+          <img src="./img/play-video.png" alt="" />
+        </button>
+        <Modal
+          disableScrollLock
+          aria-labelledby={`modal-title-${index}`}
+          aria-describedby={`modal-description-${index}`}
+          className={classes.modal}
+          open={index === open.id ? open.status : false}
+          onClose={handleClose}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade in={index === open.id ? open.status : false}>
+            <div className={classes.paper}>
+              <div id={`modal-title-${index}`} />
+              <button className="btnClose" type="button" onClick={handleClose}>
+                <img src="./img/icons/close.png" alt="" />
+              </button>
+              <iframe
+                title={`modal-${index}`}
+                id={`modal-description-${index}`}
+                width="100%"
+                height="100%"
+                src={trailer}
+                frameBorder={0}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </Fade>
+        </Modal>
+      </Fragment>
+    );
   };
 
   const renderListCarouselItem = (listData) => {
@@ -63,3 +124,5 @@ export default function CarouselComponent({ Component }) {
     </div>
   );
 }
+
+export default memo(CarouselComponent);

@@ -1,17 +1,13 @@
-import React, { Suspense } from "react";
+import React, { Fragment } from "react";
 import { Route } from "react-router-dom";
-// import HomeFooter from "../../components/HomeFooter";
 import NavbarHome from "../../components/NavbarHome";
-
-const HomeFooter = React.lazy(() => import("../../components/HomeFooter"));
 
 function HomeLayout(props) {
   return (
-    <Suspense fallback={<div></div>}>
+    <Fragment>
       <NavbarHome />
       {props.children}
-      <HomeFooter />
-    </Suspense>
+    </Fragment>
   );
 }
 

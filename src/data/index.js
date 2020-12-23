@@ -29,12 +29,22 @@ const carouselItems = [
   {
     banner:
       "./img/gia-dinh-chan-to-phieu-luu-ky-bigfoot-family-p-16061896575573.png",
+    trailer: "https://www.youtube.com/embed/0qaStyeKpLo",
     playBtn: true,
   },
-  { banner: "./img/nghe-sieu-kho-16077632925121.jpg", playBtn: true },
-  { banner: "./img/tenet-15984144207145.png", playBtn: true },
+  {
+    banner: "./img/nghe-sieu-kho-16077632925121.jpg",
+    trailer: "https://www.youtube.com/embed/pTlqIQUkYQI",
+    playBtn: true,
+  },
+  {
+    banner: "./img/tenet-15984144207145.png",
+    trailer: "https://www.youtube.com/embed/AZGcmvrTX9M",
+    playBtn: true,
+  },
   {
     banner: "./img/vi-sao-dua-ban-toi-jungle-beat-p-15994654710579.png",
+    trailer: "https://www.youtube.com/embed/apcG4IVGWB0",
     playBtn: true,
   },
   {

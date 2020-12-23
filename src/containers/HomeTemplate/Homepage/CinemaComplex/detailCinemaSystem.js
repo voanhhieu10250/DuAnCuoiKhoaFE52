@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-// import CinemasEachSystem from "./CinemasEachSystem";
+import Loader2 from "../../../../components/Loader/loader2";
 
 const CinemasEachSystem = React.lazy(() => import("./CinemasEachSystem"));
 
@@ -27,7 +27,7 @@ export default function DetailCinemaSystem({ listCinemaSystem }) {
       <Suspense
         fallback={
           <div className="mainContent text-center">
-            <h1>Loading ...</h1>
+            <Loader2 />
           </div>
         }
       >

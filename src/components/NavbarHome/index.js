@@ -73,7 +73,7 @@ export default function NavbarHome() {
                   to="newsblock"
                   spy={true}
                   smooth={true}
-                  offset={25}
+                  offset={20}
                   duration={500}
                 >
                   Tin Tức
@@ -87,6 +87,7 @@ export default function NavbarHome() {
                   spy={true}
                   smooth={true}
                   duration={500}
+                  offset={20}
                 >
                   Ứng dụng
                 </ScrollBtn>
