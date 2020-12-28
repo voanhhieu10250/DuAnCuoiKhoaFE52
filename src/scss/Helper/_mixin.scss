@@ -1,5 +1,33 @@
-@mixin text ($color,$fs,$fw) {
-    color: $color;
-    font-size: $fs;
-    font-weight: $fw;
+@mixin text($color, $fs, $fw) {
+  color: $color;
+  font-size: $fs;
+  font-weight: $fw;
+}
+
+@mixin btnPlay($size: 0, $opacity: 1) {
+  .btnPlay {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 3 !important;
+    transition: all 0.2s !important;
+    background-color: $color-black-1 !important;
+    border: none !important;
+    border-radius: 50% !important;
+    opacity: $opacity;
+    @if $size!=0 {
+      img {
+        height: $size;
+        width: $size;
+      }
+    }
+    &:hover {
+      opacity: 0.7 !important;
+    }
+    &:active,
+    &:focus {
+      outline: none !important;
+    }
+  }
 }

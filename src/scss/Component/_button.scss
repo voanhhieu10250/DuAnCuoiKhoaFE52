@@ -29,11 +29,12 @@
   font-size: 15px;
   background-color: $color-orange-0;
   border-radius: 4px;
-  padding: 2px 5px;
+  padding: 0 5px;
   color: $color-white-0;
   min-width: 33px;
   text-align: center;
   margin-right: 8px;
+  display: inline-block;
 }
 .spanGreen {
   @extend .spanRed;

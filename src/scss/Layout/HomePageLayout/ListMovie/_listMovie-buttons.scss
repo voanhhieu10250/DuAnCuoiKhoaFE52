@@ -1,27 +1,5 @@
 #homeMovies .tab-content .content__item .objects {
-  .btnPlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.2s;
-    background-color: $color-black-1;
-    border: none;
-    border-radius: 50%;
-    img {
-      height: 48px;
-      width: 48px;
-    }
-    &:hover {
-      img {
-        opacity: 0.7;
-      }
-    }
-    &:active,
-    &:focus {
-      outline: none;
-    }
-  }
+  @include btnPlay(48px);
   .btnMuaVe {
     visibility: hidden;
     opacity: 0;

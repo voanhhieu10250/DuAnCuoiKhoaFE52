@@ -41,25 +41,7 @@
         max-height: 600px !important;
         position: absolute !important;
       }
-      .btnPlay {
-        position: absolute !important;
-        top: 50% !important;
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        z-index: 3 !important;
-        transition: all 0.2s !important;
-        background-color: $color-black-1 !important;
-        border: none !important;
-        border-radius: 50% !important;
-        opacity: 0 !important;
-        &:hover {
-          opacity: 0.7 !important;
-        }
-        &:active,
-        &:focus {
-          outline: none !important;
-        }
-      }
+      @include btnPlay(0, 0);
       &:hover {
         button {
           opacity: 1 !important;

@@ -1,20 +1,7 @@
 import React, { memo } from "react";
-import useStyles from "../../styles";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
+import PlayModalBtn from "../PlayModalBtn";
 
 function Movie(props) {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   const { hinhAnh, tenPhim, danhGia, maPhim, trailer } = props.item;
 
   const renderMovieRanking = () => {
@@ -47,45 +34,7 @@ function Movie(props) {
           alt=""
         />
         <div className="film_Info">
-          <button className="btnPlay" type="button" onClick={handleOpen}>
-            <img src="./img/play-video.png" alt="" />
-          </button>
-          <Modal
-            disableScrollLock
-            aria-labelledby={`modal-title-${maPhim}`}
-            aria-describedby={`modal-description-${maPhim}`}
-            className={classes.modal}
-            open={open}
-            onClose={handleClose}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-              timeout: 500,
-            }}
-          >
-            <Fade in={open}>
-              <div className={classes.paper}>
-                <div id={`modal-title-${maPhim}`} />
-                <button
-                  className="btnClose"
-                  type="button"
-                  onClick={handleClose}
-                >
-                  <img src="./img/icons/close.png" alt="" />
-                </button>
-                <iframe
-                  title={`modal-${maPhim}`}
-                  id={`modal-description-${maPhim}`}
-                  width="100%"
-                  height="100%"
-                  src={trailer}
-                  frameBorder={0}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-            </Fade>
-          </Modal>
+          <PlayModalBtn keyId={maPhim} videoLink={trailer} />
         </div>
         <div className="filmScore">
           <p className="m-0">{danhGia}</p>
