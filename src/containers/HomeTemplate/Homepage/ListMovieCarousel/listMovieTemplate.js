@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-// import ListMovie from "./listMovie";
 import { useSelector } from "react-redux";
 import Movie from "../../../../components/Movie";
 import $ from "jquery";
@@ -22,45 +21,45 @@ export default function ListMovieTemplate(props) {
 
   const renderMovieListParts = () => {
     let listMoviePart = [];
+    // Nếu redux đã trả data về thì render list movie
     if (listMovie && listMovie.length > 0) {
       let tempVar = listMovie.length % 8;
+      // render những slide có đủ 8 phim ra trước
       for (let index = 0; index < (listMovie.length - tempVar) / 8; index++) {
-        if (index === 0) {
-          listMoviePart.push(
-            <div className="carousel-item active" key={index}>
-              <div className="content_part mx-0 row">
-                {renderContent(index)}
+        index === 0
+          ? listMoviePart.push(
+              <div className="carousel-item active" key={index}>
+                <div className="content_part mx-0 row">
+                  {renderContent(index)}
+                </div>
               </div>
-            </div>
-          );
-        } else {
-          listMoviePart.push(
-            <div className="carousel-item" key={index}>
-              <div className="content_part mx-0 row">
-                {renderContent(index)}
+            )
+          : listMoviePart.push(
+              <div className="carousel-item" key={index}>
+                <div className="content_part mx-0 row">
+                  {renderContent(index)}
+                </div>
               </div>
-            </div>
-          );
-        }
+            );
       }
+      // Nếu có dư phim (slide không đủ 8 phim) thì render thêm 1 slide dành cho những phim bị dư ra
       if (tempVar > 0) {
-        if (listMovie.length < 8) {
-          listMoviePart.push(
-            <div className="carousel-item active">
-              <div className="content_part mx-0 row">
-                {redundantCase(tempVar)}
+        // Nếu list movie mà backend trả về có ít hơn 8 phim (chưa đầy 1 slide) thì thêm class active vào
+        listMovie.length < 8
+          ? listMoviePart.push(
+              <div className="carousel-item active">
+                <div className="content_part mx-0 row">
+                  {redundantCase(tempVar)}
+                </div>
               </div>
-            </div>
-          );
-        } else {
-          listMoviePart.push(
-            <div className="carousel-item" key={listMoviePart.length}>
-              <div className="content_part mx-0 row">
-                {redundantCase(tempVar)}
+            )
+          : listMoviePart.push(
+              <div className="carousel-item" key={listMoviePart.length}>
+                <div className="content_part mx-0 row">
+                  {redundantCase(tempVar)}
+                </div>
               </div>
-            </div>
-          );
-        }
+            );
       }
     }
     return listMoviePart;
@@ -82,9 +81,10 @@ export default function ListMovieTemplate(props) {
     return tempList;
   };
 
-  const renderContent = (number) => {
+  const renderContent = (index) => {
     let tempListMovie = [];
-    for (let item = number * 8; item < number * 8 + 8; item++) {
+    // Dùng vòng lặp for để thực hiện phép tính phức tạp, như vậy sẽ tránh đc trường hợp các element bị trùng key
+    for (let item = index * 8; item < index * 8 + 8; item++) {
       tempListMovie.push(
         <div className="content__item px-0 col-lg-3" key={item}>
           <Movie item={listMovie[item]} />

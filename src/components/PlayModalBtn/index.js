@@ -17,7 +17,7 @@ export default function PlayModalBtn({ keyId, videoLink }) {
   return (
     <Fragment>
       <button className="btnPlay" type="button" onClick={handleOpen}>
-        <img src="./img/play-video.png" alt="" />
+        <img src="../../img/play-video.png" alt="" />
       </button>
       <Modal
         disableScrollLock
@@ -36,7 +36,7 @@ export default function PlayModalBtn({ keyId, videoLink }) {
           <div className={classes.paper}>
             <div id={`modal-title-${keyId}`} />
             <button className="btnClose" type="button" onClick={handleClose}>
-              <img src="./img/icons/close.png" alt="" />
+              <img src="../../img/icons/close.png" alt="" />
             </button>
             <iframe
               title={`modal-${keyId}`}

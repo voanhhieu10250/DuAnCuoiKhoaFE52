@@ -1,28 +1,10 @@
 import React, { memo } from "react";
 import PlayModalBtn from "../PlayModalBtn";
+import { Link } from "react-router-dom";
+import renderStarsImg from "../../functions/renderStarsImg";
 
 function Movie(props) {
-  const { hinhAnh, tenPhim, danhGia, maPhim, trailer } = props.item;
-
-  const renderMovieRanking = () => {
-    let listStar = [];
-    let starAmount = danhGia / 2;
-    let halfStar = starAmount - Math.trunc(starAmount);
-    if (halfStar > 0) {
-      for (let index = 0; index < starAmount - halfStar; index++) {
-        listStar.push(<img src="./img/star1.png" key={index} alt="" />);
-        if (index === starAmount - halfStar - 1) {
-          listStar.push(<img src="./img/star1.2.png" key={index + 1} alt="" />);
-        }
-      }
-    } else {
-      while (starAmount > 0) {
-        listStar.push(<img src="./img/star1.png" key={starAmount} alt="" />);
-        starAmount--;
-      }
-    }
-    return listStar;
-  };
+  const { hinhAnh, tenPhim, danhGia, maPhim, trailer, biDanh } = props.item;
 
   return (
     <div className="objects">
@@ -35,10 +17,11 @@ function Movie(props) {
         />
         <div className="film_Info">
           <PlayModalBtn keyId={maPhim} videoLink={trailer} />
+          <Link className="linkToPage" to={`/phim/${maPhim}-${biDanh}`}></Link>
         </div>
         <div className="filmScore">
           <p className="m-0">{danhGia}</p>
-          <p className="smallStar">{renderMovieRanking()}</p>
+          <p className="smallStar">{renderStarsImg(danhGia)}</p>
         </div>
       </div>
       <div className="object_item2">
@@ -47,7 +30,9 @@ function Movie(props) {
           {tenPhim} - (C18)
         </p>
         <p className="filmLength">100 phút</p>
-        <button className="btnMuaVe">Mua Vé</button>
+        <Link className="btnMuaVe" to={`/phim/${maPhim}-${biDanh}`}>
+          Mua Vé
+        </Link>
       </div>
     </div>
   );

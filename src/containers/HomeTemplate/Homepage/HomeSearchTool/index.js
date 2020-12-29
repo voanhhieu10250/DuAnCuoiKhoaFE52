@@ -256,7 +256,9 @@ function HomeSearchTool() {
             MUA VÉ NGAY
           </button>
         ) : (
-          <button className="btn btn-primary btnMuaVe">MUA VÉ NGAY</button>
+          <button className="btn btn-primary btnMuaVe" disabled>
+            MUA VÉ NGAY
+          </button>
         )}
       </div>
     </div>

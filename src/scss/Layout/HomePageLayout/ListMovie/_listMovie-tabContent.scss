@@ -27,6 +27,14 @@
     .object_item,
     .object_item2 {
       position: relative;
+      .linkToPage {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
     }
     .filmTitle {
       transition: all 0.2s;
