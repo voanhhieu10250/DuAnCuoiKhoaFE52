@@ -6,27 +6,27 @@
   .tab-content {
     padding-top: 20px;
   }
-}
-.navCenter {
-  align-items: center;
-  border: none;
-  justify-content: center;
-  a.nav-link {
+  .navCenter {
+    align-items: center;
     border: none;
-    background-color: transparent;
-    font-size: $fs-4;
-    line-height: 24px;
-    height: 24px;
-    color: $color-black-2;
-    transition: all 0.2s;
-    height: auto;
-    &.active {
-      color: $color-orange-0;
+    justify-content: center;
+    a.nav-link {
+      border: none;
       background-color: transparent;
-      font-size: $fs-4 + 4;
-    }
-    &:hover {
-      font-size: $fs-4 + 4;
+      font-size: $fs-4;
+      line-height: 24px;
+      height: 24px;
+      color: $color-black-2;
+      transition: all 0.2s;
+      height: auto;
+      &.active {
+        color: $color-orange-0;
+        background-color: transparent;
+        font-size: $fs-4 + 4;
+      }
+      &:hover {
+        font-size: $fs-4 + 4;
+      }
     }
   }
 }

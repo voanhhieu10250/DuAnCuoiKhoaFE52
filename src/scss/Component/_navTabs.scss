@@ -1,0 +1,24 @@
+.navCenter.navCenter {
+  border: none;
+  align-items: center;
+  justify-content: center;
+  li {
+    display: inline-block;
+    button {
+      background-color: transparent;
+      border: none;
+      color: $color-black-2;
+      font-size: 18px;
+      transition: all 0.2s;
+      padding: 10px 15px;
+      outline: none;
+      &:hover {
+        font-size: 20px;
+      }
+    }
+    button.active {
+      color: $color-orange-0 !important;
+      font-size: 20px;
+    }
+  }
+}

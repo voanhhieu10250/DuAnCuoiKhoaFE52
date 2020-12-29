@@ -1,4 +1,4 @@
-const handleExchangeDateString = (stringDate, type) => {
+export default function handleExchangeDateString(stringDate, type) {
   let date = new Date(stringDate + "Z");
   let year = date.getFullYear();
   let month = date.getMonth() + 1;
@@ -22,6 +22,18 @@ const handleExchangeDateString = (stringDate, type) => {
   switch (type) {
     case "date":
       result = year + "-" + month + "-" + dt;
+      break;
+
+    case "dateRevert":
+      result = dt + "-" + month + "-" + year;
+      break;
+
+    case "dateWithDot":
+      result = year + "." + month + "." + dt;
+      break;
+
+    case "dateWithDotRevert":
+      result = dt + "." + month + "." + year;
       break;
 
     case "time":
@@ -60,6 +72,4 @@ const handleExchangeDateString = (stringDate, type) => {
   }
 
   return result;
-};
-
-export default handleExchangeDateString;
+}

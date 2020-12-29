@@ -12,9 +12,10 @@
 @import "./Component/dropdownList";
 @import "./Component/headerNavbar";
 @import "./Component/footer";
+@import "./Component/navTabs";
+@import "./Component/collapsableCard";
 
 //Layout
-
 //HomePage
 @import "./Layout/HomePageLayout/homeSearchTool";
 
@@ -29,7 +30,6 @@
 @import "./Layout/HomePageLayout/CinemaComplex/cinemaComplex";
 @import "./Layout/HomePageLayout/CinemaComplex/listCinemaSystems";
 @import "./Layout/HomePageLayout/CinemaComplex/detailCinemaSystem";
-@import "./Layout/HomePageLayout/CinemaComplex/showTimesCards";
 
 //HomePage - NewsBlock
 @import "./Layout/HomePageLayout/newsBlock";

@@ -23,7 +23,11 @@ export default function DetailCinemaSystem({ listCinemaSystem }) {
   };
 
   return (
-    <div className="tab-content" id="listCinemas" style={{ height: 705 }}>
+    <div
+      className="tab-content collapsableCard"
+      id="listCinemas"
+      style={{ height: 705 }}
+    >
       <Suspense
         fallback={
           <div className="mainContent text-center">

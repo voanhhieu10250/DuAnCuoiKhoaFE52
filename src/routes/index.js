@@ -1,18 +1,19 @@
+import React from "react";
 import DashboardPage from "../containers/AdminTemplate/Dashboard";
-import DetailPage from "../containers/HomeTemplate/DetailPage";
-import HomePage from "../containers/HomeTemplate/Homepage";
 import PageNotFound from "../containers/PageNotFound";
 
 const routesHome = [
   {
     exact: true,
     path: "/",
-    component: HomePage,
+    component: React.lazy(() => import("../containers/HomeTemplate/Homepage")),
   },
   {
     exact: false,
-    path: "/phim",
-    component: DetailPage,
+    path: "/phim/:id",
+    component: React.lazy(() =>
+      import("../containers/HomeTemplate/DetailPage")
+    ),
   },
 ];
 

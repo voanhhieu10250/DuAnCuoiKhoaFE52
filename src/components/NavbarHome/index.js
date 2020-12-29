@@ -33,7 +33,7 @@ export default function NavbarHome() {
         {/* logo */}
         <div className="col-md-4 logo-pd">
           <Link className="navbar-brand" to="/">
-            <img src="./img/web-logo.png" alt="logo" />
+            <img src="../../img/web-logo.png" alt="logo" />
           </Link>
         </div>
         {/* phần navbar giữa */}
@@ -101,7 +101,7 @@ export default function NavbarHome() {
             <ul className="navbar-nav ml-auto">
               <li className="nav-item" id="account">
                 <a href="/">
-                  <img src="./img/avatar.png" alt="login" />
+                  <img src="../../img/avatar.png" alt="login" />
                   <p className="white m-0">Đăng Nhập</p>
                 </a>
               </li>
@@ -114,7 +114,9 @@ export default function NavbarHome() {
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
-                  style={{ backgroundImage: "url(./img/dropdown-icon.png)" }}
+                  style={{
+                    backgroundImage: "url(../../img/dropdown-icon.png)",
+                  }}
                 >
                   <img src="./img/location-header.png" alt="" />
                   {state.locationBase}
