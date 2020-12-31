@@ -1,10 +1,16 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { memo, useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { locationList } from "../../data";
 import { Link as ScrollBtn } from "react-scroll";
 
-export default function NavbarHome() {
+function NavbarHome() {
+  let location = useLocation();
   const [state, setState] = useState({ locationBase: locationList[0] });
+  const [locationState, setLocationState] = useState(true);
+
+  useEffect(() => {
+    if (location.pathname === "/") setLocationState(false);
+  }, [location.pathname]);
 
   const renderListLocation = () => {
     return locationList.map((item, index) => {
@@ -41,56 +47,92 @@ export default function NavbarHome() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav m-auto linkPage">
               <li className="nav-item">
-                <ScrollBtn
-                  activeClass="activeClass"
-                  className="nav-link navbarLinkHover"
-                  to="homeMovies"
-                  spy={true}
-                  smooth={true}
-                  offset={-5}
-                  duration={500}
-                >
-                  Lịch Chiếu
-                </ScrollBtn>
+                {locationState ? (
+                  <Link
+                    className="nav-link navbarLinkHover"
+                    to="/?src=homeMovies"
+                  >
+                    Lịch Chiếu
+                  </Link>
+                ) : (
+                  <ScrollBtn
+                    activeClass="activeClass"
+                    className="nav-link navbarLinkHover"
+                    to="homeMovies"
+                    spy={true}
+                    smooth={true}
+                    offset={-5}
+                    duration={500}
+                  >
+                    Lịch Chiếu
+                  </ScrollBtn>
+                )}
               </li>
               <li className="nav-item">
-                <ScrollBtn
-                  activeClass="activeClass"
-                  className="nav-link navbarLinkHover"
-                  to="homeCinemaComplex"
-                  spy={true}
-                  smooth={true}
-                  offset={25}
-                  duration={500}
-                >
-                  Cụm rạp
-                </ScrollBtn>
+                {locationState ? (
+                  <Link
+                    className="nav-link navbarLinkHover"
+                    to="/?src=homeCinemaComplex"
+                  >
+                    Cụm rạp
+                  </Link>
+                ) : (
+                  <ScrollBtn
+                    activeClass="activeClass"
+                    className="nav-link navbarLinkHover"
+                    to="homeCinemaComplex"
+                    spy={true}
+                    smooth={true}
+                    offset={25}
+                    duration={500}
+                  >
+                    Cụm rạp
+                  </ScrollBtn>
+                )}
               </li>
               <li className="nav-item">
-                <ScrollBtn
-                  activeClass="activeClass"
-                  className="nav-link navbarLinkHover"
-                  to="newsblock"
-                  spy={true}
-                  smooth={true}
-                  offset={20}
-                  duration={500}
-                >
-                  Tin Tức
-                </ScrollBtn>
+                {locationState ? (
+                  <Link
+                    className="nav-link navbarLinkHover"
+                    to="/?src=newsblock"
+                  >
+                    Tin Tức
+                  </Link>
+                ) : (
+                  <ScrollBtn
+                    activeClass="activeClass"
+                    className="nav-link navbarLinkHover"
+                    to="newsblock"
+                    spy={true}
+                    smooth={true}
+                    offset={20}
+                    duration={500}
+                  >
+                    Tin Tức
+                  </ScrollBtn>
+                )}
               </li>
               <li className="nav-item">
-                <ScrollBtn
-                  activeClass="activeClass"
-                  className="nav-link navbarLinkHover"
-                  to="appblock"
-                  spy={true}
-                  smooth={true}
-                  duration={500}
-                  offset={20}
-                >
-                  Ứng dụng
-                </ScrollBtn>
+                {locationState ? (
+                  <Link
+                    className="nav-link navbarLinkHover"
+                    to="/?src=appblock"
+                  >
+                    Ứng dụng
+                  </Link>
+                ) : (
+                  <ScrollBtn
+                    activeClass="activeClass"
+                    className="nav-link navbarLinkHover"
+                    to="appblock"
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                    offset={20}
+                  >
+                    Ứng dụng
+                  </ScrollBtn>
+                )}
               </li>
             </ul>
           </div>
@@ -146,3 +188,4 @@ export default function NavbarHome() {
     </div>
   );
 }
+export default memo(NavbarHome);

@@ -15,17 +15,17 @@ const MovieDetailsReducer = (state = initialState, { type, payload }) => {
     case MOVIE_DETAILS_REQUEST:
       state.loading = true;
       state.data = null;
-      state.errr = null;
+      state.err = null;
       return { ...state };
     case MOVIE_DETAILS_SUCCESS:
       state.loading = false;
       state.data = payload;
-      state.errr = null;
+      state.err = null;
       return { ...state };
     case MOVIE_DETAILS_FAILED:
       state.loading = false;
       state.data = null;
-      state.errr = payload;
+      state.err = payload;
       return { ...state };
     default:
       return state;
