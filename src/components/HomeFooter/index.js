@@ -148,7 +148,7 @@ function HomeFooter() {
             {renderListPartner(listPartner)}
           </div>
           <div className="col-12 col-md-4 text-white row">
-            <div className="col-lg-6 topRight-1 hideOnMobile textCenter">
+            <div className="col-lg-6 topRight-1 hideOnMobile text-center">
               <p className="title">MOBILE APP</p>
               <a
                 target="_blank"
@@ -158,7 +158,7 @@ function HomeFooter() {
               >
                 <img
                   className="iconApp"
-                  src="./img/icons/apple-logo.png"
+                  src="../../img/icons/apple-logo.png"
                   alt=""
                 />
               </a>
@@ -170,12 +170,12 @@ function HomeFooter() {
               >
                 <img
                   className="iconApp"
-                  src="./img/icons/android-logo.png"
+                  src="../../img/icons/android-logo.png"
                   alt=""
                 />
               </a>
             </div>
-            <div className="col-12 col-lg-6 topRight-2 textCenter">
+            <div className="col-12 col-lg-6 topRight-2 text-center">
               <p className="title hideOnMobile">SOCIAL</p>
               <a
                 target="_blank"
@@ -185,7 +185,7 @@ function HomeFooter() {
               >
                 <img
                   className="iconApp"
-                  src="./img/icons/facebook-logo.png"
+                  src="../../img/icons/facebook-logo.png"
                   alt=""
                 />
               </a>
@@ -197,7 +197,7 @@ function HomeFooter() {
               >
                 <img
                   className="iconApp"
-                  src="./img/icons/zalo-logo.png"
+                  src="../../img/icons/zalo-logo.png"
                   alt=""
                 />
               </a>
