@@ -5,13 +5,14 @@ import {
   LIST_CINEMA_FAILED,
 } from "../constants";
 
-export const actGetListCinemaShowTimesApi = (code = undefined) => {
+export const actGetListCinemaShowTimesApi = (code = null) => {
   return (dispatch) => {
     dispatch(actListCinemaRequest());
     Axios({
-      url: code
-        ? `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${code}&maNhom=GP10`
-        : `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP10`,
+      url:
+        code !== null
+          ? `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${code}&maNhom=GP10`
+          : `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP10`,
       method: "GET",
     })
       .then((result) => dispatch(actListCinemaSuccess(result.data)))

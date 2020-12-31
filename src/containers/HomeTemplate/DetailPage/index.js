@@ -8,11 +8,14 @@ import { actGetListCinemaSystemApi } from "../../../redux/actions/actListCinemaS
 import Loader from "../../../components/Loader";
 import { Redirect } from "react-router-dom";
 import { actGetListCinemaShowTimesApi } from "../../../redux/actions/actListCinemaShowTimesApi";
+import HomeFooter from "../../../components/HomeFooter";
 
 const MainContentTabs = React.lazy(() => import("./MainContentTabs"));
 const DetailMainTop = React.lazy(() => import("./DetailMainTop"));
 
 export default function DetailPage(props) {
+  const { id } = props.match.params;
+  const maPhim = id.slice(0, 4);
   const loading1 = useSelector((state) => state.MovieDetailsReducer.loading);
   const loading2 = useSelector(
     (state) => state.ListCinemaSystemReducer.loading
@@ -28,18 +31,14 @@ export default function DetailPage(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const { id } = props.match.params;
-    const maPhim = id.slice(0, 4);
     dispatch(actGetMovieDetailsApi(maPhim));
-    dispatch(actGetListCinemaSystemApi());
     dispatch(actGetListCinemaShowTimesApi());
+    dispatch(actGetListCinemaSystemApi());
+    return () => {
+      dispatch(actMovieDetailsSuccess(null));
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    dispatch(actMovieDetailsSuccess(null));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [errState]);
 
   if (errState) return <Redirect to="/" />;
   if (loading1 || loading2 || loading3 || !movieDetailData) return <Loader />;
@@ -49,6 +48,7 @@ export default function DetailPage(props) {
       <Suspense fallback={<Loader />}>
         <DetailMainTop movieDetailData={movieDetailData} />
         <MainContentTabs />
+        <HomeFooter />
       </Suspense>
     </div>
   );

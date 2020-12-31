@@ -33,19 +33,16 @@ function LichChieuPhimTab() {
 
   // lấy mã hệ thống dựa vào đây
   const renderTabContent = () => {
-    if (!ObjMovieDetail && !cinemasData) return;
+    if (!ObjMovieDetail || !cinemasData || !listCinema) return;
     // Lấy danh sách địa chỉ của các cinema trong từng hệ thống rạp
     const cinemasBox = getListCinemaAddress(cinemasData);
-
     // Lấy danh sách tên của các cinema hiện đang có suất chiếu của phim này
     const tempObj = ObjMovieDetail.heThongRapChieu.map(
       (item) => item.maHeThongRap
     );
-
     const checkedCinemaAddress = tempObj.map((str) => {
       return cinemasBox.find((item) => item.maHeThongRap === str);
     });
-
     return listCinema.map((item, index) => {
       return (
         <div
