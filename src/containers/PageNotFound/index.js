@@ -1,5 +1,6 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 
 export default function PageNotFound() {
-  return <div className="mainContent">Page Not Found !</div>;
+  return <Redirect to="/" />;
 }

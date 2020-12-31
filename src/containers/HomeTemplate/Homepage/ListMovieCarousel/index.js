@@ -1,21 +1,15 @@
-import React, { useEffect, memo } from "react";
+import React, { memo } from "react";
 import ListMovieTemplate from "./listMovieTemplate";
-import { useDispatch } from "react-redux";
-import { actGetListMovieApi } from "../../../../redux/actions/actListMovieApi";
-import { actListUpComingMovieApi } from "../../../../redux/actions/actListUpComingMovieApi";
+import { Element } from "react-scroll";
 
 function ListMovieCarousel() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(actGetListMovieApi());
-    dispatch(actListUpComingMovieApi());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <div className="row m-0">
-      <div className="col-12 mainMaxWidth" id="homeMovies">
+      <Element
+        name="homeMovies"
+        className="col-12 mainMaxWidth"
+        id="homeMovies"
+      >
         <ul className="nav nav-tabs navCenter">
           <li style={{ marginRight: 5 }}>
             <button
@@ -41,7 +35,7 @@ function ListMovieCarousel() {
           <ListMovieTemplate firstShow />
           <ListMovieTemplate upComingFilms />
         </div>
-      </div>
+      </Element>
     </div>
   );
 }

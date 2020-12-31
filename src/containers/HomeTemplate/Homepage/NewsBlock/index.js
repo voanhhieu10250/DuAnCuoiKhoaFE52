@@ -1,10 +1,15 @@
 import React, { memo } from "react";
 import TabNewsDetails from "./TabNewsDetails";
 import TabNewsList from "./TabNewsList";
+import { Element } from "react-scroll";
 
 function NewsBlock() {
   return (
-    <div id="newsblock" className="newsblock mainMaxWidth container-fluid">
+    <Element
+      name="newsblock"
+      id="newsblock"
+      className="newsblock mainMaxWidth container-fluid"
+    >
       <ul
         className="nav nav-tabs navCenter text-center"
         id="newsNav"
@@ -17,7 +22,7 @@ function NewsBlock() {
         <TabNewsDetails tabNum={1} />
         <TabNewsDetails tabNum={2} />
       </div>
-    </div>
+    </Element>
   );
 }
 

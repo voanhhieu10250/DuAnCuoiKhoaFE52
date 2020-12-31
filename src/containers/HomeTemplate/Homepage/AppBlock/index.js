@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import Slider from "react-slick";
 import { appBlockCarouselImgs } from "../../../../data";
+import { Element } from "react-scroll";
 
 function AppBlock() {
   const setting = {
@@ -27,7 +28,7 @@ function AppBlock() {
   };
 
   return (
-    <div id="appblock">
+    <Element name="appblock" id="appblock">
       <div className="mainMaxWidth container-fluid">
         <div className="row mr-auto ml-auto col-12">
           <div className="col-12 col-lg-6 left text-white text-center text-lg-left">
@@ -71,7 +72,7 @@ function AppBlock() {
           </div>
         </div>
       </div>
-    </div>
+    </Element>
   );
 }
 

@@ -1,20 +1,18 @@
-import React, { memo, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { actGetMovieDetailsApi } from "../../../../redux/actions/actMovieDetailsApi";
+import React, { memo } from "react";
 import PlayModalBtn from "../../../../components/PlayModalBtn";
 import handleExchangeDateString from "../../../../functions/exchangeDateString";
-import Loader from "../../../../components/Loader";
 import renderStarsImg from "../../../../functions/renderStarsImg";
+import { scroller } from "react-scroll";
 
-function DetailMainTop({ idPhim }) {
-  const movieDetailData = useSelector(
-    (state) => state.MovieDetailsReducer.data
-  );
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(actGetMovieDetailsApi(idPhim));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+function DetailMainTop({ movieDetailData }) {
+  const handleOnClick = () => {
+    document.getElementById("lichChieu").click();
+    scroller.scrollTo("contentDetailMain", {
+      duration: 800,
+      smooth: true,
+      offset: -5,
+    });
+  };
 
   const renderContent = () => {
     const {
@@ -24,6 +22,7 @@ function DetailMainTop({ idPhim }) {
       tenPhim,
       danhGia,
       ngayKhoiChieu,
+      heThongRapChieu,
     } = movieDetailData;
     return (
       <div id="detailMainTop">
@@ -42,8 +41,12 @@ function DetailMainTop({ idPhim }) {
               <span className="spanRed ageRange">C13</span>
               <span>{tenPhim}</span>
             </p>
-            <p style={{ marginBottom: 0 }}>100 phút - 0 IMDb - 2D/Digital</p>
-            <button className="btnBuyTicket">Mua vé</button>
+            <p
+              style={{ marginBottom: 0 }}
+            >{`${heThongRapChieu[0].cumRapChieu[0].lichChieuPhim[0].thoiLuong} phút - 0 IMDb - 2D/Digital`}</p>
+            <button className="btnBuyTicket" onClick={handleOnClick}>
+              Mua vé
+            </button>
           </div>
           <div className="col-sm-2 circleRating">
             <div className="circlePercent">
@@ -80,11 +83,9 @@ function DetailMainTop({ idPhim }) {
     );
   };
 
-  const renderShowingDate = (date) => {
-    return handleExchangeDateString(date, "dateWithDotRevert");
-  };
+  const renderShowingDate = (date) =>
+    handleExchangeDateString(date, "dateWithDotRevert");
 
-  if (movieDetailData === null) return <Loader />;
   return renderContent();
 }
 
