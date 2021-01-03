@@ -10,24 +10,28 @@ function DanhGiaPhimTab() {
   const reviewDataChanged = useSelector(
     (state) => state.PutMovieReviewReducer.dataChanged
   );
-  const { listComment } = reviewData;
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     return () => {
-      if (reviewDataChanged.length > 0) {
-        listComment.forEach((item, index) => {
-          if (reviewDataChanged[index]) item = reviewDataChanged[index];
-        });
+      if (reviewData) {
+        const { listComment } = reviewData;
+        if (reviewDataChanged.length > 0) {
+          listComment.forEach((item, index) => {
+            if (reviewDataChanged[index]) item = reviewDataChanged[index];
+          });
+          dispatch(actPutMovieReview(listComment, reviewData.maPhim));
+        }
+        console.log("dispatch data review changed ne!!");
       }
-      dispatch(actPutMovieReview(listComment, reviewData.maPhim));
-      console.log("dispatch data review changed ne!!");
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderListComment = () => {
-    const listRender = listComment.map((item, index) => {
+    if (!reviewData) return [];
+    return reviewData.listComment.map((item, index) => {
       console.log(item);
       return (
         <div className="reviewerContain" key={index}>
@@ -65,7 +69,6 @@ function DanhGiaPhimTab() {
         </div>
       );
     });
-    return listRender;
   };
 
   const handleReviewTime = (time) => {
@@ -81,7 +84,7 @@ function DanhGiaPhimTab() {
         <div className="row mx-0  detailMainStyle">
           <InputReviewSection />
         </div>
-        <div id="listComment">{renderListComment()}</div>
+        <div id="listComment">{reviewData ? renderListComment() : ""}</div>
       </div>
     </div>
   );
