@@ -57,3 +57,26 @@
     opacity: 0.7;
   }
 }
+
+.btnCloseLogin {
+  cursor: pointer;
+  float: right;
+  padding-right: 10px;
+  padding-top: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  border: none;
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  &:focus {
+    outline: none;
+  }
+  img {
+    width: 100%;
+  }
+}

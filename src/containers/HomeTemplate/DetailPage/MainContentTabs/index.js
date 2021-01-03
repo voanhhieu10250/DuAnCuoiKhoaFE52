@@ -1,7 +1,7 @@
 import React from "react";
-import DanhGiaPhimTab from "./danhGiaPhimTab";
-import LichChieuPhimTab from "./lichChieuPhimTab";
-import ThongTinPhimTab from "./thongTinPhimTab";
+import DanhGiaPhimTab from "./DanhGiaPhimTab";
+import LichChieuPhimTab from "./LichChieuPhimTab";
+import ThongTinPhimTab from "./ThongTinPhimTab";
 import { Element } from "react-scroll";
 
 export default function MainContentTabs() {

@@ -77,7 +77,7 @@
         margin-bottom: 20px;
         background-color: #fb4226;
         border: none;
-        color: #fff;
+        color: $color-white-0;
         outline: none;
         &:hover {
           background-color: #b42a14;
@@ -107,7 +107,7 @@
           top: 0;
           line-height: 2.4em;
           font-size: 0.42em;
-          color: #fff;
+          color: $color-white-0;
           display: block;
           text-align: center;
           white-space: nowrap;
@@ -145,7 +145,7 @@
       }
       .reviewsNum {
         font-size: 14px;
-        color: #e9e9e9;
+        color: $color-white-5;
         font-weight: 600;
       }
     }
@@ -161,8 +161,10 @@
   .navCenter li button {
     color: $color-white-0;
   }
-  #detailCinemaComplex {
+  .detailMainStyle {
     padding-top: 40px;
+  }
+  #detailCinemaComplex {
     .listCinemas {
       background: #fff;
       min-height: 713px;
@@ -273,6 +275,210 @@
         overflow-x: hidden;
         background-color: #fff;
         float: left;
+      }
+    }
+  }
+  .detailFilmInfo {
+    p {
+      margin-bottom: 10px;
+    }
+    .left,
+    .right {
+      padding: 0 6px;
+    }
+    .right {
+      padding-left: 10px;
+      margin-bottom: 0;
+    }
+    .leftInfo {
+      margin-bottom: 10px;
+
+      &::after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+    }
+    .contentTitle {
+      color: $color-white-0;
+      width: 35%;
+      float: left;
+      font-size: 14px;
+    }
+    .contentInfo {
+      color: $color-white-5;
+      width: 40%;
+      float: left;
+      font-size: 14px;
+    }
+    .contentInfoFull {
+      color: $color-white-5;
+      text-align: justify;
+      white-space: pre-wrap;
+      font-family: "SF Regular";
+      width: 100%;
+      float: left;
+      font-size: 14px;
+    }
+  }
+  .detailReviewer {
+    max-width: 810px;
+    margin: auto;
+  }
+  .inputReviewSection {
+    max-width: 580px;
+    margin: 0 calc(50% - 290px);
+    padding: 0;
+    position: relative;
+    cursor: pointer;
+    & * {
+      pointer-events: none;
+    }
+    .imgReviewer {
+      position: absolute;
+      top: 20%;
+      left: 3%;
+      img {
+        border-radius: 25px;
+        height: 32px;
+        width: 32px;
+      }
+    }
+    .inputReview {
+      appearance: none;
+      padding: 10px 10px 10px 55px;
+      width: 100%;
+      height: 60px;
+      border-radius: 4px;
+      border: 1px solid #e8e8e9;
+      background: #fff;
+      color: #9b9b9b;
+      font-size: 14px;
+    }
+    .imgReviewerStar {
+      position: absolute;
+      top: 30%;
+      right: 3%;
+      img {
+        height: 24px;
+        width: auto;
+      }
+    }
+  }
+  .reviewerContain {
+    border: 1px solid #e6e6e6;
+    border-bottom: none;
+    border-radius: 3px;
+    margin: 15px calc(50% - 290px) 0;
+    background-color: $color-white-0;
+    max-width: 580px;
+    &::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    .commentReviewer {
+      position: relative;
+      float: left;
+      width: 100%;
+      padding: 20px 20px 12px;
+      border-bottom: 1px solid #e6e6e6;
+      .mainInfo::after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      .mainInfo {
+        .infoReviewer {
+          float: left;
+          display: inline-block;
+          text-decoration: none;
+          .infoReviewerIcon {
+            float: left;
+            display: inline-block;
+            img {
+              border-radius: 25px;
+              height: 32px;
+              width: 32px;
+            }
+          }
+          .infoReviewerName {
+            margin-left: 10px;
+            color: $color-black-2;
+            display: inline-block;
+            height: 32px;
+            font-size: 14px;
+            .infoReviewerTime {
+              font-size: 10px;
+              color: $color-gray-1;
+              line-height: 1;
+            }
+          }
+        }
+        .infoStar {
+          display: inline-block;
+          float: right;
+          .core {
+            color: #91d25a;
+            font-size: 16px;
+            margin: auto;
+          }
+          .star .smallStar {
+            max-width: 8px;
+            height: auto;
+          }
+        }
+      }
+      .mainComment {
+        position: relative;
+        .comment {
+          background-color: transparent;
+          padding: 20px 0;
+          font-size: 14px;
+          color: #4a4a4a !important;
+          letter-spacing: -0.2px;
+          overflow-x: hidden;
+          border-radius: 4px;
+        }
+      }
+      .count {
+        padding: 10px 0 0 0;
+        margin-top: 0;
+        border-top: 1px solid #e6e6e6;
+        text-align: left;
+        .wrapIcon {
+          * {
+            pointer-events: none;
+          }
+          &:hover .postLikeCmt {
+            transform: scale(1.1) !important;
+          }
+          &::after {
+            content: "";
+            display: table;
+            clear: both;
+          }
+          cursor: pointer;
+          display: inline-table;
+          float: left;
+          margin-right: 40px;
+          .postLikeCmt {
+            display: table-cell;
+            vertical-align: middle;
+            margin-right: 10px;
+            cursor: pointer;
+            height: auto;
+            width: 16px;
+            transition: all 0.2s;
+            margin-top: 2px;
+          }
+          .amountLike {
+            color: #737576 !important;
+            font-size: 14px;
+            display: table-cell;
+            vertical-align: middle;
+          }
+        }
       }
     }
   }

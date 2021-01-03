@@ -71,7 +71,10 @@ function LichChieuPhimTab() {
   if (!ObjMovieDetail || !listCinema) return <div></div>;
   return (
     <div className="tab-pane fade show active" id="lichChieuPhim">
-      <div className="col-12 mainMaxWidth2 px-0" id="detailCinemaComplex">
+      <div
+        className="col-12 mainMaxWidth2 px-0 detailMainStyle"
+        id="detailCinemaComplex"
+      >
         <ul className="nav nav-tabs flex-column listCinemas">
           {renderListCinema()}
         </ul>

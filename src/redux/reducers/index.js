@@ -4,6 +4,8 @@ import MovieDetailsReducer from "./movieDetailsReducer";
 import ListUpComingMovieReducer from "./listUpComingMovieReducer";
 import ListCinemaSystemReducer from "./listCinemaSystemReducer";
 import ListCinemaShowTimesReducer from "./listCinemaReducer";
+import MovieReviewReducer from "./movieReviewReducer";
+import PutMovieReviewReducer from "./putMovieReviewReducer";
 
 const rootReducer = combineReducers({
   ListMovieReducer,
@@ -11,6 +13,8 @@ const rootReducer = combineReducers({
   ListUpComingMovieReducer,
   ListCinemaSystemReducer,
   ListCinemaShowTimesReducer,
+  MovieReviewReducer,
+  PutMovieReviewReducer,
 });
 
 export default rootReducer;

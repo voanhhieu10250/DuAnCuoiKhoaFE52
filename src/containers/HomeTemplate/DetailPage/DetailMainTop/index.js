@@ -3,16 +3,12 @@ import PlayModalBtn from "../../../../components/PlayModalBtn";
 import handleExchangeDateString from "../../../../functions/exchangeDateString";
 import renderStarsImg from "../../../../functions/renderStarsImg";
 import { scroller } from "react-scroll";
+import { useSelector } from "react-redux";
 
-function DetailMainTop({ movieDetailData }) {
-  const handleOnClick = () => {
-    document.getElementById("lichChieu").click();
-    scroller.scrollTo("contentDetailMain", {
-      duration: 800,
-      smooth: true,
-      offset: -5,
-    });
-  };
+function DetailMainTop() {
+  const movieDetailData = useSelector(
+    (state) => state.MovieDetailsReducer.data
+  );
 
   const renderContent = () => {
     const {
@@ -83,9 +79,17 @@ function DetailMainTop({ movieDetailData }) {
     );
   };
 
+  const handleOnClick = () => {
+    document.getElementById("lichChieu").click();
+    scroller.scrollTo("contentDetailMain", {
+      duration: 800,
+      smooth: true,
+      offset: -5,
+    });
+  };
   const renderShowingDate = (date) =>
     handleExchangeDateString(date, "dateWithDotRevert");
-
+  if (!movieDetailData) return [];
   return renderContent();
 }
 

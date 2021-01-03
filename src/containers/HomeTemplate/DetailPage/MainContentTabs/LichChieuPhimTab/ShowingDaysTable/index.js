@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import handleExchangeDateString from "../../../../../functions/exchangeDateString";
-import { spliceSameArrObj } from "../../../../../functions/handleArrStuff";
+import handleExchangeDateString from "../../../../../../functions/exchangeDateString";
+import { spliceSameArrObj } from "../../../../../../functions/handleArrStuff";
 import CardsContainer from "./cardsContainer";
 
 export default function ShowingDaysTable({
