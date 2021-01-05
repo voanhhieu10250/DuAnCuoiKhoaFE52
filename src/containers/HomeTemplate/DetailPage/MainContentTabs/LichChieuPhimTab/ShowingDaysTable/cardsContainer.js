@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import CollapsableCard from "../../../../../components/CollapsableCard";
-import handleExchangeDateString from "../../../../../functions/exchangeDateString";
+import CollapsableCard from "../../../../../../components/CollapsableCard";
+import handleExchangeDateString from "../../../../../../functions/exchangeDateString";
 
 export default function CardsContainer({
   cumRapChieu,

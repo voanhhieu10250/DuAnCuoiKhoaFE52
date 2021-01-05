@@ -8,10 +8,11 @@ import { actGetListCinemaSystemApi } from "../../../redux/actions/actListCinemaS
 import Loader from "../../../components/Loader";
 import { Redirect } from "react-router-dom";
 import { actGetListCinemaShowTimesApi } from "../../../redux/actions/actListCinemaShowTimesApi";
-import HomeFooter from "../../../components/HomeFooter";
+import { actGetMovieReview } from "../../../redux/actions/actGetMovieReview";
 
 const MainContentTabs = React.lazy(() => import("./MainContentTabs"));
 const DetailMainTop = React.lazy(() => import("./DetailMainTop"));
+const HomeFooter = React.lazy(() => import("../../../components/HomeFooter"));
 
 export default function DetailPage(props) {
   const { id } = props.match.params;
@@ -23,17 +24,15 @@ export default function DetailPage(props) {
   const loading3 = useSelector(
     (state) => state.ListCinemaShowTimesReducer.loading
   );
-  const movieDetailData = useSelector(
-    (state) => state.MovieDetailsReducer.data
-  );
+  const loading4 = useSelector((state) => state.MovieReviewReducer.loading);
   const errState = useSelector((state) => state.MovieDetailsReducer.err);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(actGetMovieDetailsApi(maPhim));
     dispatch(actGetListCinemaShowTimesApi());
     dispatch(actGetListCinemaSystemApi());
+    dispatch(actGetMovieReview(maPhim));
     return () => {
       dispatch(actMovieDetailsSuccess(null));
     };
@@ -41,12 +40,12 @@ export default function DetailPage(props) {
   }, []);
 
   if (errState) return <Redirect to="/" />;
-  if (loading1 || loading2 || loading3 || !movieDetailData) return <Loader />;
+  if (loading1 || loading2 || loading3 || loading4) return <Loader />;
 
   return (
     <div className="mainContent container-fluid px-0" id="detailPage">
       <Suspense fallback={<Loader />}>
-        <DetailMainTop movieDetailData={movieDetailData} />
+        <DetailMainTop />
         <MainContentTabs />
         <HomeFooter />
       </Suspense>

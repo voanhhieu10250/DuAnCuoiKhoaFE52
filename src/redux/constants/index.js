@@ -1,3 +1,5 @@
+//HOME_PAGE
+
 // LIST_MOVIE
 export const LIST_MOVIE_REQUEST = "ListMovieReducer/LIST_MOVIE_REQUEST";
 export const LIST_MOVIE_SUCCESS = "ListMovieReducer/LIST_MOVIE_SUCCESS";
@@ -29,3 +31,19 @@ export const LIST_CINEMA_SYSTEM_FAILED =
 export const LIST_CINEMA_REQUEST = "ListCinemaReducer/LIST_CINEMA_REQUEST";
 export const LIST_CINEMA_SUCCESS = "ListCinemaReducer/LIST_CINEMA_SUCCESS";
 export const LIST_CINEMA_FAILED = "ListCinemaReducer/LIST_CINEMA_FAILED";
+
+// DETAIL_PAGE
+
+// MOVIE_REVIEWS
+export const MOVIE_REVIEW_REQUEST = "MovieReviewReducer/MOVIE_REVIEW_REQUEST";
+export const MOVIE_REVIEW_SUCCESS = "MovieReviewReducer/MOVIE_REVIEW_SUCCESS";
+export const MOVIE_REVIEW_FAILED = "MovieReviewReducer/MOVIE_REVIEW_FAILED";
+
+export const PUT_MOVIE_REVIEW_REQUEST =
+  "ChangeMovieReviewReducer/PUT_MOVIE_REVIEW_REQUEST";
+export const PUT_MOVIE_REVIEW_SUCCESS =
+  "ChangeMovieReviewReducer/PUT_MOVIE_REVIEW_SUCCESS";
+export const PUT_MOVIE_REVIEW_FAILED =
+  "ChangeMovieReviewReducer/PUT_MOVIE_REVIEW_FAILED";
+export const CHANGE_MOVIE_REVIEW_DATA =
+  "ChangeMovieReviewReducer/CHANGE_MOVIE_REVIEW_DATA";
