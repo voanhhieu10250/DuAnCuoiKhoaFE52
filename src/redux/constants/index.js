@@ -47,3 +47,8 @@ export const PUT_MOVIE_REVIEW_FAILED =
   "ChangeMovieReviewReducer/PUT_MOVIE_REVIEW_FAILED";
 export const CHANGE_MOVIE_REVIEW_DATA =
   "ChangeMovieReviewReducer/CHANGE_MOVIE_REVIEW_DATA";
+
+// LOGIN_PAGE
+export const LOGIN_PAGE_REQUEST = "UserLoginReducer/LOGIN_PAGE_REQUEST";
+export const LOGIN_PAGE_SUCCESS = "UserLoginReducer/LOGIN_PAGE_SUCCESS";
+export const LOGIN_PAGE_FAILED = "UserLoginReducer/LOGIN_PAGE_FAILED";

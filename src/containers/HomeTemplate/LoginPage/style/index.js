@@ -34,7 +34,35 @@ export const ToHome = styled(Link)`
   display: block;
   & img {
     width: 209px;
-    margin-bottom: 96px;
+    margin-bottom: 20px;
     cursor: pointer;
+  }
+`;
+
+export const InputField = styled.input`
+  border-radius: 6px;
+  width: 90%;
+  padding: 8px 12px;
+  border: 1px solid rgba(8, 22, 48, 0.9);
+  &:focus {
+    border-color: #1877f2;
+    box-shadow: 0 0 0 2px #e7f3ff;
+    outline: none;
+  }
+`;
+
+export const LoginBtn = styled.button`
+  width: 90%;
+  padding: 8px 12px;
+  background-color: rgb(20, 50, 93);
+  color: #fff;
+  border-radius: 6px;
+  border: none;
+  font-size: 17px;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background-color: rgb(15 42 82);
   }
 `;

@@ -48,7 +48,7 @@ export default function HomePage() {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  });
+  }, []);
 
   if (loading1 || loading2 || loading3) return <Loader />;
 

@@ -42,22 +42,57 @@
     }
   }
   #account {
-    a {
+    cursor: pointer;
+    position: relative;
+    &:hover #logoutBtn {
+      display: block;
+    }
+    a,
+    #userBtn {
       @include text($color-gray-1, $fs-2, 400);
       text-decoration: none;
+      border: none;
       letter-spacing: 0.5px;
       vertical-align: middle;
       position: relative;
       left: 0;
       top: 12%;
-      img {
-        width: 30px;
-        height: auto;
-        border-radius: 25px;
-        margin-right: 5px;
+      &:focus {
+        outline: none;
       }
       p {
-        display: inline-block;
+        height: 34px;
+      }
+    }
+    img {
+      width: 30px;
+      height: auto;
+      border-radius: 25px;
+      margin-right: 5px;
+    }
+    p {
+      display: inline-block;
+    }
+    #logoutBtn {
+      position: absolute;
+      display: none;
+      width: 120px;
+      color: #fff;
+      right: 0;
+      top: 100%;
+      background-color: #959595;
+      border-radius: 4px;
+      button {
+        border-radius: 4px;
+        border: none;
+        padding: 5px;
+        width: 100%;
+        margin: 0;
+        background-color: transparent;
+        color: $color-white-0;
+        &:hover {
+          background-color: #888;
+        }
       }
     }
   }

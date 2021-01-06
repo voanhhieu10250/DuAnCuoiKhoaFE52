@@ -7,19 +7,25 @@ import useStyles from "../../../../../../styles";
 function InputReviewSection() {
   const checkAccount = JSON.parse(localStorage.getItem("UserAccount"));
   const [open, setOpen] = useState(false);
+  const [openComment, setOpenComment] = useState(false);
   const classes = useStyles();
   const handleOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
+  };
+  const openCommentBox = () => {
+    setOpenComment(true);
+  };
+  const closeCommentBox = () => {
+    setOpenComment(false);
   };
   return (
     <Fragment>
       <div
         className="col-12 inputReviewSection"
-        onClick={checkAccount ? "" : handleOpen}
+        onClick={checkAccount ? openCommentBox : handleOpen}
       >
         <span className="imgReviewer">
           <img src="../../../../../../img/avatar.png" alt="avatar" />
@@ -67,6 +73,39 @@ function InputReviewSection() {
             </button>
             <div className={classes.btnLogin}>
               <button className="login" id="modal-description-login">
+                <p>
+                  <strong>Đăng nhập</strong>
+                </p>
+              </button>
+            </div>
+          </div>
+        </Fade>
+      </Modal>
+      <Modal
+        disableScrollLock
+        aria-labelledby="modal-comment"
+        aria-describedby="modal-description-comment"
+        className={classes.modal}
+        open={openComment}
+        onClose={closeCommentBox}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={openComment}>
+          <div className={classes.loginPaper}>
+            <p className="title">Bạn cần phải đăng nhập.</p>
+            <button
+              className="btnCloseLogin"
+              type="button"
+              onClick={closeCommentBox}
+            >
+              <img src="../../../../img/xController.png" alt="" />
+            </button>
+            <div className={classes.btnLogin}>
+              <button className="login" id="modal-description-comment">
                 <p>
                   <strong>Đăng nhập</strong>
                 </p>
