@@ -1,9 +1,18 @@
+import React, { Suspense } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
+import ErrorBoundary from "./components/ErrorBoundary";
+import Loader from "./components/Loader";
 import AdminTemplate from "./containers/AdminTemplate";
-import AuthPage from "./containers/AdminTemplate/AuthPage";
 import HomeTemplate from "./containers/HomeTemplate";
 import { routePageNotFound, routesAdmin, routesHome } from "./routes";
+
+const AuthPage = React.lazy(() =>
+  import("./containers/AdminTemplate/AuthPage")
+);
+const LoginPage = React.lazy(() =>
+  import("./containers/HomeTemplate/LoginPage")
+);
 
 function App() {
   const showLayoutHome = (routes) => {
@@ -38,7 +47,12 @@ function App() {
         <Switch>
           {showLayoutHome(routesHome)}
           {showLayoutAdmin(routesAdmin)}
-          <Route exact={false} path="/auth" component={AuthPage} />
+          <ErrorBoundary>
+            <Suspense fallback={<Loader />}>
+              <Route exact={false} path="/login" component={LoginPage} />
+              <Route exact={false} path="/auth" component={AuthPage} />
+            </Suspense>
+          </ErrorBoundary>
           {showLayoutHome(routePageNotFound)}
         </Switch>
       </div>

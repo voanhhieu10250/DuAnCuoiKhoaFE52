@@ -1,6 +1,24 @@
 import React from "react";
-import styled from "styled-components";
-import "./CSS/loader.css";
+import styled, { keyframes } from "styled-components";
+// import "./CSS/loader.css";
+
+const shaking = keyframes`
+  0% {
+    transform: rotate(5deg);
+  }
+  25% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(5deg);
+  }
+`;
 
 const Loading = styled.div`
   background-image: url("../../img/web-logo.png");
@@ -15,7 +33,7 @@ const Loading = styled.div`
   bottom: 53%;
   transition: all 1s;
   transform: scale(1.3);
-  animation: shaking 0.5s linear infinite;
+  animation: ${shaking} 0.5s linear infinite;
 `;
 
 export default function Loader() {
