@@ -47,6 +47,8 @@ const useStyles = makeStyles((theme) => ({
       clear: "both",
     },
     "& .login": {
+      display: "inline-block",
+      color: "#000",
       padding: "1px 6px",
       borderRadius: "4px",
       border: "1px solid gray",
@@ -58,6 +60,84 @@ const useStyles = makeStyles((theme) => ({
       },
       "& p": {
         margin: "0 0 10px",
+      },
+    },
+  },
+  postPaper: {
+    position: "absolute",
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    border: "#9b9b9b solid 1px",
+    borderRadius: "6px",
+    fontSize: "16px",
+    width: "auto",
+    "& .core": {
+      fontSize: "40px",
+      color: "#7ed321",
+      textAlign: "center",
+      margin: "10px 0 -15px 0",
+      "& p": {
+        margin: "0 0 10px",
+      },
+    },
+    "& .starSelect": {
+      position: "relative",
+      margin: "auto",
+      width: "fit-content",
+      "& .starBackList": {
+        width: "fit-content",
+        "& img": {
+          height: "32px",
+        },
+      },
+      "& .starSelectList": {
+        position: "absolute",
+        top: 0,
+        "& img": {
+          height: "32px",
+        },
+      },
+    },
+    "& .inputComment": {
+      padding: "20px",
+      margin: "20px",
+      borderRadius: "4px",
+      width: "740px",
+      border: "1px solid #e8e8e9",
+      background: "#fff",
+      fontSize: "16px",
+      resize: "none",
+      transition: "all .2s",
+      "&:focus": {
+        outline: "none",
+        borderColor: "#fb4226",
+        boxShadow:
+          "inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(251,66,38,.6)",
+      },
+    },
+    "& .errorPost": {
+      marginBottom: "20px",
+      textAlign: "center",
+      color: "red",
+      fontSize: "14px",
+    },
+  },
+  postBtn: {
+    position: "relative",
+    margin: "0",
+    "& .postBtn": {
+      float: "right",
+      margin: "0 20px 25px 0",
+      padding: "7px 29px",
+      backgroundColor: "#fb4226",
+      border: "1px solid #fb4226",
+      borderRadius: " 4px",
+      color: "#fff",
+      backgroundImage: "linear-gradient(-226deg,#fb4226 11%,#be2912 100%)",
+      transition: "all .2s",
+      fontSize: "14px",
+      "&:focus": {
+        outline: "none",
       },
     },
   },

@@ -16,7 +16,10 @@ const LoginPage = () => {
     e.preventDefault();
     dispatch(
       actLoginApi(
-        { taiKhoan: taiKhoan.current.value, matKhau: matKhau.current.value },
+        {
+          taiKhoan: taiKhoan.current.value.trim(),
+          matKhau: matKhau.current.value.trim(),
+        },
         history
       )
     );
