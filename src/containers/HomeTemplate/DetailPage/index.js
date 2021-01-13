@@ -24,7 +24,6 @@ export default function DetailPage(props) {
   const loading3 = useSelector(
     (state) => state.ListCinemaShowTimesReducer.loading
   );
-  const loading4 = useSelector((state) => state.MovieReviewReducer.loading);
   const errState = useSelector((state) => state.MovieDetailsReducer.err);
   const dispatch = useDispatch();
 
@@ -40,7 +39,7 @@ export default function DetailPage(props) {
   }, []);
 
   if (errState) return <Redirect to="/" />;
-  if (loading1 || loading2 || loading3 || loading4) return <Loader />;
+  if (loading1 || loading2 || loading3) return <Loader />;
 
   return (
     <div className="mainContent container-fluid px-0" id="detailPage">

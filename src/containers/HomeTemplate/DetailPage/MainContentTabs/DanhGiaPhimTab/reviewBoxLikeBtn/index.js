@@ -14,7 +14,8 @@ function ReviewBoxLikeBtn({ item, index }) {
 
   useEffect(() => {
     if (cloneItem.liked.length !== item.liked.length)
-      dispatch(actChangeMovieReviewData(cloneItem, index));
+      console.log("dispatch liked");
+    dispatch(actChangeMovieReviewData(cloneItem, index));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cloneItem]);
 

@@ -1,11 +1,36 @@
-import React, { Fragment, memo, useRef, useState } from "react";
+import React, { Fragment, memo, useEffect, useRef, useState } from "react";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import useStyles from "../../../../../../styles";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import SelectStar from "./selectStar";
+import {
+  actResetPostReviewState,
+  actSetContentPostReview,
+} from "../modules/action";
+import {
+  actPutMovieReview,
+  actPutMovieReviewSuccess,
+} from "../../../../../../redux/actions/actPutMovieReview";
+import { actGetMovieReview } from "../../../../../../redux/actions/actGetMovieReview";
 
 function InputReviewSection() {
+  const movieDetail = useSelector((state) => state.MovieDetailsReducer.data);
+  const movieReview = useSelector((state) => state.MovieReviewReducer.data);
+  const listComment = useSelector(
+    (state) => state.ReviewFeatureReducer.updatedReviewData
+  );
+  const stateChanged = useSelector(
+    (state) => state.ReviewFeatureReducer.newUpdate
+  );
+  const postLoading = useSelector(
+    (state) => state.PutMovieReviewReducer.loading
+  );
+  const postSuccessData = useSelector(
+    (state) => state.PutMovieReviewReducer.data
+  );
   const [missingPost, setMissingPost] = useState(false);
   const postContent = useRef();
   const checkAccount = JSON.parse(localStorage.getItem("UserAccount"));
@@ -22,20 +47,49 @@ function InputReviewSection() {
     setOpenComment(true);
   };
   const closeCommentBox = () => {
-    setMissingPost(false);
     setOpenComment(false);
+    if (missingPost) {
+      setMissingPost(false);
+    }
+    if (postSuccessData && !postLoading) {
+      dispatch(actPutMovieReviewSuccess(null));
+
+      // render lại page luôn
+      dispatch(actGetMovieReview(movieDetail.maPhim));
+    }
   };
+  const dispatch = useDispatch();
   console.log("chay ne");
+
   const handleClickPost = () => {
     if (!postContent.current.value && missingPost === false) {
       setMissingPost(true);
     }
     if (postContent.current.value) {
       // dipatch bài post mới lên server
-
-      closeCommentBox();
+      dispatch(
+        actSetContentPostReview({
+          comment: postContent.current.value,
+          movieReview,
+        })
+      );
     }
   };
+
+  useEffect(() => {
+    if (listComment.length > 0) {
+      dispatch(actPutMovieReview({ listComment }, movieDetail.maPhim));
+      dispatch(actResetPostReviewState());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stateChanged]);
+
+  useEffect(() => {
+    if (postSuccessData && !postLoading) {
+      closeCommentBox();
+    }
+  }, [postSuccessData, postLoading]);
+
   return (
     <Fragment>
       <div
@@ -116,28 +170,7 @@ function InputReviewSection() {
             >
               <img src="../../../../img/xController.png" alt="" />
             </button>
-            <div className="core">
-              <p>5.0</p>
-            </div>
-            <div className="starSelect">
-              <div className="starBackList">
-                <img src="../../../../../../img/starBack.png" alt="" />
-                <img src="../../../../../../img/starBack.png" alt="" />
-                <img src="../../../../../../img/starBack.png" alt="" />
-                <img src="../../../../../../img/starBack.png" alt="" />
-                <img src="../../../../../../img/starBack.png" alt="" />
-              </div>
-              <div
-                className="starSelectList"
-                style={{ clip: "rect(0 83.75px 32px 0)" }}
-              >
-                <img src="../../../../../../img/StarSelect.png" alt="" />
-                <img src="../../../../../../img/StarSelect.png" alt="" />
-                <img src="../../../../../../img/StarSelect.png" alt="" />
-                <img src="../../../../../../img/StarSelect.png" alt="" />
-                <img src="../../../../../../img/StarSelect.png" alt="" />
-              </div>
-            </div>
+            <SelectStar />
             <div className="mx-0">
               <textarea
                 ref={postContent}
@@ -151,13 +184,23 @@ function InputReviewSection() {
               {missingPost ? "Hãy cho TIX biết suy nghĩ của bạn" : ""}
             </div>
             <div className={classes.postBtn}>
-              <button
-                onClick={handleClickPost}
-                className="postBtn"
-                id="modal-description-comment"
-              >
-                ĐĂNG
-              </button>
+              {postLoading ? (
+                <button
+                  className="postBtn"
+                  id="modal-description-comment"
+                  disabled
+                >
+                  Loading...
+                </button>
+              ) : (
+                <button
+                  onClick={handleClickPost}
+                  className="postBtn"
+                  id="modal-description-comment"
+                >
+                  ĐĂNG
+                </button>
+              )}
             </div>
           </div>
         </Fade>

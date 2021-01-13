@@ -83,18 +83,49 @@ const useStyles = makeStyles((theme) => ({
     "& .starSelect": {
       position: "relative",
       margin: "auto",
-      width: "fit-content",
-      "& .starBackList": {
-        width: "fit-content",
-        "& img": {
-          height: "32px",
-        },
+      width: "160px",
+      height: "32px",
+      "& .defaultListStar": {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        backgroundRepeat: "repeat-x",
+        overflow: "hidden",
+        backgroundSize: "32px",
+        backgroundPosition: "0px 0px",
       },
       "& .starSelectList": {
         position: "absolute",
         top: 0,
-        "& img": {
+        left: 0,
+        height: "31px",
+        "&:hover span:hover ~ span": {
+          opacity: "0!important",
+        },
+        "&:hover span": {
+          opacity: "1!important",
+        },
+        "& span": {
+          display: "inline-block",
+          cursor: "pointer",
+        },
+        "& .halfLeft": {
           height: "32px",
+          width: "16px",
+          backgroundPosition: "0px 0px",
+          backgroundSize: "32px",
+          backgroundRepeat: "repeat-x",
+          overflow: "hidden",
+        },
+        "& .halfRight": {
+          height: "32px",
+          width: "16px",
+          backgroundPosition: "-16px 0px",
+          backgroundSize: "32px",
+          backgroundRepeat: "repeat-x",
+          overflow: "hidden",
         },
       },
     },

@@ -7,6 +7,7 @@ import InputReviewSection from "./inputReviewSection";
 
 function DanhGiaPhimTab() {
   const reviewData = useSelector((state) => state.MovieReviewReducer.data);
+  const loading = useSelector((state) => state.MovieReviewReducer.loading);
   const reviewDataChanged = useSelector(
     (state) => state.PutMovieReviewReducer.dataChanged
   );
@@ -16,13 +17,13 @@ function DanhGiaPhimTab() {
   useEffect(() => {
     return () => {
       if (reviewData) {
-        const { listComment } = reviewData;
-        if (reviewDataChanged.length > 0) {
-          listComment.forEach((item, index) => {
-            if (reviewDataChanged[index]) item = reviewDataChanged[index];
-          });
-          dispatch(actPutMovieReview(listComment, reviewData.maPhim));
-        }
+        // const { listComment } = reviewData;
+        // if (reviewDataChanged.length > 0) {
+        //   listComment.forEach((item, index) => {
+        //     if (reviewDataChanged[index]) item = reviewDataChanged[index];
+        //   });
+        //   // dispatch(actPutMovieReview(listComment, reviewData.maPhim));
+        // }
         console.log("dispatch data review changed ne!!");
       }
     };
@@ -31,44 +32,45 @@ function DanhGiaPhimTab() {
 
   const renderListComment = () => {
     if (!reviewData) return [];
-    return reviewData.listComment.map((item, index) => {
-      console.log(item);
-      return (
-        <div className="reviewerContain" key={index}>
-          <div className="commentReviewer">
-            <div className="m-0 mainInfo">
-              <div className="infoReviewer">
-                <div className="infoReviewerIcon">
-                  <img src={item.avatar} alt="" />
+    return reviewData.listComment
+      .map((item, index) => {
+        return (
+          <div className="reviewerContain" key={index}>
+            <div className="commentReviewer">
+              <div className="m-0 mainInfo">
+                <div className="infoReviewer">
+                  <div className="infoReviewerIcon">
+                    <img src={item.avatar} alt="" />
+                  </div>
+                  <div className="infoReviewerName">
+                    {item.reviewer}
+                    <p className="infoReviewerTime ">
+                      {handleReviewTime(item.time)} giờ trước
+                    </p>
+                  </div>
                 </div>
-                <div className="infoReviewerName">
-                  {item.reviewer}
-                  <p className="infoReviewerTime ">
-                    {handleReviewTime(item.time)} giờ trước
-                  </p>
+                <div className="infoStar">
+                  <div className="core">
+                    <p className="text-center mb-0">{item.rating}</p>
+                  </div>
+                  <div className="star mx-0">
+                    {renderStarsImg(item.rating, "smallStar")}
+                  </div>
                 </div>
               </div>
-              <div className="infoStar">
-                <div className="core">
-                  <p className="text-center mb-0">{item.rating}</p>
-                </div>
-                <div className="star mx-0">
-                  {renderStarsImg(item.rating, "smallStar")}
-                </div>
+              <div className="mx-0 mainComment">
+                <div className="comment">{item.comment}</div>
               </div>
-            </div>
-            <div className="mx-0 mainComment">
-              <div className="comment">{item.comment}</div>
-            </div>
-            <div className="row mx-0">
-              <div className="col-12 count">
-                <ReviewBoxLikeBtn item={item} index={index} />
+              <div className="row mx-0">
+                <div className="col-12 count">
+                  <ReviewBoxLikeBtn item={item} index={index} />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      );
-    });
+        );
+      })
+      .reverse();
   };
 
   const handleReviewTime = (time) => {
@@ -84,7 +86,9 @@ function DanhGiaPhimTab() {
         <div className="row mx-0  detailMainStyle">
           <InputReviewSection />
         </div>
-        <div id="listComment">{reviewData ? renderListComment() : ""}</div>
+        <div id="listComment">
+          {reviewData && !loading ? renderListComment() : ""}
+        </div>
       </div>
     </div>
   );

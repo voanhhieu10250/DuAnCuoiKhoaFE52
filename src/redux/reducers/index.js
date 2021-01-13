@@ -7,6 +7,7 @@ import ListCinemaShowTimesReducer from "./listCinemaReducer";
 import MovieReviewReducer from "./movieReviewReducer";
 import PutMovieReviewReducer from "./putMovieReviewReducer";
 import userLoginReducer from "./userLoginReducer";
+import ReviewFeatureReducer from "../../containers/HomeTemplate/DetailPage/MainContentTabs/DanhGiaPhimTab/modules/reducer";
 
 const rootReducer = combineReducers({
   ListMovieReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   MovieReviewReducer,
   PutMovieReviewReducer,
   userLoginReducer,
+  ReviewFeatureReducer,
 });
 
 export default rootReducer;
