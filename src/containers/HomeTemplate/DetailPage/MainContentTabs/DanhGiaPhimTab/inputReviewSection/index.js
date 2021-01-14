@@ -18,7 +18,6 @@ import { actGetMovieReview } from "../../../../../../redux/actions/actGetMovieRe
 
 function InputReviewSection() {
   const movieDetail = useSelector((state) => state.MovieDetailsReducer.data);
-  const movieReview = useSelector((state) => state.MovieReviewReducer.data);
   const listComment = useSelector(
     (state) => state.ReviewFeatureReducer.updatedReviewData
   );
@@ -37,6 +36,23 @@ function InputReviewSection() {
   const [open, setOpen] = useState(false);
   const [openComment, setOpenComment] = useState(false);
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (listComment.length > 0 && stateChanged) {
+      dispatch(actPutMovieReview({ listComment }, movieDetail.maPhim));
+      dispatch(actResetPostReviewState());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stateChanged]);
+
+  useEffect(() => {
+    if (postSuccessData && !postLoading && openComment) {
+      closeCommentBox();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [postSuccessData, postLoading, openComment]);
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -52,43 +68,23 @@ function InputReviewSection() {
       setMissingPost(false);
     }
     if (postSuccessData && !postLoading) {
+      // Nếu đã PUT data thành công lên server => reset lại reducer
       dispatch(actPutMovieReviewSuccess(null));
-
-      // render lại page luôn
+      // GET lại movieReview từ server để render lại reviewTab luôn
       dispatch(actGetMovieReview(movieDetail.maPhim));
     }
   };
-  const dispatch = useDispatch();
-  console.log("chay ne");
 
   const handleClickPost = () => {
-    if (!postContent.current.value && missingPost === false) {
+    if (!postContent.current.value && !missingPost) {
+      // Nếu chưa nhập content mà bấm post thì sẽ hiện thông báo
       setMissingPost(true);
     }
     if (postContent.current.value) {
       // dipatch bài post mới lên server
-      dispatch(
-        actSetContentPostReview({
-          comment: postContent.current.value,
-          movieReview,
-        })
-      );
+      dispatch(actSetContentPostReview(postContent.current.value));
     }
   };
-
-  useEffect(() => {
-    if (listComment.length > 0) {
-      dispatch(actPutMovieReview({ listComment }, movieDetail.maPhim));
-      dispatch(actResetPostReviewState());
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stateChanged]);
-
-  useEffect(() => {
-    if (postSuccessData && !postLoading) {
-      closeCommentBox();
-    }
-  }, [postSuccessData, postLoading]);
 
   return (
     <Fragment>

@@ -51,7 +51,7 @@ function LichChieuPhimTab() {
 
   // lấy mã hệ thống dựa vào đây
   const renderTabContent = () => {
-    if (!ObjMovieDetail || !cinemasData || !listCinema) return;
+    if (!ObjMovieDetail || !cinemasData || !listCinema) return "";
     // Lấy danh sách địa chỉ của các cinema trong từng hệ thống rạp
     const cinemasBox = getListCinemaAddress(cinemasData);
     // Lấy danh sách tên của các cinema hiện đang có suất chiếu của phim này

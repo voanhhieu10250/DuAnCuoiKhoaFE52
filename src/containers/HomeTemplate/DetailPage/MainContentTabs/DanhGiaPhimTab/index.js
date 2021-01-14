@@ -1,39 +1,22 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import renderStarsImg from "../../../../../functions/renderStarsImg";
-import { actPutMovieReview } from "../../../../../redux/actions/actPutMovieReview";
 import ReviewBoxLikeBtn from "./reviewBoxLikeBtn";
 import InputReviewSection from "./inputReviewSection";
+import { actSetLikeOnPost } from "./modules/action";
 
 function DanhGiaPhimTab() {
+  const prevDataLength = useRef(0);
   const reviewData = useSelector((state) => state.MovieReviewReducer.data);
   const loading = useSelector((state) => state.MovieReviewReducer.loading);
-  const reviewDataChanged = useSelector(
-    (state) => state.PutMovieReviewReducer.dataChanged
-  );
-
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    return () => {
-      if (reviewData) {
-        // const { listComment } = reviewData;
-        // if (reviewDataChanged.length > 0) {
-        //   listComment.forEach((item, index) => {
-        //     if (reviewDataChanged[index]) item = reviewDataChanged[index];
-        //   });
-        //   // dispatch(actPutMovieReview(listComment, reviewData.maPhim));
-        // }
-        console.log("dispatch data review changed ne!!");
-      }
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const renderListComment = () => {
     if (!reviewData) return [];
+    prevDataLength.current = reviewData.listComment.length;
     return reviewData.listComment
       .map((item, index) => {
+        dispatch(actSetLikeOnPost({ comment: item, index }));
         return (
           <div className="reviewerContain" key={index}>
             <div className="commentReviewer">
@@ -45,7 +28,7 @@ function DanhGiaPhimTab() {
                   <div className="infoReviewerName">
                     {item.reviewer}
                     <p className="infoReviewerTime ">
-                      {handleReviewTime(item.time)} giờ trước
+                      {handleReviewTime(item.time)}
                     </p>
                   </div>
                 </div>
@@ -63,7 +46,7 @@ function DanhGiaPhimTab() {
               </div>
               <div className="row mx-0">
                 <div className="col-12 count">
-                  <ReviewBoxLikeBtn item={item} index={index} />
+                  <ReviewBoxLikeBtn index={index} />
                 </div>
               </div>
             </div>
@@ -76,8 +59,43 @@ function DanhGiaPhimTab() {
   const handleReviewTime = (time) => {
     const nowTime = new Date();
     const reviewTime = new Date(time);
-    const diffTime = Math.abs(nowTime - reviewTime);
-    return Math.ceil(diffTime / (100 * 60 * 60));
+    const diffMillisecond = Math.abs(nowTime - reviewTime);
+    if (diffMillisecond < 1000 * 60 * 60) {
+      const diffMinute = Math.ceil(diffMillisecond / (1000 * 60));
+      return diffMinute === 1 ? "Vừa xong" : `${diffMinute} phút trước`;
+    }
+    if (diffMillisecond > 1000 * 60 * 60 * 24)
+      return `${Math.ceil(diffMillisecond / (1000 * 60 * 60 * 24))} ngày trước`;
+    if (diffMillisecond > 1000 * 60 * 60 * 24 * 30)
+      return `${Math.ceil(
+        diffMillisecond / (1000 * 60 * 60 * 24 * 30)
+      )} tháng trước`;
+    if (diffMillisecond >= 1000 * 60 * 60 * 24 * 365)
+      return `${Math.ceil(
+        diffMillisecond / (1000 * 60 * 60 * 24 * 365)
+      )} năm trước`;
+    return `${Math.ceil(diffMillisecond / (1000 * 60 * 60))} giờ trước`;
+  };
+
+  const renderLoadingDiv = () => {
+    const tempArr = [];
+    for (let i = 0; i < prevDataLength.current; i++) {
+      tempArr.push(
+        <div
+          style={{
+            width: 578,
+            height: 163,
+            margin: "15px calc(50% - 290px) 0",
+            borderRadius: 3,
+            borderBottom: "none",
+            border: "1px solid #e6e6e6",
+            backgroundColor: "#fff",
+          }}
+          key={i}
+        />
+      );
+    }
+    return tempArr;
   };
 
   return (
@@ -87,7 +105,7 @@ function DanhGiaPhimTab() {
           <InputReviewSection />
         </div>
         <div id="listComment">
-          {reviewData && !loading ? renderListComment() : ""}
+          {reviewData && !loading ? renderListComment() : renderLoadingDiv()}
         </div>
       </div>
     </div>

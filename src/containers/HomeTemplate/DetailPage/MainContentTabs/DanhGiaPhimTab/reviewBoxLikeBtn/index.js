@@ -1,23 +1,46 @@
-import React, { Fragment, memo, useEffect, useState } from "react";
+import React, { Fragment, memo, useEffect, useRef, useState } from "react";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import useStyles from "../../../../../../styles";
-import { useDispatch } from "react-redux";
-import { actChangeMovieReviewData } from "../../../../../../redux/actions/actPutMovieReview";
+import { useDispatch, useSelector } from "react-redux";
+import { actSetLikeOnPost } from "../modules/action";
+import {
+  actPutMovieReview,
+  actPutMovieReviewSuccess,
+} from "../../../../../../redux/actions/actPutMovieReview";
+import { actGetMovieReview } from "../../../../../../redux/actions/actGetMovieReview";
 
-function ReviewBoxLikeBtn({ item, index }) {
-  const [cloneItem, setCloneItem] = useState(item);
+function ReviewBoxLikeBtn({ index }) {
+  const clickLike = useRef(false);
+  const listComment = useSelector(
+    (state) => state.ReviewFeatureReducer.cloneListComment
+  );
+  const postSuccessData = useSelector(
+    (state) => state.PutMovieReviewReducer.data
+  );
+  const movieReview = useSelector((state) => state.MovieReviewReducer.data);
+  const cloneItem = movieReview.listComment[index].liked;
+  const account = JSON.parse(localStorage.getItem("UserAccount"));
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (cloneItem.liked.length !== item.liked.length)
-      console.log("dispatch liked");
-    dispatch(actChangeMovieReviewData(cloneItem, index));
+    if (clickLike.current) {
+      dispatch(actPutMovieReview({ listComment }, movieReview.maPhim));
+      clickLike.current = false;
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cloneItem]);
+  }, [clickLike.current]);
+
+  useEffect(() => {
+    if (postSuccessData) {
+      dispatch(actPutMovieReviewSuccess(null));
+      dispatch(actGetMovieReview(movieReview.maPhim));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [postSuccessData]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -28,7 +51,6 @@ function ReviewBoxLikeBtn({ item, index }) {
   };
 
   const renderLikeButton = (arrLiked) => {
-    const account = JSON.parse(localStorage.getItem("UserAccount"));
     if (!account)
       return (
         <img className="postLikeCmt" src="../../../../img/like.png" alt="" />
@@ -42,31 +64,25 @@ function ReviewBoxLikeBtn({ item, index }) {
   };
 
   const handleClickLike = (arr) => {
-    const account = JSON.parse(localStorage.getItem("UserAccount"));
-    if (!account) handleOpen();
-    else {
-      const checkAccount = arr.findIndex((item) => item === account.taiKhoan);
-      if (checkAccount !== -1) {
-        const tempObj = cloneItem;
-        tempObj.liked.splice(checkAccount, 1);
-        setCloneItem(tempObj);
-      } else {
-        const tempObj = cloneItem;
-        tempObj.liked.push(account.taiKhoan);
-        setCloneItem(tempObj);
-      }
+    clickLike.current = true;
+    const checkAccount = arr.findIndex((item) => item === account.taiKhoan);
+    if (checkAccount !== -1) {
+      arr.splice(checkAccount, 1);
+    } else {
+      arr.push(account.taiKhoan);
     }
+    dispatch(actSetLikeOnPost({ liked: arr, index }));
   };
 
   return (
     <Fragment>
       <div
         className="wrapIcon"
-        onClick={() => handleClickLike(cloneItem.liked)}
+        onClick={account ? () => handleClickLike(cloneItem) : handleOpen()}
       >
-        {renderLikeButton(cloneItem.liked)}
+        {renderLikeButton(cloneItem)}
         <span className="amountLike">
-          <strong>{cloneItem.liked.length}</strong> Thích
+          <strong>{cloneItem.length}</strong> Thích
         </span>
       </div>
       <Modal
