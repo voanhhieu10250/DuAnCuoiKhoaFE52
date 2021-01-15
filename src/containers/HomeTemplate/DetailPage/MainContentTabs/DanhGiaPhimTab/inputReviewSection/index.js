@@ -1,4 +1,4 @@
-import React, { Fragment, memo, useEffect, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
@@ -6,52 +6,37 @@ import useStyles from "../../../../../../styles";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SelectStar from "./selectStar";
-import {
-  actResetPostReviewState,
-  actSetContentPostReview,
-} from "../modules/action";
-import {
-  actPutMovieReview,
-  actPutMovieReviewSuccess,
-} from "../../../../../../redux/actions/actPutMovieReview";
-import { actGetMovieReview } from "../../../../../../redux/actions/actGetMovieReview";
+import { actPutMovieReview } from "../../../../../../redux/actions/actPutMovieReview";
 
-function InputReviewSection() {
-  const movieDetail = useSelector((state) => state.MovieDetailsReducer.data);
-  const listComment = useSelector(
-    (state) => state.ReviewFeatureReducer.updatedReviewData
-  );
-  const stateChanged = useSelector(
-    (state) => state.ReviewFeatureReducer.newUpdate
-  );
-  const postLoading = useSelector(
+function InputReviewSection({ reviewData }) {
+  const putLoading = useSelector(
     (state) => state.PutMovieReviewReducer.loading
   );
-  const postSuccessData = useSelector(
+  const putSuccessData = useSelector(
     (state) => state.PutMovieReviewReducer.data
   );
-  const [missingPost, setMissingPost] = useState(false);
-  const postContent = useRef();
-  const checkAccount = JSON.parse(localStorage.getItem("UserAccount"));
-  const [open, setOpen] = useState(false);
+  const firstTimeRender = useRef(true);
+  const [rate, setRate] = useState(5);
   const [openComment, setOpenComment] = useState(false);
+  const [missingPost, setMissingPost] = useState(false);
+  const [open, setOpen] = useState(false);
+  const account = JSON.parse(localStorage.getItem("UserAccount"));
+  const postContent = useRef();
   const classes = useStyles();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (listComment.length > 0 && stateChanged) {
-      dispatch(actPutMovieReview({ listComment }, movieDetail.maPhim));
-      dispatch(actResetPostReviewState());
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stateChanged]);
-
-  useEffect(() => {
-    if (postSuccessData && !postLoading && openComment) {
+    if (
+      putSuccessData &&
+      !putLoading &&
+      openComment &&
+      !firstTimeRender.current
+    ) {
       closeCommentBox();
+      firstTimeRender.current = true;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [postSuccessData, postLoading, openComment]);
+  }, [putLoading, putSuccessData, openComment]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -62,16 +47,12 @@ function InputReviewSection() {
   const openCommentBox = () => {
     setOpenComment(true);
   };
+
   const closeCommentBox = () => {
     setOpenComment(false);
+    setRate(5);
     if (missingPost) {
       setMissingPost(false);
-    }
-    if (postSuccessData && !postLoading) {
-      // Nếu đã PUT data thành công lên server => reset lại reducer
-      dispatch(actPutMovieReviewSuccess(null));
-      // GET lại movieReview từ server để render lại reviewTab luôn
-      dispatch(actGetMovieReview(movieDetail.maPhim));
     }
   };
 
@@ -81,8 +62,18 @@ function InputReviewSection() {
       setMissingPost(true);
     }
     if (postContent.current.value) {
-      // dipatch bài post mới lên server
-      dispatch(actSetContentPostReview(postContent.current.value));
+      const { listComment } = reviewData;
+      const time = new Date();
+      listComment.push({
+        rating: rate,
+        comment: postContent.current.value,
+        time: time.toISOString(),
+        reviewer: account.taiKhoan,
+        avatar: `https://i.pravatar.cc/150?u=${account.taiKhoan}`,
+        liked: [],
+      });
+      dispatch(actPutMovieReview({ listComment }, reviewData.maPhim));
+      firstTimeRender.current = false;
     }
   };
 
@@ -90,12 +81,12 @@ function InputReviewSection() {
     <Fragment>
       <div
         className="col-12 inputReviewSection"
-        onClick={checkAccount ? openCommentBox : handleOpen}
+        onClick={account ? openCommentBox : handleOpen}
       >
         <span className="imgReviewer">
-          {checkAccount ? (
+          {account ? (
             <img
-              src={`https://i.pravatar.cc/150?u=${checkAccount.taiKhoan}`}
+              src={`https://i.pravatar.cc/150?u=${account.taiKhoan}`}
               alt="avatar"
             />
           ) : (
@@ -163,10 +154,11 @@ function InputReviewSection() {
               className="btnCloseLogin"
               type="button"
               onClick={closeCommentBox}
+              disabled={putLoading ? true : false}
             >
               <img src="../../../../img/xController.png" alt="" />
             </button>
-            <SelectStar />
+            <SelectStar rate={rate} setRate={setRate} />
             <div className="mx-0">
               <textarea
                 ref={postContent}
@@ -180,7 +172,7 @@ function InputReviewSection() {
               {missingPost ? "Hãy cho TIX biết suy nghĩ của bạn" : ""}
             </div>
             <div className={classes.postBtn}>
-              {postLoading ? (
+              {putLoading ? (
                 <button
                   className="postBtn"
                   id="modal-description-comment"
@@ -205,4 +197,4 @@ function InputReviewSection() {
   );
 }
 
-export default memo(InputReviewSection);
+export default InputReviewSection;

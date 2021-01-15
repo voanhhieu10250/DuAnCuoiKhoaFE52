@@ -9,7 +9,10 @@ import Loader from "../../../components/Loader";
 import { Redirect } from "react-router-dom";
 import { actGetListCinemaShowTimesApi } from "../../../redux/actions/actListCinemaShowTimesApi";
 import { actGetMovieReview } from "../../../redux/actions/actGetMovieReview";
-import { actResetPostReviewState } from "./MainContentTabs/DanhGiaPhimTab/modules/action";
+import {
+  actPutMovieReview,
+  actPutMovieReviewSuccess,
+} from "../../../redux/actions/actPutMovieReview";
 const MainContentTabs = React.lazy(() => import("./MainContentTabs"));
 const DetailMainTop = React.lazy(() => import("./DetailMainTop"));
 const HomeFooter = React.lazy(() => import("../../../components/HomeFooter"));
@@ -28,6 +31,7 @@ export default function DetailPage(props) {
   );
   const errState = useSelector((state) => state.MovieDetailsReducer.err);
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (!movieDetail && !firstRender.current) {
       dispatch(actGetMovieDetailsApi(maPhim));
@@ -37,15 +41,17 @@ export default function DetailPage(props) {
       firstRender.current = true;
     }
     if (movieDetail && !firstRender.current) {
+      console.log("set null moviedetail");
       dispatch(actMovieDetailsSuccess(null));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  });
+  }, [firstRender.current]);
 
   useEffect(() => {
     return () => {
+      console.log("set detailPage data null return");
       dispatch(actMovieDetailsSuccess(null));
-      dispatch(actResetPostReviewState());
+      dispatch(actPutMovieReviewSuccess(null));
       firstRender.current = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

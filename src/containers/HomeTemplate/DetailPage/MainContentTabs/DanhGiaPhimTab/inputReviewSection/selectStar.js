@@ -1,50 +1,38 @@
-import React, { Fragment, memo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { actSetRatePostReview } from "../modules/action";
+import React, { Fragment } from "react";
 
-const SelectStar = () => {
-  const rate = useSelector((state) => state.ReviewFeatureReducer.rating);
-  const dispatch = useDispatch();
+const SelectStar = ({ rate, setRate }) => {
   const renderSelectedStar = () => {
     const listStar = [];
     for (let i = 1; i <= 10; i++) {
-      let styleList =
-        i <= rate
-          ? {
-              backgroundImage: "url(../../../../../../img/StarSelect.png)",
-              opacity: 1,
-            }
-          : {
-              backgroundImage: "url(../../../../../../img/StarSelect.png)",
-              opacity: 0,
-            };
-
-      if (i % 2 === 0) {
-        listStar.push(
-          <span
-            className="halfRight"
-            style={styleList}
-            key={i}
-            onClick={() => handleRating(i)}
-          />
-        );
-      } else {
-        listStar.push(
-          <span
-            className="halfLeft"
-            style={styleList}
-            key={i}
-            onClick={() => handleRating(i)}
-          />
-        );
-      }
+      const styleList =
+        // i <= rate
+        //   ? {
+        //       backgroundImage: "url(../../../../../../img/StarSelect.png)",
+        //       opacity: 1,
+        //     }
+        //   : {
+        //       backgroundImage: "url(../../../../../../img/StarSelect.png)",
+        //       opacity: 0,
+        //     };
+        {
+          backgroundImage: "url(../../../../../../img/StarSelect.png)",
+          opacity: i <= rate ? 1 : 0,
+        };
+      listStar.push(
+        <span
+          className={i % 2 === 0 ? "halfRight" : "halfLeft"}
+          style={styleList}
+          key={i}
+          onClick={() => handleRating(i)}
+        />
+      );
     }
     return listStar;
   };
 
   const handleRating = (ratePoint) => {
     if (ratePoint !== rate) {
-      dispatch(actSetRatePostReview(ratePoint));
+      setRate(10);
     }
   };
 
@@ -71,4 +59,4 @@ const SelectStar = () => {
   );
 };
 
-export default memo(SelectStar);
+export default SelectStar;

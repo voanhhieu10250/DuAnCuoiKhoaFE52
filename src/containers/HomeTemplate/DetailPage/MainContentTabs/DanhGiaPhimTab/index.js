@@ -1,22 +1,33 @@
-import React, { memo, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { Fragment, memo, useRef } from "react";
+import { useSelector } from "react-redux";
 import renderStarsImg from "../../../../../functions/renderStarsImg";
 import ReviewBoxLikeBtn from "./reviewBoxLikeBtn";
 import InputReviewSection from "./inputReviewSection";
-import { actSetLikeOnPost } from "./modules/action";
 
 function DanhGiaPhimTab() {
   const prevDataLength = useRef(0);
+
+  let reviewUpToNow = null;
+
+  // movieReview - chỉ sài 1 lần duy nhất ở component này
   const reviewData = useSelector((state) => state.MovieReviewReducer.data);
-  const loading = useSelector((state) => state.MovieReviewReducer.loading);
-  const dispatch = useDispatch();
+  const loadingGetReview = useSelector(
+    (state) => state.MovieReviewReducer.loading
+  );
+
+  // Put movieReview
+  const loadingPutReview = useSelector(
+    (state) => state.PutMovieReviewReducer.loading
+  );
+  const putReviewSuccess = useSelector(
+    (state) => state.PutMovieReviewReducer.data
+  );
 
   const renderListComment = () => {
-    if (!reviewData) return [];
-    prevDataLength.current = reviewData.listComment.length;
-    return reviewData.listComment
+    // cho dòng dưới này vào useEffect cũng được
+    prevDataLength.current = reviewUpToNow.listComment.length;
+    return reviewUpToNow.listComment
       .map((item, index) => {
-        dispatch(actSetLikeOnPost({ comment: item, index }));
         return (
           <div className="reviewerContain" key={index}>
             <div className="commentReviewer">
@@ -46,7 +57,11 @@ function DanhGiaPhimTab() {
               </div>
               <div className="row mx-0">
                 <div className="col-12 count">
-                  <ReviewBoxLikeBtn index={index} />
+                  <ReviewBoxLikeBtn
+                    index={index}
+                    liked={item.liked}
+                    reviewData={reviewUpToNow}
+                  />
                 </div>
               </div>
             </div>
@@ -98,14 +113,21 @@ function DanhGiaPhimTab() {
     return tempArr;
   };
 
+  if (loadingGetReview || !reviewData) return <Fragment />;
+  if (!putReviewSuccess && reviewData && !loadingGetReview)
+    reviewUpToNow = reviewData;
+  if (putReviewSuccess && !loadingPutReview) reviewUpToNow = putReviewSuccess;
+
   return (
     <div className="tab-pane fade" id="danhGiaPhim">
       <div className="detailReviewer">
         <div className="row mx-0  detailMainStyle">
-          <InputReviewSection />
+          <InputReviewSection reviewData={reviewUpToNow} />
         </div>
         <div id="listComment">
-          {reviewData && !loading ? renderListComment() : renderLoadingDiv()}
+          {reviewUpToNow && !loadingPutReview
+            ? renderListComment()
+            : renderLoadingDiv()}
         </div>
       </div>
     </div>
