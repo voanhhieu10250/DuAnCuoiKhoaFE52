@@ -15,6 +15,7 @@ import { scroller, animateScroll } from "react-scroll";
 import { useLocation } from "react-router-dom";
 
 export default function HomePage() {
+  const pathname = localStorage.getItem("location");
   const loading1 = useSelector((state) => state.ListMovieReducer.loading);
   const loading2 = useSelector(
     (state) => state.ListUpComingMovieReducer.loading
@@ -24,6 +25,8 @@ export default function HomePage() {
   );
   const dispatch = useDispatch();
   useEffect(() => {
+    if (!pathname || pathname !== window.location.pathname)
+      localStorage.setItem("location", window.location.pathname);
     dispatch(actGetListMovieApi());
     dispatch(actListUpComingMovieApi());
     dispatch(actGetListCinemaSystemApi());
@@ -48,7 +51,7 @@ export default function HomePage() {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  });
+  }, []);
 
   if (loading1 || loading2 || loading3) return <Loader />;
 

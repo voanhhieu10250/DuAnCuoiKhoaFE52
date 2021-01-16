@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { Fragment, memo, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { locationList } from "../../data";
 import { Link as ScrollBtn } from "react-scroll";
@@ -7,7 +7,7 @@ function NavbarHome() {
   let location = useLocation();
   const [state, setState] = useState({ locationBase: locationList[0] });
   const [locationState, setLocationState] = useState(true);
-
+  const userAccount = JSON.parse(localStorage.getItem("UserAccount"));
   useEffect(() => {
     if (location.pathname === "/") setLocationState(false);
   }, [location.pathname]);
@@ -31,6 +31,11 @@ function NavbarHome() {
     setState({
       locationBase: location,
     });
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("UserAccount");
+    window.location.reload();
   };
 
   return (
@@ -142,10 +147,25 @@ function NavbarHome() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item" id="account">
-                <a href="/">
-                  <img src="../../img/avatar.png" alt="login" />
-                  <p className="white m-0">Đăng Nhập</p>
-                </a>
+                {userAccount ? (
+                  <Fragment>
+                    <button type="button" id="userBtn">
+                      <img
+                        src={`https://i.pravatar.cc/150?u=${userAccount.taiKhoan}`}
+                        alt="avatar"
+                      />
+                      <p className="white m-0">{userAccount.hoTen}</p>
+                    </button>
+                    <div id="logoutBtn">
+                      <button onClick={handleLogout}>Đăng xuất</button>
+                    </div>
+                  </Fragment>
+                ) : (
+                  <Link to="/login">
+                    <img src="../../img/avatar.png" alt="login" />
+                    <p className="white m-0">Đăng Nhập</p>
+                  </Link>
+                )}
               </li>
               <li className="nav-item dropdown">
                 <a

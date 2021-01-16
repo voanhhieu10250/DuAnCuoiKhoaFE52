@@ -1,7 +1,7 @@
 import {
-  PUT_MOVIE_REVIEW_FAILED,
-  PUT_MOVIE_REVIEW_REQUEST,
-  PUT_MOVIE_REVIEW_SUCCESS,
+  LOGIN_PAGE_FAILED,
+  LOGIN_PAGE_SUCCESS,
+  LOGIN_PAGE_REQUEST,
 } from "../constants";
 
 const initialState = {
@@ -10,21 +10,19 @@ const initialState = {
   err: null,
 };
 
-const PutMovieReviewReducer = (state = initialState, { type, payload }) => {
+const userLoginReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case PUT_MOVIE_REVIEW_REQUEST:
+    case LOGIN_PAGE_REQUEST:
       state.loading = true;
-      state.data = null;
+      state.data = payload;
       state.err = null;
       return { ...state };
-
-    case PUT_MOVIE_REVIEW_SUCCESS:
+    case LOGIN_PAGE_SUCCESS:
       state.loading = false;
       state.data = payload;
       state.err = null;
       return { ...state };
-
-    case PUT_MOVIE_REVIEW_FAILED:
+    case LOGIN_PAGE_FAILED:
       state.loading = false;
       state.data = null;
       state.err = payload;
@@ -34,4 +32,4 @@ const PutMovieReviewReducer = (state = initialState, { type, payload }) => {
       return state;
   }
 };
-export default PutMovieReviewReducer;
+export default userLoginReducer;

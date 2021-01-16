@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   actGetMovieDetailsApi,
@@ -9,14 +9,16 @@ import Loader from "../../../components/Loader";
 import { Redirect } from "react-router-dom";
 import { actGetListCinemaShowTimesApi } from "../../../redux/actions/actListCinemaShowTimesApi";
 import { actGetMovieReview } from "../../../redux/actions/actGetMovieReview";
-
+import { actPutMovieReviewSuccess } from "../../../redux/actions/actPutMovieReview";
 const MainContentTabs = React.lazy(() => import("./MainContentTabs"));
 const DetailMainTop = React.lazy(() => import("./DetailMainTop"));
 const HomeFooter = React.lazy(() => import("../../../components/HomeFooter"));
 
 export default function DetailPage(props) {
+  const firstRender = useRef(false);
   const { id } = props.match.params;
   const maPhim = id.slice(0, 4);
+  const movieDetail = useSelector((state) => state.MovieDetailsReducer.data);
   const loading1 = useSelector((state) => state.MovieDetailsReducer.loading);
   const loading2 = useSelector(
     (state) => state.ListCinemaSystemReducer.loading
@@ -24,23 +26,39 @@ export default function DetailPage(props) {
   const loading3 = useSelector(
     (state) => state.ListCinemaShowTimesReducer.loading
   );
-  const loading4 = useSelector((state) => state.MovieReviewReducer.loading);
   const errState = useSelector((state) => state.MovieDetailsReducer.err);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(actGetMovieDetailsApi(maPhim));
-    dispatch(actGetListCinemaShowTimesApi());
-    dispatch(actGetListCinemaSystemApi());
-    dispatch(actGetMovieReview(maPhim));
+    if (!movieDetail && !firstRender.current) {
+      dispatch(actGetMovieDetailsApi(maPhim));
+      dispatch(actGetListCinemaShowTimesApi());
+      dispatch(actGetListCinemaSystemApi());
+      dispatch(actGetMovieReview(maPhim));
+      firstRender.current = true;
+    }
+    if (movieDetail && !firstRender.current) {
+      console.log("set null moviedetail");
+      dispatch(actMovieDetailsSuccess(null));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [firstRender.current]);
+
+  useEffect(() => {
+    const pathname = localStorage.getItem("location");
+    if (!pathname || pathname !== window.location.pathname)
+      localStorage.setItem("location", window.location.pathname);
     return () => {
       dispatch(actMovieDetailsSuccess(null));
+      dispatch(actPutMovieReviewSuccess(null));
+      firstRender.current = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (errState) return <Redirect to="/" />;
-  if (loading1 || loading2 || loading3 || loading4) return <Loader />;
+  if (loading1 || loading2 || loading3 || !firstRender.current)
+    return <Loader />;
 
   return (
     <div className="mainContent container-fluid px-0" id="detailPage">

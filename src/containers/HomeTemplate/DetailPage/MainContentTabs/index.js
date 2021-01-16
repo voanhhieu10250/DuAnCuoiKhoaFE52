@@ -1,10 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 import DanhGiaPhimTab from "./DanhGiaPhimTab";
 import LichChieuPhimTab from "./LichChieuPhimTab";
 import ThongTinPhimTab from "./ThongTinPhimTab";
 import { Element } from "react-scroll";
 
-export default function MainContentTabs() {
+function MainContentTabs() {
   return (
     <Element name="contentDetailMain" className="mainMaxWidth2 contentMain">
       <ul className="nav nav-tabs navCenter" role="tablist">
@@ -46,3 +46,4 @@ export default function MainContentTabs() {
     </Element>
   );
 }
+export default memo(MainContentTabs);

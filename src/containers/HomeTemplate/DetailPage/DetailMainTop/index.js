@@ -37,9 +37,11 @@ function DetailMainTop() {
               <span className="spanRed ageRange">C13</span>
               <span>{tenPhim}</span>
             </p>
-            <p
-              style={{ marginBottom: 0 }}
-            >{`${heThongRapChieu[0].cumRapChieu[0].lichChieuPhim[0].thoiLuong} phút - 0 IMDb - 2D/Digital`}</p>
+            <p style={{ marginBottom: 0 }}>{`${
+              heThongRapChieu.length > 0
+                ? heThongRapChieu[0].cumRapChieu[0].lichChieuPhim[0].thoiLuong
+                : 120
+            } phút - 0 IMDb - 2D/Digital`}</p>
             <button className="btnBuyTicket" onClick={handleOnClick}>
               Mua vé
             </button>

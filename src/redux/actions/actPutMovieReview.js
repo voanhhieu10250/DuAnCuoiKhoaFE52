@@ -1,5 +1,4 @@
 import {
-  CHANGE_MOVIE_REVIEW_DATA,
   PUT_MOVIE_REVIEW_FAILED,
   PUT_MOVIE_REVIEW_REQUEST,
   PUT_MOVIE_REVIEW_SUCCESS,
@@ -36,13 +35,5 @@ export const actPutMovieReviewFailed = (payload) => {
   return {
     type: PUT_MOVIE_REVIEW_FAILED,
     payload,
-  };
-};
-
-export const actChangeMovieReviewData = (payload, index) => {
-  return {
-    type: CHANGE_MOVIE_REVIEW_DATA,
-    payload,
-    index,
   };
 };

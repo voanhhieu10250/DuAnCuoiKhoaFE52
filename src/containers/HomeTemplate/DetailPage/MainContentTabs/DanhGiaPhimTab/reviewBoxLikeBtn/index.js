@@ -1,22 +1,20 @@
-import React, { Fragment, memo, useEffect, useState } from "react";
+import React, { Fragment, memo, useState } from "react";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import useStyles from "../../../../../../styles";
-import { useDispatch } from "react-redux";
-import { actChangeMovieReviewData } from "../../../../../../redux/actions/actPutMovieReview";
+import { useDispatch, useSelector } from "react-redux";
+import { actPutMovieReview } from "../../../../../../redux/actions/actPutMovieReview";
+import { Link } from "react-router-dom";
 
-function ReviewBoxLikeBtn({ item, index }) {
-  const [cloneItem, setCloneItem] = useState(item);
+function ReviewBoxLikeBtn({ index, liked, reviewData, setLikeBtnIndex }) {
+  const loadingPutReview = useSelector(
+    (state) => state.PutMovieReviewReducer.loading
+  );
+  const account = JSON.parse(localStorage.getItem("UserAccount"));
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (cloneItem.liked.length !== item.liked.length)
-      dispatch(actChangeMovieReviewData(cloneItem, index));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cloneItem]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -27,7 +25,6 @@ function ReviewBoxLikeBtn({ item, index }) {
   };
 
   const renderLikeButton = (arrLiked) => {
-    const account = JSON.parse(localStorage.getItem("UserAccount"));
     if (!account)
       return (
         <img className="postLikeCmt" src="../../../../img/like.png" alt="" />
@@ -41,31 +38,28 @@ function ReviewBoxLikeBtn({ item, index }) {
   };
 
   const handleClickLike = (arr) => {
-    const account = JSON.parse(localStorage.getItem("UserAccount"));
-    if (!account) handleOpen();
-    else {
-      const checkAccount = arr.findIndex((item) => item === account.taiKhoan);
-      if (checkAccount !== -1) {
-        const tempObj = cloneItem;
-        tempObj.liked.splice(checkAccount, 1);
-        setCloneItem(tempObj);
-      } else {
-        const tempObj = cloneItem;
-        tempObj.liked.push(account.taiKhoan);
-        setCloneItem(tempObj);
-      }
+    if (loadingPutReview) return;
+    const checkAccount = arr.findIndex((item) => item === account.taiKhoan);
+    if (checkAccount !== -1) {
+      arr.splice(checkAccount, 1);
+    } else {
+      arr.push(account.taiKhoan);
     }
+    const { listComment } = reviewData;
+    listComment[index].liked = arr;
+    setLikeBtnIndex(index);
+    dispatch(actPutMovieReview({ listComment }, reviewData.maPhim));
   };
 
   return (
     <Fragment>
       <div
         className="wrapIcon"
-        onClick={() => handleClickLike(cloneItem.liked)}
+        onClick={account ? () => handleClickLike(liked) : handleOpen}
       >
-        {renderLikeButton(cloneItem.liked)}
+        {renderLikeButton(liked)}
         <span className="amountLike">
-          <strong>{cloneItem.liked.length}</strong> Thích
+          <strong>{liked.length}</strong> Thích
         </span>
       </div>
       <Modal
@@ -92,11 +86,11 @@ function ReviewBoxLikeBtn({ item, index }) {
               <img src="../../img/xController.png" alt="" />
             </button>
             <div className={classes.btnLogin}>
-              <button className="login" id="modal-description-login">
+              <Link to="/login" className="login" id="modal-description-login">
                 <p>
                   <strong>Đăng nhập</strong>
                 </p>
-              </button>
+              </Link>
             </div>
           </div>
         </Fade>
