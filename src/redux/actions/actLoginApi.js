@@ -5,7 +5,7 @@ import {
 } from "../constants";
 import Axios from "axios";
 
-export const actLoginApi = (user, history) => {
+export const actLoginApi = (user, history, pathname) => {
   return async (dispatch) => {
     try {
       dispatch(actLoginPageRequest());
@@ -16,7 +16,7 @@ export const actLoginApi = (user, history) => {
       });
       dispatch(actLoginPageSuccess(res.data));
       localStorage.setItem("UserAccount", JSON.stringify(res.data));
-      history.back();
+      history.push(pathname);
     } catch (err) {
       dispatch(actLoginPageFailed(err));
     }

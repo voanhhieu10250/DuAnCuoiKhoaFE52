@@ -4,20 +4,10 @@ const SelectStar = ({ rate, setRate }) => {
   const renderSelectedStar = () => {
     const listStar = [];
     for (let i = 1; i <= 10; i++) {
-      const styleList =
-        // i <= rate
-        //   ? {
-        //       backgroundImage: "url(../../../../../../img/StarSelect.png)",
-        //       opacity: 1,
-        //     }
-        //   : {
-        //       backgroundImage: "url(../../../../../../img/StarSelect.png)",
-        //       opacity: 0,
-        //     };
-        {
-          backgroundImage: "url(../../../../../../img/StarSelect.png)",
-          opacity: i <= rate ? 1 : 0,
-        };
+      const styleList = {
+        backgroundImage: "url(../../../../../../img/StarSelect.png)",
+        opacity: i <= rate ? 1 : 0,
+      };
       listStar.push(
         <span
           className={i % 2 === 0 ? "halfRight" : "halfLeft"}

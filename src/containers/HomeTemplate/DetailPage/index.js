@@ -9,10 +9,7 @@ import Loader from "../../../components/Loader";
 import { Redirect } from "react-router-dom";
 import { actGetListCinemaShowTimesApi } from "../../../redux/actions/actListCinemaShowTimesApi";
 import { actGetMovieReview } from "../../../redux/actions/actGetMovieReview";
-import {
-  actPutMovieReview,
-  actPutMovieReviewSuccess,
-} from "../../../redux/actions/actPutMovieReview";
+import { actPutMovieReviewSuccess } from "../../../redux/actions/actPutMovieReview";
 const MainContentTabs = React.lazy(() => import("./MainContentTabs"));
 const DetailMainTop = React.lazy(() => import("./DetailMainTop"));
 const HomeFooter = React.lazy(() => import("../../../components/HomeFooter"));
@@ -48,8 +45,10 @@ export default function DetailPage(props) {
   }, [firstRender.current]);
 
   useEffect(() => {
+    const pathname = localStorage.getItem("location");
+    if (!pathname || pathname !== window.location.pathname)
+      localStorage.setItem("location", window.location.pathname);
     return () => {
-      console.log("set detailPage data null return");
       dispatch(actMovieDetailsSuccess(null));
       dispatch(actPutMovieReviewSuccess(null));
       firstRender.current = false;

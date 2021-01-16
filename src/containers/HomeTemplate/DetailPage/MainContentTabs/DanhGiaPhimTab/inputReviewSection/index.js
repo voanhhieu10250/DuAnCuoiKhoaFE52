@@ -15,7 +15,7 @@ function InputReviewSection({ reviewData }) {
   const putSuccessData = useSelector(
     (state) => state.PutMovieReviewReducer.data
   );
-  const firstTimeRender = useRef(true);
+  const postingNewComment = useRef(false);
   const [rate, setRate] = useState(5);
   const [openComment, setOpenComment] = useState(false);
   const [missingPost, setMissingPost] = useState(false);
@@ -30,10 +30,10 @@ function InputReviewSection({ reviewData }) {
       putSuccessData &&
       !putLoading &&
       openComment &&
-      !firstTimeRender.current
+      postingNewComment.current
     ) {
       closeCommentBox();
-      firstTimeRender.current = true;
+      postingNewComment.current = false;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [putLoading, putSuccessData, openComment]);
@@ -73,7 +73,7 @@ function InputReviewSection({ reviewData }) {
         liked: [],
       });
       dispatch(actPutMovieReview({ listComment }, reviewData.maPhim));
-      firstTimeRender.current = false;
+      postingNewComment.current = true;
     }
   };
 

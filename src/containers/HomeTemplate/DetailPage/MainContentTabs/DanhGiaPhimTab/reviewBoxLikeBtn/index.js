@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actPutMovieReview } from "../../../../../../redux/actions/actPutMovieReview";
 import { Link } from "react-router-dom";
 
-function ReviewBoxLikeBtn({ index, liked, reviewData }) {
+function ReviewBoxLikeBtn({ index, liked, reviewData, setLikeBtnIndex }) {
   const loadingPutReview = useSelector(
     (state) => state.PutMovieReviewReducer.loading
   );
@@ -47,6 +47,7 @@ function ReviewBoxLikeBtn({ index, liked, reviewData }) {
     }
     const { listComment } = reviewData;
     listComment[index].liked = arr;
+    setLikeBtnIndex(index);
     dispatch(actPutMovieReview({ listComment }, reviewData.maPhim));
   };
 

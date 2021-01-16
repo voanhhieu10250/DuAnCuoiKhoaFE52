@@ -5,6 +5,7 @@ import { actLoginApi } from "../../../redux/actions/actLoginApi";
 import { InputField, LoginBg, LoginBtn, LoginForm, ToHome } from "./style";
 
 const LoginPage = () => {
+  const pathname = localStorage.getItem("location");
   const loading = useSelector((state) => state.userLoginReducer.loading);
   const err = useSelector((state) => state.userLoginReducer.err);
   const userExisted = localStorage.getItem("UserAccount");
@@ -20,7 +21,8 @@ const LoginPage = () => {
           taiKhoan: taiKhoan.current.value.trim(),
           matKhau: matKhau.current.value.trim(),
         },
-        history
+        history,
+        pathname ? pathname : "/"
       )
     );
   };

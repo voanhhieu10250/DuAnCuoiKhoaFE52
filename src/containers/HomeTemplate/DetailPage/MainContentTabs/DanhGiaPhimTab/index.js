@@ -5,16 +5,13 @@ import ReviewBoxLikeBtn from "./reviewBoxLikeBtn";
 import InputReviewSection from "./inputReviewSection";
 
 function DanhGiaPhimTab() {
-  const prevDataLength = useRef(0);
-
-  let reviewUpToNow = null;
-
+  const reviewUpToNow = useRef(null);
+  const likeBtnClicked = useRef(-1);
   // movieReview - chỉ sài 1 lần duy nhất ở component này
   const reviewData = useSelector((state) => state.MovieReviewReducer.data);
   const loadingGetReview = useSelector(
     (state) => state.MovieReviewReducer.loading
   );
-
   // Put movieReview
   const loadingPutReview = useSelector(
     (state) => state.PutMovieReviewReducer.loading
@@ -24,9 +21,7 @@ function DanhGiaPhimTab() {
   );
 
   const renderListComment = () => {
-    // cho dòng dưới này vào useEffect cũng được
-    prevDataLength.current = reviewUpToNow.listComment.length;
-    return reviewUpToNow.listComment
+    return reviewUpToNow.current.listComment
       .map((item, index) => {
         return (
           <div className="reviewerContain" key={index}>
@@ -57,11 +52,16 @@ function DanhGiaPhimTab() {
               </div>
               <div className="row mx-0">
                 <div className="col-12 count">
-                  <ReviewBoxLikeBtn
-                    index={index}
-                    liked={item.liked}
-                    reviewData={reviewUpToNow}
-                  />
+                  {loadingPutReview && index === likeBtnClicked.current ? (
+                    <div style={{ color: "#737576" }}>Loading...</div>
+                  ) : (
+                    <ReviewBoxLikeBtn
+                      index={index}
+                      liked={item.liked}
+                      reviewData={reviewUpToNow.current}
+                      setLikeBtnIndex={handleLikeBtnClicked}
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -92,43 +92,30 @@ function DanhGiaPhimTab() {
     return `${Math.ceil(diffMillisecond / (1000 * 60 * 60))} giờ trước`;
   };
 
-  const renderLoadingDiv = () => {
-    const tempArr = [];
-    for (let i = 0; i < prevDataLength.current; i++) {
-      tempArr.push(
-        <div
-          style={{
-            width: 578,
-            height: 163,
-            margin: "15px calc(50% - 290px) 0",
-            borderRadius: 3,
-            borderBottom: "none",
-            border: "1px solid #e6e6e6",
-            backgroundColor: "#fff",
-          }}
-          key={i}
-        />
-      );
-    }
-    return tempArr;
+  const handleLikeBtnClicked = (index) => {
+    likeBtnClicked.current = index;
   };
 
   if (loadingGetReview || !reviewData) return <Fragment />;
-  if (!putReviewSuccess && reviewData && !loadingGetReview)
-    reviewUpToNow = reviewData;
-  if (putReviewSuccess && !loadingPutReview) reviewUpToNow = putReviewSuccess;
+  if (
+    !putReviewSuccess &&
+    reviewData &&
+    !loadingGetReview &&
+    !reviewUpToNow.current
+  )
+    reviewUpToNow.current = reviewData;
+  if (putReviewSuccess && !loadingPutReview) {
+    reviewUpToNow.current = putReviewSuccess;
+    likeBtnClicked.current = -1;
+  }
 
   return (
     <div className="tab-pane fade" id="danhGiaPhim">
       <div className="detailReviewer">
         <div className="row mx-0  detailMainStyle">
-          <InputReviewSection reviewData={reviewUpToNow} />
+          <InputReviewSection reviewData={reviewUpToNow.current} />
         </div>
-        <div id="listComment">
-          {reviewUpToNow && !loadingPutReview
-            ? renderListComment()
-            : renderLoadingDiv()}
-        </div>
+        <div id="listComment">{renderListComment()}</div>
       </div>
     </div>
   );
