@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, /*Redirect,*/ Route, Switch } from "react-router-dom";
 import "./App.css";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Loader from "./components/Loader";
@@ -53,6 +53,7 @@ function App() {
               <Route exact={false} path="/auth" component={AuthPage} />
             </Suspense>
           </ErrorBoundary>
+          {/* <Route render={() => <Redirect to="/" />} /> */}
           {showLayoutHome(routePageNotFound)}
         </Switch>
       </div>

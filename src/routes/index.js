@@ -1,6 +1,5 @@
 import React from "react";
 import DashboardPage from "../containers/AdminTemplate/Dashboard";
-import PageNotFound from "../containers/PageNotFound";
 
 const routesHome = [
   {
@@ -29,7 +28,7 @@ const routePageNotFound = [
   {
     exact: false,
     path: "",
-    component: PageNotFound,
+    component: React.lazy(() => import("../containers/PageNotFound")),
   },
 ];
 export { routesHome, routesAdmin, routePageNotFound };
