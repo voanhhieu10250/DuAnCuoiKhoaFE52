@@ -38,7 +38,8 @@ function ReviewBoxLikeBtn({ index, liked, reviewData, setLikeBtnIndex }) {
   };
 
   const handleClickLike = (arr) => {
-    if (loadingPutReview) return;
+    if (loadingPutReview)
+      return alert("Bạn thao tác nhanh quá! Chậm lại tí đi!");
     const checkAccount = arr.findIndex((item) => item === account.taiKhoan);
     if (checkAccount !== -1) {
       arr.splice(checkAccount, 1);

@@ -20,8 +20,10 @@ function Movie(props) {
           <Link className="linkToPage" to={`/phim/${maPhim}-${biDanh}`}></Link>
         </div>
         <div className="filmScore">
-          <p className="m-0">{danhGia}</p>
-          <p className="smallStar">{renderStarsImg(danhGia)}</p>
+          <p className="m-0">{danhGia > 10 ? 10 : danhGia}</p>
+          <p className="smallStar">
+            {renderStarsImg(danhGia > 10 ? 10 : danhGia)}
+          </p>
         </div>
       </div>
       <div className="object_item2">

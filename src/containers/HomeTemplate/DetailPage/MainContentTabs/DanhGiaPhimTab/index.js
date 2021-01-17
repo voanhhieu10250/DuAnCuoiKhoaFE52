@@ -1,4 +1,4 @@
-import React, { Fragment, memo, useRef } from "react";
+import React, { memo, useRef } from "react";
 import { useSelector } from "react-redux";
 import renderStarsImg from "../../../../../functions/renderStarsImg";
 import ReviewBoxLikeBtn from "./reviewBoxLikeBtn";
@@ -96,7 +96,12 @@ function DanhGiaPhimTab() {
     likeBtnClicked.current = index;
   };
 
-  if (loadingGetReview || !reviewData) return <Fragment />;
+  if (loadingGetReview || !reviewData)
+    return (
+      <div className="tab-pane fade text-white" id="danhGiaPhim">
+        Loading...
+      </div>
+    );
   if (
     !putReviewSuccess &&
     reviewData &&

@@ -16,10 +16,10 @@ function DetailMainTop() {
       maPhim,
       trailer,
       tenPhim,
-      danhGia,
       ngayKhoiChieu,
       heThongRapChieu,
     } = movieDetailData;
+    const danhGia = movieDetailData.danhGia > 10 ? 10 : movieDetailData.danhGia;
     return (
       <div id="detailMainTop">
         <div className="styleBlur">

@@ -62,6 +62,11 @@ function LichChieuPhimTab() {
       const checkedCinemaAddress = tempObj.map((str) => {
         return cinemasBox.find((item) => item.maHeThongRap === str);
       });
+      // Vì hàm map ở trên nếu hàm find() có tìm được phần tử thỏa điều kiện thì nó sẽ trả về undefined, cho nên
+      //cần phải xóa những phần tử undefined trong mảng đi, thì sẽ không bị lỗi đi render
+      while (checkedCinemaAddress.indexOf(undefined) !== -1) {
+        checkedCinemaAddress.splice(checkedCinemaAddress.indexOf(undefined), 1);
+      }
       return listCinema.map((item, index) => {
         return (
           <div
@@ -102,7 +107,8 @@ function LichChieuPhimTab() {
     }
   };
 
-  if (!ObjMovieDetail || !listCinema) return <div></div>;
+  if (!ObjMovieDetail || !listCinema)
+    return <div className="text-white text-center">Loading...</div>;
   return (
     <div className="tab-pane fade show active" id="lichChieuPhim">
       <div
