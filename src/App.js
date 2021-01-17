@@ -1,11 +1,11 @@
 import React, { Suspense } from "react";
-import { BrowserRouter, /*Redirect,*/ Route, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import "./App.css";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Loader from "./components/Loader";
 import AdminTemplate from "./containers/AdminTemplate";
 import HomeTemplate from "./containers/HomeTemplate";
-import { routePageNotFound, routesAdmin, routesHome } from "./routes";
+import { routesAdmin, routesHome } from "./routes";
 
 const AuthPage = React.lazy(() =>
   import("./containers/AdminTemplate/AuthPage")
@@ -44,18 +44,19 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <Switch>
-          {showLayoutHome(routesHome)}
-          {showLayoutAdmin(routesAdmin)}
-          <ErrorBoundary>
-            <Suspense fallback={<Loader />}>
+        {/* ĐỪNG BAO GIỜ ĐỂ ErrorBoundary và Suspense BÊN TRONG Switch, trong Switch chỉ có Route thôi.
+        nếu không sẽ bị lỗi chuyển trang. Phải bọc ngay bên ngoài Switch như thế này thì mới đúng quy định của React */}
+        <ErrorBoundary>
+          <Suspense fallback={<Loader />}>
+            <Switch>
+              {showLayoutHome(routesHome)}
+              {showLayoutAdmin(routesAdmin)}
               <Route exact={false} path="/login" component={LoginPage} />
               <Route exact={false} path="/auth" component={AuthPage} />
-            </Suspense>
-          </ErrorBoundary>
-          {/* <Route render={() => <Redirect to="/" />} /> */}
-          {showLayoutHome(routePageNotFound)}
-        </Switch>
+              <Route path="" render={() => <Redirect to="/" />} />
+            </Switch>
+          </Suspense>
+        </ErrorBoundary>
       </div>
     </BrowserRouter>
   );

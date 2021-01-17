@@ -26,7 +26,22 @@ export default function ListCinema({ listCinema, cinemaCode, logo }) {
                 {cinema.tenCumRap.slice(cinema.tenCumRap.indexOf(" -"))}
               </span>
               <span className="infoMovieCinema">{cinema.diaChi}</span>
-              <span className="redDetail">[chi tiết]</span>
+
+              {/* Vì đang dùng tag <a/> nên không thể chèn thêm 1 tag a khác vào trong nên phải 
+              sài window.open để mở 1 tabBrowser khác */}
+              <span
+                className="redDetail"
+                onClick={() =>
+                  window.open(
+                    `https://www.google.com/search?q=${encodeURIComponent(
+                      cinema.tenCumRap
+                    )}`,
+                    "_blank"
+                  )
+                }
+              >
+                [chi tiết]
+              </span>
             </div>
           </a>
         </li>

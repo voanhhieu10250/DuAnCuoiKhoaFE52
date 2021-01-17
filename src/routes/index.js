@@ -23,12 +23,4 @@ const routesAdmin = [
     component: DashboardPage,
   },
 ];
-
-const routePageNotFound = [
-  {
-    exact: false,
-    path: "",
-    component: React.lazy(() => import("../containers/PageNotFound")),
-  },
-];
-export { routesHome, routesAdmin, routePageNotFound };
+export { routesHome, routesAdmin };

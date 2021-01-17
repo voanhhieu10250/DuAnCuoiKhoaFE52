@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 
 export default class ErrorBoundary extends Component {
+  // Chỉ có class component mới làm ErrorBoundary được.
+
   constructor(props) {
     super(props);
     this.state = {

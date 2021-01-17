@@ -1,6 +1,5 @@
 import React, { Fragment, Suspense } from "react";
 import { Route } from "react-router-dom";
-import ErrorBoundary from "../../components/ErrorBoundary";
 import Loader from "../../components/Loader";
 import NavbarHome from "../../components/NavbarHome";
 
@@ -19,11 +18,9 @@ export default function HomeTemplate({ Component, ...props }) {
       {...props}
       render={(propsComponent) => (
         <HomeLayout>
-          <ErrorBoundary>
-            <Suspense fallback={<Loader />}>
-              <Component {...propsComponent} />
-            </Suspense>
-          </ErrorBoundary>
+          <Suspense fallback={<Loader />}>
+            <Component {...propsComponent} />
+          </Suspense>
         </HomeLayout>
       )}
     />
