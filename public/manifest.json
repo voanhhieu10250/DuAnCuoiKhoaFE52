@@ -1,6 +1,6 @@
 {
   "short_name": "TIX - Đặt Vé Nhanh Nhất / Trang chủ",
-  "name": "Create React App Sample",
+  "name": "TIX - Đặt Vé Nhanh Nhất",
   "icons": [
     {
       "src": "/img/web-icon.png",
@@ -13,7 +13,7 @@
       "sizes": "192x192"
     },
     {
-      "src": "l/img/web-logo.png",
+      "src": "/img/web-logo.png",
       "type": "image/png",
       "sizes": "512x512"
     }

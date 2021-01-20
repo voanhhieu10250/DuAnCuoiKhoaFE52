@@ -1,6 +1,7 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
+import { useForm } from "../../../functions/useForm";
 import { actLoginApi } from "../../../redux/actions/actLoginApi";
 import { InputField, LoginBg, LoginBtn, LoginForm, ToHome } from "./style";
 
@@ -9,8 +10,10 @@ const LoginPage = () => {
   const loading = useSelector((state) => state.userLoginReducer.loading);
   const err = useSelector((state) => state.userLoginReducer.err);
   const userExisted = localStorage.getItem("UserAccount");
-  const taiKhoan = useRef();
-  const matKhau = useRef();
+  const [{ taiKhoan, matKhau }, setFormState] = useForm({
+    taiKhoan: "",
+    matKhau: "",
+  });
   const dispatch = useDispatch();
   const history = useHistory();
   const handleSubmit = (e) => {
@@ -18,8 +21,8 @@ const LoginPage = () => {
     dispatch(
       actLoginApi(
         {
-          taiKhoan: taiKhoan.current.value.trim(),
-          matKhau: matKhau.current.value.trim(),
+          taiKhoan,
+          matKhau,
         },
         history,
         pathname ? pathname : "/"
@@ -33,13 +36,13 @@ const LoginPage = () => {
         <ToHome to="/">
           <img src="../../../img/loginLogo.png" alt="" />
         </ToHome>
-        {err ? (
-          <div className="mb-3 text-danger">{err.response.data}</div>
-        ) : null}
+        {err && <div className="mb-3 text-danger">{err.response.data}</div>}
         <form onSubmit={handleSubmit}>
           <div className="mb-1">
             <InputField
-              ref={taiKhoan}
+              name="taiKhoan"
+              value={taiKhoan}
+              onChange={setFormState}
               id="username"
               type="text"
               placeholder="Tài khoản"
@@ -47,7 +50,10 @@ const LoginPage = () => {
           </div>
           <div className="mb-1">
             <InputField
-              ref={matKhau}
+              // ref={matKhau}
+              name="matKhau"
+              value={matKhau}
+              onChange={setFormState}
               id="password"
               type="password"
               placeholder="Mật khẩu"
