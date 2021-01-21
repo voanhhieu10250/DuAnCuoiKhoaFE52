@@ -1,5 +1,12 @@
 import React, { memo } from "react";
 import { listPartner } from "../../data";
+// logos
+import zionLogo from "../../img/icons/zion-logo.jpg";
+import bctLogo from "../../img/icons/bct.png";
+import appleLogo from "../../img/icons/apple-logo.png";
+import androidLogo from "../../img/icons/android-logo.png";
+import fbLogo from "../../img/icons/facebook-logo.png";
+import zaloLogo from "../../img/icons/zalo-logo.png";
 
 function HomeFooter() {
   const renderListPartner = (arr) => {
@@ -83,7 +90,7 @@ function HomeFooter() {
     <div className="row mr-0 ml-0 text-center justify-content-center">
       {/* Company Logo */}
       <div className="col-md-1 p-0 col-12 imgFooter">
-        <img className="vngIcon" src="./img/icons/zion-logo.jpg" alt="" />
+        <img className="vngIcon" src={zionLogo} alt="" />
       </div>
 
       {/* Company Info */}
@@ -116,11 +123,7 @@ function HomeFooter() {
           rel="noopener noreferrer"
           href="http://online.gov.vn/Home/WebDetails/62782"
         >
-          <img
-            className="imgBoCo"
-            alt="Bộ Công Thương"
-            src="./img/icons/bct.png"
-          />
+          <img className="imgBoCo" alt="Bộ Công Thương" src={bctLogo} />
         </a>
       </div>
     </div>
@@ -156,11 +159,7 @@ function HomeFooter() {
                 href="https://apps.apple.com/vn/app/tix-%C4%91%E1%BA%B7t-v%C3%A9-nhanh-nh%E1%BA%A5t/id615186197"
                 title="Apple App"
               >
-                <img
-                  className="iconApp"
-                  src="../../img/icons/apple-logo.png"
-                  alt=""
-                />
+                <img className="iconApp" src={appleLogo} alt="" />
               </a>
               <a
                 target="_blank"
@@ -168,11 +167,7 @@ function HomeFooter() {
                 href="https://play.google.com/store/apps/details?id=vn.com.vng.phim123"
                 title="Android App"
               >
-                <img
-                  className="iconApp"
-                  src="../../img/icons/android-logo.png"
-                  alt=""
-                />
+                <img className="iconApp" src={androidLogo} alt="" />
               </a>
             </div>
             <div className="col-12 col-lg-6 topRight-2 text-center">
@@ -183,11 +178,7 @@ function HomeFooter() {
                 href="https://www.facebook.com/tix.vn/"
                 title="Facebook social"
               >
-                <img
-                  className="iconApp"
-                  src="../../img/icons/facebook-logo.png"
-                  alt=""
-                />
+                <img className="iconApp" src={fbLogo} alt="" />
               </a>
               <a
                 target="_blank"
@@ -195,11 +186,7 @@ function HomeFooter() {
                 href="https://zalo.me/tixdatve"
                 title="Zalo social"
               >
-                <img
-                  className="iconApp"
-                  src="../../img/icons/zalo-logo.png"
-                  alt=""
-                />
+                <img className="iconApp" src={zaloLogo} alt="" />
               </a>
             </div>
           </div>

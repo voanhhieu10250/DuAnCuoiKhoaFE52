@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-// import "./CSS/loader.css";
+import webLogo from "../../img/icons/web-logo.png";
 
 const shaking = keyframes`
   0% {
@@ -21,7 +21,7 @@ const shaking = keyframes`
 `;
 
 const Loading = styled.div`
-  background-image: url("../../img/web-logo.png");
+  background-image: url(${webLogo});
   background-repeat: no-repeat;
   background-size: cover;
   width: 120px;

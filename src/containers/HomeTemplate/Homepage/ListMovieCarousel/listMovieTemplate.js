@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Movie from "../../../../components/Movie";
 import $ from "jquery";
+import backBtn from "../../../../img/icons/back-session.png";
+import nextBtn from "../../../../img/icons/next-session.png";
 
 export default function ListMovieTemplate(props) {
   const eleId = props.upComingFilms ? "upComingFlims" : "nowShowingFilms";
@@ -109,7 +111,7 @@ export default function ListMovieTemplate(props) {
         role="button"
         data-slide="prev"
       >
-        <img src="./img/back-session.png" className="btn_Prev" alt="" />
+        <img src={backBtn} className="btn_Prev" alt="" />
         <span className="sr-only">Previous</span>
       </a>
       <a
@@ -118,7 +120,7 @@ export default function ListMovieTemplate(props) {
         role="button"
         data-slide="next"
       >
-        <img src="./img/next-session.png" className="btn_Next" alt="" />
+        <img src={nextBtn} className="btn_Next" alt="" />
         <span className="sr-only">Next</span>
       </a>
     </div>

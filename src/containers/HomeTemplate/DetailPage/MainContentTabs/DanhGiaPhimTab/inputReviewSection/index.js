@@ -7,6 +7,10 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SelectStar from "./selectStar";
 import { actPutMovieReview } from "../../../../../../redux/actions/actPutMovieReview";
+// icons
+import avatarIcon from "../../../../../../img/icons/avatar.png";
+import listStarIcon from "../../../../../../img/icons/listStar.png";
+import xController from "../../../../../../img/icons/xController.png";
 
 function InputReviewSection({ reviewData }) {
   const putLoading = useSelector(
@@ -90,7 +94,7 @@ function InputReviewSection({ reviewData }) {
               alt="avatar"
             />
           ) : (
-            <img src="../../../../../../img/avatar.png" alt="avatar" />
+            <img src={avatarIcon} alt="avatar" />
           )}
         </span>
         <input
@@ -100,7 +104,7 @@ function InputReviewSection({ reviewData }) {
           readOnly
         ></input>
         <span className="imgReviewerStar">
-          <img src="../../../../../../img/listStar.png" alt="" />
+          <img src={listStarIcon} alt="" />
         </span>
       </div>
       <Modal
@@ -124,7 +128,7 @@ function InputReviewSection({ reviewData }) {
               type="button"
               onClick={handleClose}
             >
-              <img src="../../../../img/xController.png" alt="" />
+              <img src={xController} alt="" />
             </button>
             <div className={classes.btnLogin}>
               <Link to="/login" className="login" id="modal-description-login">
@@ -156,7 +160,7 @@ function InputReviewSection({ reviewData }) {
               onClick={closeCommentBox}
               disabled={putLoading ? true : false}
             >
-              <img src="../../../../img/xController.png" alt="" />
+              <img src={xController} alt="" />
             </button>
             <SelectStar rate={rate} setRate={setRate} />
             <div className="mx-0">

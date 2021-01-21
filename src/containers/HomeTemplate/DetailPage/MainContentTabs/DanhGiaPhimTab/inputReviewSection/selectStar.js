@@ -1,11 +1,13 @@
 import React, { Fragment } from "react";
+import StarSelectIcon from "../../../../../../img/icons/StarSelect.png";
+import StarBackIcon from "../../../../../../img/icons/starBack.png";
 
 const SelectStar = ({ rate, setRate }) => {
   const renderSelectedStar = () => {
     const listStar = [];
     for (let i = 1; i <= 10; i++) {
       const styleList = {
-        backgroundImage: "url(../../../../../../img/StarSelect.png)",
+        backgroundImage: `url(${StarSelectIcon})`,
         opacity: i <= rate ? 1 : 0,
       };
       listStar.push(
@@ -39,7 +41,7 @@ const SelectStar = ({ rate, setRate }) => {
       <div className="starSelect">
         <div
           className="defaultListStar"
-          style={{ backgroundImage: "url(../../../../../../img/starBack.png)" }}
+          style={{ backgroundImage: `url(${StarBackIcon})` }}
         ></div>
         <div className="starSelectList" id="starSelectList">
           {renderSelectedStar()}

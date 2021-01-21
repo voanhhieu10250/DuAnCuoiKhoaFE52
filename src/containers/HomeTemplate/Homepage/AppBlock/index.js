@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import Slider from "react-slick";
 import { appBlockCarouselImgs } from "../../../../data";
 import { Element } from "react-scroll";
+import mobileImage from "../../../../img/AppBlockCarousel/mobile.png";
 
 function AppBlock() {
   const setting = {
@@ -63,11 +64,7 @@ function AppBlock() {
             </p>
           </div>
           <div className="col-12 col-lg-6 pl-0 pr-0 text-white right">
-            <img
-              className="phone-img"
-              src="./img/mobile.png"
-              alt="Loading..."
-            />
+            <img className="phone-img" src={mobileImage} alt="Loading..." />
             <Slider {...setting}>{renderAppSlider()}</Slider>
           </div>
         </div>

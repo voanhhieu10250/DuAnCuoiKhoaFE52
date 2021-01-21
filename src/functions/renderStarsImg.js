@@ -1,3 +1,6 @@
+import starIcon from "../img/icons/star1.png";
+import halfStarIcon from "../img/icons/star1.2.png";
+
 export default function renderStarsImg(danhGia, ImgClassName = "") {
   let listStar = [];
   let starAmount = danhGia / 2;
@@ -5,17 +8,12 @@ export default function renderStarsImg(danhGia, ImgClassName = "") {
   if (halfStar > 0) {
     for (let index = 0; index < starAmount - halfStar; index++) {
       listStar.push(
-        <img
-          src="../img/star1.png"
-          key={index}
-          className={ImgClassName}
-          alt=""
-        />
+        <img src={starIcon} key={index} className={ImgClassName} alt="" />
       );
     }
     listStar.push(
       <img
-        src="../img/star1.2.png"
+        src={halfStarIcon}
         key={listStar.length}
         className={ImgClassName}
         alt=""
@@ -24,12 +22,7 @@ export default function renderStarsImg(danhGia, ImgClassName = "") {
   } else {
     while (starAmount > 0) {
       listStar.push(
-        <img
-          src="../img/star1.png"
-          key={starAmount}
-          className={ImgClassName}
-          alt=""
-        />
+        <img src={starIcon} key={starAmount} className={ImgClassName} alt="" />
       );
       starAmount--;
     }

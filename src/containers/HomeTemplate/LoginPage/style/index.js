@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+// image
+import loginBg from "../../../../img/loginBg.jpg";
 
 export const LoginBg = styled.div`
   width: 100vw;
   height: 100vh;
   margin: 0 auto;
-  background-image: url(../../../../img/loginBg.jpg);
+  background-image: url(${loginBg});
   background-size: contain;
   background-position: center;
   float: left;

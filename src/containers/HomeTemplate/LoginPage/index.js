@@ -4,6 +4,8 @@ import { Redirect, useHistory } from "react-router-dom";
 import { useForm } from "../../../functions/useForm";
 import { actLoginApi } from "../../../redux/actions/actLoginApi";
 import { InputField, LoginBg, LoginBtn, LoginForm, ToHome } from "./style";
+// image
+import loginLogo from "../../../img/loginLogo.png";
 
 const LoginPage = () => {
   const pathname = localStorage.getItem("location");
@@ -34,7 +36,7 @@ const LoginPage = () => {
     <LoginBg>
       <LoginForm>
         <ToHome to="/">
-          <img src="../../../img/loginLogo.png" alt="" />
+          <img src={loginLogo} alt="" />
         </ToHome>
         {err && <div className="mb-3 text-danger">{err.response.data}</div>}
         <form onSubmit={handleSubmit}>
@@ -50,7 +52,6 @@ const LoginPage = () => {
           </div>
           <div className="mb-1">
             <InputField
-              // ref={matKhau}
               name="matKhau"
               value={matKhau}
               onChange={setFormState}
@@ -59,7 +60,7 @@ const LoginPage = () => {
               placeholder="Mật khẩu"
             ></InputField>
           </div>
-          <div className="mb-3">
+          <div className="mb-3 mt-2">
             <LoginBtn type="submit">
               {loading ? "Loading ..." : "Đăng nhập"}
             </LoginBtn>

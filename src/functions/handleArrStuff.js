@@ -4,6 +4,5 @@ export const spliceSameArrObj = (arr) => {
       arr.splice(index + 1, 1);
     }
   });
-
   return arr;
 };

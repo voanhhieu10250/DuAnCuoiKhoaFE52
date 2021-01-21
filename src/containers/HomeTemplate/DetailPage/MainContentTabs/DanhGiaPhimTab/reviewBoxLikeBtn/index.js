@@ -6,6 +6,10 @@ import useStyles from "../../../../../../styles";
 import { useDispatch, useSelector } from "react-redux";
 import { actPutMovieReview } from "../../../../../../redux/actions/actPutMovieReview";
 import { Link } from "react-router-dom";
+// icons
+import xController from "../../../../../../img/icons/xController.png";
+import unLikeBtn from "../../../../../../img/icons/like.png";
+import likedBtn from "../../../../../../img/icons/like_red.png";
 
 function ReviewBoxLikeBtn({ index, liked, reviewData, setLikeBtnIndex }) {
   const loadingPutReview = useSelector(
@@ -25,15 +29,12 @@ function ReviewBoxLikeBtn({ index, liked, reviewData, setLikeBtnIndex }) {
   };
 
   const renderLikeButton = (arrLiked) => {
-    if (!account)
-      return (
-        <img className="postLikeCmt" src="../../../../img/like.png" alt="" />
-      );
+    if (!account) return <img className="postLikeCmt" src={unLikeBtn} alt="" />;
     const checkAccount = arrLiked.find((item) => item === account.taiKhoan);
     return checkAccount ? (
-      <img className="postLikeCmt" src="../../../../img/like_red.png" alt="" />
+      <img className="postLikeCmt" src={likedBtn} alt="" />
     ) : (
-      <img className="postLikeCmt" src="../../../../img/like.png" alt="" />
+      <img className="postLikeCmt" src={unLikeBtn} alt="" />
     );
   };
 
@@ -84,7 +85,7 @@ function ReviewBoxLikeBtn({ index, liked, reviewData, setLikeBtnIndex }) {
               type="button"
               onClick={handleClose}
             >
-              <img src="../../img/xController.png" alt="" />
+              <img src={xController} alt="" />
             </button>
             <div className={classes.btnLogin}>
               <Link to="/login" className="login" id="modal-description-login">

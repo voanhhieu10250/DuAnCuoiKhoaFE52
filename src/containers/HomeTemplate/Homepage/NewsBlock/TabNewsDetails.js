@@ -1,133 +1,62 @@
 import React, { Fragment } from "react";
 import ReadMoreBtn from "../../../../components/ReadMoreBtn";
 import { tabNewsData } from "../../../../data";
+// images
+import likeIcon from "../../../../img/icons/like.png";
+import commentIcon from "../../../../img/icons/comment.png";
 
 export default function TabNewsDetails({ tabNum }) {
   const listTabId = ["showingNews", "showingReview", "showingPromotion"];
-  const renderTabDetail = (num) => {
-    const tabItem = tabNewsData[num];
-    return (
-      <Fragment>
-        <div className="newsItems col-12 col-sm-12 col-md-6">
-          <div className="newsThumbnail">
-            <img src={tabItem.pos_1.image} alt="" />
-          </div>
-          <a href="/">
-            <p className="newsTitle ng-binding">{tabItem.pos_1.title}</p>
-          </a>
-          <p className="newsDescription">{tabItem.pos_1.content}</p>
-          <div className="newsVoting">
-            <div className="wrapIcon like">
-              <img src="./img/like.png" alt="" />
-              <span className="amount like ng-binding">0</span>
-            </div>
-            <div className="wrapIcon comment">
-              <a href="/">
-                <img src="./img/comment.png" alt="" />
-                <span className="amount comment ng-binding">1</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="newsItems col-12 col-sm-12 col-md-6">
-          <div className="newsThumbnail">
-            <img src={tabItem.pos_2.image} alt="" />
-          </div>
-          <a href="/">
-            <p className="newsTitle ng-binding">{tabItem.pos_2.title}</p>
-          </a>
-          <p className="newsDescription">{tabItem.pos_2.content}</p>
-          <div className="newsVoting">
-            <div className="wrapIcon">
-              <img src="./img/like.png" alt="" />
-              <span className="amount like ng-binding">0</span>
-            </div>
-            <div className="wrapIcon">
-              <a href="/">
-                <img src="./img/comment.png" alt="" />
-                <span className="amount comment ng-binding">1</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="newsItems col-12 col-sm-12 col-md-4">
-          <div className="newsThumbnail">
-            <img src={tabItem.pos_3.image} alt="" />
-          </div>
-          <a href="/">
-            <p className="newsTitle">{tabItem.pos_3.title}</p>
-          </a>
-          <p className="newsDescription">{tabItem.pos_3.content}</p>
-          <div className="newsVoting">
-            <div className="wrapIcon">
-              <img src="./img/like.png" alt="" />
-              <span className="amount like ng-binding">0</span>
-            </div>
-            <div className="wrapIcon">
-              <a href="/">
-                <img src="./img/comment.png" alt="" />
-                <span className="amount comment ng-binding">1</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="newsItems col-12 col-sm-12 col-md-4">
-          <div className="newsThumbnail">
-            <img src={tabItem.pos_4.image} alt="" />
-          </div>
-          <a href="/">
-            <p className="newsTitle ng-binding">{tabItem.pos_4.title}</p>
-          </a>
-          <p className="newsDescription">{tabItem.pos_4.content}</p>
-          <div className="newsVoting">
-            <div className="wrapIcon like">
-              <img src="./img/like.png" alt="" />
-              <span className="amount like ng-binding">0</span>
-            </div>
-            <div className="wrapIcon comment">
-              <a href="/">
-                <img src="./img/comment.png" alt="" />
-                <span className="amount comment ng-binding">1</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="newsItems col-12 col-sm-12 col-md-4">
-          <div className="subItems col-xs-12">
+  const tabData = tabNewsData[tabNum];
+
+  const renderDetail = () => {
+    return tabData.map((item, index) => (
+      <div
+        className={`newsItems col-12 col-sm-12 ${
+          index === 0 || index === 1 ? "col-md-6" : "col-md-4"
+        }`}
+        key={index}
+      >
+        {index !== 4 ? (
+          <Fragment>
             <div className="newsThumbnail">
-              <img src={tabItem.pos_5.line_1.img} alt="" />
+              <img src={item.image} alt="" />
             </div>
             <a href="/">
-              <p className="newsTitle">{tabItem.pos_5.line_1.title}</p>
+              <p className="newsTitle">{item.title}</p>
             </a>
-          </div>
-          <div className="subItems col-xs-12">
-            <div className="newsThumbnail">
-              <img src={tabItem.pos_5.line_2.img} alt="" />
+            <p className="newsDescription">{item.content}</p>
+            <div className="newsVoting">
+              <div className="wrapIcon">
+                <img src={likeIcon} alt="" />
+                <span>0</span>
+              </div>
+              <div className="wrapIcon">
+                <a href="/">
+                  <img src={commentIcon} alt="" />
+                  <span>1</span>
+                </a>
+              </div>
             </div>
-            <a href="/">
-              <p className="newsTitle">{tabItem.pos_5.line_2.title}</p>
-            </a>
-          </div>
-          <div className="subItems col-xs-12">
-            <div className="newsThumbnail">
-              <img src={tabItem.pos_5.line_3.img} alt="" />
-            </div>
-            <a href="/">
-              <p className="newsTitle">{tabItem.pos_5.line_3.title}</p>
-            </a>
-          </div>
-          <div className="subItems col-xs-12">
-            <div className="newsThumbnail">
-              <img src={tabItem.pos_5.line_4.img} alt="" />
-            </div>
-            <a href="/">
-              <p className="newsTitle">{tabItem.pos_5.line_4.title}</p>
-            </a>
-          </div>
+          </Fragment>
+        ) : (
+          renderSideNews(item)
+        )}
+      </div>
+    ));
+  };
+
+  const renderSideNews = (item) => {
+    return item.map((i, index) => (
+      <div className="subItems col-xs-12" key={index}>
+        <div className="newsThumbnail">
+          <img src={i.img} alt="" />
         </div>
-      </Fragment>
-    );
+        <a href="/">
+          <p className="newsTitle">{i.title}</p>
+        </a>
+      </div>
+    ));
   };
 
   return (
@@ -137,12 +66,12 @@ export default function TabNewsDetails({ tabNum }) {
       role="tabpanel"
       aria-labelledby="news-tab"
     >
-      {renderTabDetail(tabNum)}
+      {renderDetail()}
       <div
         className="collapse news-collapse row mr-0 ml-0 collapse"
         id={`tab-collapse-${tabNum}`}
       >
-        {renderTabDetail(tabNum)}
+        {renderDetail()}
       </div>
       <ReadMoreBtn tabId={`tab-collapse-${tabNum}`} />
     </div>

@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import TabNewsDetails from "./TabNewsDetails";
 import TabNewsList from "./TabNewsList";
 import { Element } from "react-scroll";
+import bgNewsBlock from "../../../../img/back-news.png";
 
 function NewsBlock() {
   return (
@@ -9,6 +10,9 @@ function NewsBlock() {
       name="newsblock"
       id="newsblock"
       className="newsblock mainMaxWidth container-fluid"
+      style={{
+        backgroundImage: `url(${bgNewsBlock})`,
+      }}
     >
       <ul
         className="nav nav-tabs navCenter text-center"

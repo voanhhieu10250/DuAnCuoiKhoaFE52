@@ -3,6 +3,8 @@ import useStyles from "../../styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
+import playVideoBtn from "../../img/icons/play-video.png";
+import closeVideoBtn from "../../img/icons/close.png";
 
 export default function PlayModalBtn({ keyId, videoLink }) {
   const classes = useStyles();
@@ -17,7 +19,7 @@ export default function PlayModalBtn({ keyId, videoLink }) {
   return (
     <Fragment>
       <button className="btnPlay" type="button" onClick={handleOpen}>
-        <img src="../../img/play-video.png" alt="" />
+        <img src={playVideoBtn} alt="" />
       </button>
       <Modal
         disableScrollLock
@@ -36,7 +38,7 @@ export default function PlayModalBtn({ keyId, videoLink }) {
           <div className={classes.paper}>
             <div id={`modal-title-${keyId}`} />
             <button className="btnClose" type="button" onClick={handleClose}>
-              <img src="../../img/icons/close.png" alt="" />
+              <img src={closeVideoBtn} alt="" />
             </button>
             <iframe
               title={`modal-${keyId}`}

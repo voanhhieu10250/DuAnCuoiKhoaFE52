@@ -4,6 +4,11 @@ import useStyles from "../../styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
+// icons
+import playVideoBtn from "../../img/icons/play-video.png";
+import closeVideoBtn from "../../img/icons/close.png";
+import backBtn from "../../img/icons/back-session.png";
+import nextBtn from "../../img/icons/next-session.png";
 
 function CarouselComponent({ Component }) {
   const classes = useStyles();
@@ -43,7 +48,7 @@ function CarouselComponent({ Component }) {
           onClick={() => handleOpen(index)}
           key={index}
         >
-          <img src="./img/play-video.png" alt="" />
+          <img src={playVideoBtn} alt="" />
         </button>
         <Modal
           disableScrollLock
@@ -62,7 +67,7 @@ function CarouselComponent({ Component }) {
             <div className={classes.paper}>
               <div id={`modal-title-${index}`} />
               <button className="btnClose" type="button" onClick={handleClose}>
-                <img src="./img/icons/close.png" alt="" />
+                <img src={closeVideoBtn} alt="" />
               </button>
               <iframe
                 title={`modal-${index}`}
@@ -109,7 +114,7 @@ function CarouselComponent({ Component }) {
           role="button"
           data-slide="prev"
         >
-          <img src="../../img/back-session.png" className="btn_Prev" alt="" />
+          <img src={backBtn} className="btn_Prev" alt="" />
         </a>
         <a
           className="carousel-control-next"
@@ -117,7 +122,7 @@ function CarouselComponent({ Component }) {
           role="button"
           data-slide="next"
         >
-          <img src="../../img/next-session.png" className="btn_Next" alt="" />
+          <img src={nextBtn} className="btn_Next" alt="" />
         </a>
       </div>
       <Component />

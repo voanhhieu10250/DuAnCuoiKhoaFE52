@@ -2,6 +2,11 @@ import React, { Fragment, memo, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { locationList } from "../../data";
 import { Link as ScrollBtn } from "react-scroll";
+// icons
+import webLogo from "../../img/icons/web-logo.png";
+import avatarLogo from "../../img/icons/avatar.png";
+import locationLogo from "../../img/icons/location-header.png";
+import dropdownIcon from "../../img/icons/dropdown-icon.png";
 
 function NavbarHome() {
   let location = useLocation();
@@ -44,7 +49,7 @@ function NavbarHome() {
         {/* logo */}
         <div className="col-md-4 logo-pd">
           <Link className="navbar-brand" to="/">
-            <img src="../../img/web-logo.png" alt="logo" />
+            <img src={webLogo} alt="logo" />
           </Link>
         </div>
         {/* phần navbar giữa */}
@@ -162,7 +167,7 @@ function NavbarHome() {
                   </Fragment>
                 ) : (
                   <Link to="/login">
-                    <img src="../../img/avatar.png" alt="login" />
+                    <img src={avatarLogo} alt="login" />
                     <p className="white m-0">Đăng Nhập</p>
                   </Link>
                 )}
@@ -177,10 +182,10 @@ function NavbarHome() {
                   aria-haspopup="true"
                   aria-expanded="false"
                   style={{
-                    backgroundImage: "url(../../img/dropdown-icon.png)",
+                    backgroundImage: `url(${dropdownIcon})`,
                   }}
                 >
-                  <img src="./img/location-header.png" alt="" />
+                  <img src={locationLogo} alt="" />
                   {state.locationBase}
                 </a>
                 <div

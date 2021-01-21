@@ -3,17 +3,17 @@
   "name": "TIX - Đặt Vé Nhanh Nhất",
   "icons": [
     {
-      "src": "/img/web-icon.png",
+      "src": "/web-icon.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "/img/web-icon.png",
+      "src": "/web-icon.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/img/web-logo.png",
+      "src": "/web-logo.png",
       "type": "image/png",
       "sizes": "512x512"
     }
