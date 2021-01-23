@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import handleExchangeDateString from "../../functions/exchangeDateString";
 
 export default function CollapsableCard({
@@ -9,15 +10,25 @@ export default function CollapsableCard({
   handleTime,
   cinemaAddress,
 }) {
+  const account = JSON.parse(localStorage.getItem("UserAccount"));
+
   const renderMovieSchedule = (arrStringDate) => {
     const timeList = !handleTime
       ? getTimeFromListDateString(arrStringDate)
       : arrStringDate;
-    return timeList.map((item, index) => (
-      <a href="/" key={index}>
-        <span className="start_time">{item}</span> ~ {handleIncreaceTime(item)}
-      </a>
-    ));
+    return timeList.map((item, index) =>
+      account ? (
+        <Link to="/" key={index} className="buyTicketBtn">
+          <span className="start_time">{item}</span> ~{" "}
+          {handleIncreaceTime(item)}
+        </Link>
+      ) : (
+        <button key={index} className="buyTicketBtn">
+          <span className="start_time">{item}</span> ~{" "}
+          {handleIncreaceTime(item)}
+        </button>
+      )
+    );
   };
 
   const handleIncreaceTime = (time) => {

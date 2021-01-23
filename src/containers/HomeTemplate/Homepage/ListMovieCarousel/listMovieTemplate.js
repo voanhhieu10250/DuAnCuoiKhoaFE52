@@ -7,13 +7,11 @@ import nextBtn from "../../../../img/icons/next-session.png";
 
 export default function ListMovieTemplate(props) {
   const eleId = props.upComingFilms ? "upComingFlims" : "nowShowingFilms";
-  const eleIdNum = "#" + eleId;
-  const eleClasses = props.firstShow ? "show active in" : "";
-  const nowMovieList = useSelector((state) => state.ListMovieReducer.data);
-  const upComingMovieList = useSelector(
-    (state) => state.ListUpComingMovieReducer.data
+  const listMovie = useSelector((state) =>
+    props.firstShow
+      ? state.ListMovieReducer.data
+      : state.ListUpComingMovieReducer.data
   );
-  const listMovie = props.firstShow ? nowMovieList : upComingMovieList;
 
   useEffect(() => {
     $(".carouselStop").carousel({
@@ -99,7 +97,9 @@ export default function ListMovieTemplate(props) {
   return (
     <div
       id={eleId}
-      className={`carousel carouselStop slide tab-pane fade ${eleClasses}`}
+      className={`carousel carouselStop slide tab-pane fade ${
+        props.firstShow ? "show active in" : ""
+      }`}
       data-ride="carousel"
     >
       <div className="carousel-inner" style={{ height: "882px" }}>
@@ -107,7 +107,7 @@ export default function ListMovieTemplate(props) {
       </div>
       <a
         className="carousel-control-prev"
-        href={eleIdNum}
+        href={`#` + eleId}
         role="button"
         data-slide="prev"
       >
@@ -116,7 +116,7 @@ export default function ListMovieTemplate(props) {
       </a>
       <a
         className="carousel-control-next"
-        href={eleIdNum}
+        href={`#` + eleId}
         role="button"
         data-slide="next"
       >

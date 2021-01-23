@@ -1,17 +1,20 @@
 import React, { memo, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import renderStarsImg from "../../../../../functions/renderStarsImg";
 import ReviewBoxLikeBtn from "./reviewBoxLikeBtn";
 import InputReviewSection from "./inputReviewSection";
+import { actGetMovieReview } from "../../../../../redux/actions/actGetMovieReview";
 
 function DanhGiaPhimTab() {
   const reviewUpToNow = useRef(null);
   const likeBtnClicked = useRef(-1);
+  const dispatch = useDispatch();
   // movieReview - chỉ sài 1 lần duy nhất ở component này
   const reviewData = useSelector((state) => state.MovieReviewReducer.data);
   const loadingGetReview = useSelector(
     (state) => state.MovieReviewReducer.loading
   );
+  const errorGetReview = useSelector((state) => state.MovieReviewReducer.err);
   // Put movieReview
   const loadingPutReview = useSelector(
     (state) => state.PutMovieReviewReducer.loading
@@ -96,6 +99,9 @@ function DanhGiaPhimTab() {
     likeBtnClicked.current = index;
   };
 
+  if (errorGetReview) {
+    dispatch(actGetMovieReview(1));
+  }
   if (loadingGetReview || !reviewData)
     return (
       <div className="tab-pane fade text-white" id="danhGiaPhim">

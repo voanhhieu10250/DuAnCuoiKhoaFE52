@@ -2,9 +2,15 @@ import React, { memo } from "react";
 import PlayModalBtn from "../PlayModalBtn";
 import { Link } from "react-router-dom";
 import renderStarsImg from "../../functions/renderStarsImg";
+import defaultFilm from "../../img/Default-film.png";
 
 function Movie(props) {
   const { hinhAnh, tenPhim, danhGia, maPhim, trailer, biDanh } = props.item;
+
+  const handleImgError = (e) => {
+    e.target.src = defaultFilm;
+    console.log("Lỗi 404 hình ảnh phía (lỗi do server)");
+  };
 
   return (
     <div className="objects">
@@ -12,6 +18,7 @@ function Movie(props) {
         <img
           className="filmImg"
           src={hinhAnh}
+          onError={handleImgError}
           style={{ width: "215px", height: "318px" }}
           alt=""
         />

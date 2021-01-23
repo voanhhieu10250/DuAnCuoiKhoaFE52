@@ -87,7 +87,7 @@
           color: #c7c3da !important;
         }
       }
-      a {
+      .buyTicketBtn {
         width: calc(25% - 10px);
         float: left;
         font-size: 14px;
@@ -101,6 +101,9 @@
         border-radius: 7px;
         color: $color-gray-1;
         border: $border-style-2;
+        &:focus {
+          outline: none;
+        }
         &:hover .start_time {
           color: $color-orange-0;
         }

@@ -49,6 +49,12 @@ function InputReviewSection({ reviewData }) {
     setOpen(false);
   };
   const openCommentBox = () => {
+    if (reviewData.maPhim === "1") {
+      alert(
+        "Rất tiếc, phim này hiện tại không thể dùng chức năng đánh giá! Chúng tôi sẽ cố gắng khắc phục sớm nhất có thể. Xin lỗi vì sự bất tiện này."
+      );
+      return;
+    }
     setOpenComment(true);
   };
 

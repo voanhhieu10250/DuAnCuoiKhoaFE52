@@ -92,6 +92,7 @@ function DetailMainTop() {
   const renderShowingDate = (date) =>
     handleExchangeDateString(date, "dateWithDotRevert");
   if (!movieDetailData) return [];
+
   return renderContent();
 }
 
