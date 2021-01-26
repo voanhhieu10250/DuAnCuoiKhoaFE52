@@ -7,6 +7,7 @@ import ListCinemaShowTimesReducer from "./listCinemaReducer";
 import MovieReviewReducer from "./movieReviewReducer";
 import PutMovieReviewReducer from "./putMovieReviewReducer";
 import userLoginReducer from "./userLoginReducer";
+import DetailCinemaRoomReducer from "./cinemaRoomDetailReducer";
 
 const rootReducer = combineReducers({
   ListMovieReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   MovieReviewReducer,
   PutMovieReviewReducer,
   userLoginReducer,
+  DetailCinemaRoomReducer,
 });
 
 export default rootReducer;

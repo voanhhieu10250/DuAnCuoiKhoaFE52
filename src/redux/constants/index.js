@@ -33,8 +33,6 @@ export const LIST_CINEMA_SUCCESS = "ListCinemaReducer/LIST_CINEMA_SUCCESS";
 export const LIST_CINEMA_FAILED = "ListCinemaReducer/LIST_CINEMA_FAILED";
 
 // DETAIL_PAGE
-
-// MOVIE_REVIEWS
 export const MOVIE_REVIEW_REQUEST = "MovieReviewReducer/MOVIE_REVIEW_REQUEST";
 export const MOVIE_REVIEW_SUCCESS = "MovieReviewReducer/MOVIE_REVIEW_SUCCESS";
 export const MOVIE_REVIEW_FAILED = "MovieReviewReducer/MOVIE_REVIEW_FAILED";
@@ -50,3 +48,11 @@ export const PUT_MOVIE_REVIEW_FAILED =
 export const LOGIN_PAGE_REQUEST = "UserLoginReducer/LOGIN_PAGE_REQUEST";
 export const LOGIN_PAGE_SUCCESS = "UserLoginReducer/LOGIN_PAGE_SUCCESS";
 export const LOGIN_PAGE_FAILED = "UserLoginReducer/LOGIN_PAGE_FAILED";
+
+// CHECKOUT_PAGE
+export const CINEMA_ROOM_DETAILS_REQUEST =
+  "DetailCinemaRoomReducer/CINEMA_ROOM_DETAILS_REQUEST";
+export const CINEMA_ROOM_DETAILS_SUCCESS =
+  "DetailCinemaRoomReducer/CINEMA_ROOM_DETAILS_SUCCESS";
+export const CINEMA_ROOM_DETAILS_FAILED =
+  "DetailCinemaRoomReducer/CINEMA_ROOM_DETAILS_FAILED";

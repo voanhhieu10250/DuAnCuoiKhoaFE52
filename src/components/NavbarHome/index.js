@@ -1,7 +1,7 @@
 import React, { Fragment, memo, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { locationList } from "../../data";
-import { Link as ScrollBtn } from "react-scroll";
+import { Link as ScrollBtn, animateScroll as Scroll } from "react-scroll";
 // icons
 import webLogo from "../../img/icons/web-logo.png";
 import avatarLogo from "../../img/icons/avatar.png";
@@ -14,8 +14,9 @@ function NavbarHome() {
   const [locationState, setLocationState] = useState(true);
   const userAccount = JSON.parse(localStorage.getItem("UserAccount"));
   useEffect(() => {
-    if (location.pathname === "/") setLocationState(false);
-  }, [location.pathname]);
+    if (location.pathname === "/" && locationState) setLocationState(false);
+    if (location.pathname !== "/" && !locationState) setLocationState(true);
+  }, [location.pathname, locationState]);
 
   const renderListLocation = () => {
     return locationList.map((item, index) => {
@@ -48,9 +49,21 @@ function NavbarHome() {
       <nav className="navbar navbar-expand-md navbar-light" id="navbarHeader">
         {/* logo */}
         <div className="col-md-4 logo-pd">
-          <Link className="navbar-brand" to="/">
-            <img src={webLogo} alt="logo" />
-          </Link>
+          {locationState ? (
+            <Link className="navbar-brand" to="/">
+              <img src={webLogo} alt="logo" />
+            </Link>
+          ) : (
+            <button
+              className="navbar-brand"
+              onClick={() => {
+                Scroll.scrollToTop({ duration: 500 });
+              }}
+              style={{ border: "none", outline: "none" }}
+            >
+              <img src={webLogo} alt="logo" />
+            </button>
+          )}
         </div>
         {/* phần navbar giữa */}
         <div className="col-md-4">

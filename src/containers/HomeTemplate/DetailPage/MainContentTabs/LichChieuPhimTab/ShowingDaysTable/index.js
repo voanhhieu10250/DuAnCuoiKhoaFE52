@@ -10,7 +10,6 @@ export default function ShowingDaysTable({
   let datesForDisableTab = [
     `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}`,
   ];
-
   const renderWrapDayOfWeek = (listDates) => {
     let listHTMLdayOfWeek = [];
     if (ObjMovieDetail) {

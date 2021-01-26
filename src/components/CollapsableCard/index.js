@@ -11,24 +11,20 @@ export default function CollapsableCard({
   cinemaAddress,
 }) {
   const account = JSON.parse(localStorage.getItem("UserAccount"));
-
   const renderMovieSchedule = (arrStringDate) => {
     const timeList = !handleTime
       ? getTimeFromListDateString(arrStringDate)
       : arrStringDate;
-    return timeList.map((item, index) =>
-      account ? (
-        <Link to="/" key={index} className="buyTicketBtn">
-          <span className="start_time">{item}</span> ~{" "}
-          {handleIncreaceTime(item)}
-        </Link>
-      ) : (
-        <button key={index} className="buyTicketBtn">
-          <span className="start_time">{item}</span> ~{" "}
-          {handleIncreaceTime(item)}
-        </button>
-      )
-    );
+    return timeList.map((item, index) => (
+      <Link
+        to={account ? `/checkout/${item.maLichChieu}` : "/login"}
+        key={index}
+        className="buyTicketBtn"
+      >
+        <span className="start_time">{item.time}</span> ~{" "}
+        {handleIncreaceTime(item.time)}
+      </Link>
+    ));
   };
 
   const handleIncreaceTime = (time) => {
@@ -47,22 +43,27 @@ export default function CollapsableCard({
   const getTimeFromListDateString = (listMovieSchedule) => {
     let lastestDate = "";
     let timeList = [];
-
+    let scanedList = [];
     // Duyệt mảng và lấy ngày gần với hiện tại nhất gán vào biến lastestDate
     listMovieSchedule.forEach((item) => {
-      let tempDate = handleExchangeDateString(
-        item.ngayChieuGioChieu,
-        "date/time"
-      );
-      if (tempDate.date > lastestDate) lastestDate = tempDate.date;
+      const schedule = {
+        maLichChieu: item.maLichChieu,
+        ngayChieuGioChieu: handleExchangeDateString(
+          item.ngayChieuGioChieu,
+          "date/time"
+        ),
+      };
+      scanedList.push(schedule);
+      if (schedule.ngayChieuGioChieu.date > lastestDate)
+        lastestDate = schedule.ngayChieuGioChieu.date;
     });
-    // Duyệt mảng và lấy danh sách giờ chiếu hiện có của ngày gần với hiện tại nhất
-    listMovieSchedule.forEach((item) => {
-      let tempDate = handleExchangeDateString(
-        item.ngayChieuGioChieu,
-        "date/time"
-      );
-      if (tempDate.date === lastestDate) timeList.push(tempDate.time);
+    // Duyệt mảng và lấy danh sách giờ chiếu hiện có trùng với này mới nhất (lastestDate)
+    scanedList.forEach((item) => {
+      if (item.ngayChieuGioChieu.date === lastestDate)
+        timeList.push({
+          time: item.ngayChieuGioChieu.time,
+          maLichChieu: item.maLichChieu,
+        });
     });
     return timeList;
   };

@@ -86,7 +86,7 @@ function DetailMainTop() {
     scroller.scrollTo("contentDetailMain", {
       duration: 800,
       smooth: true,
-      offset: -5,
+      offset: -65,
     });
   };
   const renderShowingDate = (date) =>

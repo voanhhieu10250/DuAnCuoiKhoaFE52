@@ -15,6 +15,7 @@ export default function CardsContainer({
         return {
           date: handleExchangeDateString(obj.ngayChieuGioChieu, "date"),
           time: handleExchangeDateString(obj.ngayChieuGioChieu, "time"),
+          maLichChieu: obj.maLichChieu,
         };
       });
       // Check xem trong danh sách ngày vừa lấy có ngày nào trùng với tabs ngày được chọn hay không
@@ -23,16 +24,13 @@ export default function CardsContainer({
       );
       // nếu rạp của hệ thống này không có ngày trùng thì bỏ qua, còn có thì render collapsableCard cho rạp này
       if (checkedList.length === 0) return [];
-      // Lọc ra sẵn list thời gian chiếu của rạp luôn, để truyền xuống cho collapsableCard
-      const scheduleList = [];
-      checkedList.forEach((obj) => scheduleList.push(obj.time));
       return (
         <CollapsableCard
           key={index}
           maCode={`${item.maCumRap}-${selectedDay}`}
           hinhAnh={logo}
           title={item.tenCumRap}
-          scheduleList={scheduleList}
+          scheduleList={checkedList}
           handleTime
           cinemaAddress={boxCinemasAddress.cinemas.find(
             (cinema) => cinema.maCumRap === item.maCumRap

@@ -13,6 +13,9 @@ const AuthPage = React.lazy(() =>
 const LoginPage = React.lazy(() =>
   import("./containers/HomeTemplate/LoginPage")
 );
+const CheckoutPage = React.lazy(() =>
+  import("./containers/HomeTemplate/CheckoutPage")
+);
 
 function App() {
   const showLayoutHome = (routes) => {
@@ -47,12 +50,19 @@ function App() {
         {/* ĐỪNG BAO GIỜ ĐỂ ErrorBoundary và Suspense BÊN TRONG Switch, trong Switch chỉ có Route thôi.
         nếu không sẽ bị lỗi chuyển trang. Phải bọc ngay bên ngoài Switch như thế này thì mới đúng quy định của React */}
         <ErrorBoundary>
+          {/* Cái fallback này sẽ ngừng hiện component Loader ngay sau lần render ĐẦU TIÊN, nên phải chú ý nếu 
+          những component nào cần phải đợi fetch data thì phải tự thêm Loader vào những component đó  */}
           <Suspense fallback={<Loader />}>
             <Switch>
               {showLayoutHome(routesHome)}
               {showLayoutAdmin(routesAdmin)}
               <Route exact={false} path="/login" component={LoginPage} />
               <Route exact={false} path="/auth" component={AuthPage} />
+              <Route
+                exact={false}
+                path="/checkout/:id"
+                component={CheckoutPage}
+              />
               <Route path="" render={() => <Redirect to="/" />} />
             </Switch>
           </Suspense>

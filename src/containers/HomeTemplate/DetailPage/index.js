@@ -10,6 +10,8 @@ import { Redirect } from "react-router-dom";
 import { actGetListCinemaShowTimesApi } from "../../../redux/actions/actListCinemaShowTimesApi";
 import { actGetMovieReview } from "../../../redux/actions/actGetMovieReview";
 import { actPutMovieReviewSuccess } from "../../../redux/actions/actPutMovieReview";
+import SetPathNameToLocal from "../../../functions/setPathToLocal";
+
 const MainContentTabs = React.lazy(() => import("./MainContentTabs"));
 const DetailMainTop = React.lazy(() => import("./DetailMainTop"));
 const HomeFooter = React.lazy(() => import("../../../components/HomeFooter"));
@@ -38,16 +40,13 @@ export default function DetailPage(props) {
       firstRender.current = true;
     }
     if (movieDetail && !firstRender.current) {
-      console.log("set null moviedetail");
       dispatch(actMovieDetailsSuccess(null));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [firstRender.current]);
 
   useEffect(() => {
-    const pathname = localStorage.getItem("location");
-    if (!pathname || pathname !== window.location.pathname)
-      localStorage.setItem("location", window.location.pathname);
+    SetPathNameToLocal();
     return () => {
       dispatch(actMovieDetailsSuccess(null));
       dispatch(actPutMovieReviewSuccess(null));
