@@ -118,6 +118,12 @@
         z-index: 1;
         margin: 0;
       }
+      .clear_input {
+        align-self: flex-end;
+        img {
+          cursor: pointer;
+        }
+      }
       input.content:focus ~ label {
         color: #4a90e2;
       }

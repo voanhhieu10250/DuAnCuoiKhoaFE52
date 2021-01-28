@@ -35,3 +35,19 @@
     width: 0%;
   }
 }
+@media (max-width: 992px) {
+  #homeMovies .carousel-control-prev {
+    left: 15px;
+    width: 0%;
+    img {
+      height: 30px;
+    }
+  }
+  #homeMovies .carousel-control-next {
+    right: 15px;
+    width: 0%;
+    img {
+      height: 30px;
+    }
+  }
+}

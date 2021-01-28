@@ -2,6 +2,7 @@ import React, { useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actGetMovieDetailsApi } from "../../../../redux/actions/actMovieDetailsApi";
 import handleExchangeDateString from "../../../../functions/exchangeDateString";
+import { Link } from "react-router-dom";
 
 function HomeSearchTool() {
   const dispatch = useDispatch();
@@ -21,14 +22,14 @@ function HomeSearchTool() {
     },
     date: {
       id: 3,
-      detail: "Ngày xem",
+      detail: { date: "Ngày xem", maLichChieu: "" },
     },
     time: {
       id: 4,
       detail: "Suất chiếu",
     },
     ngayGioChieuTheoPhim: [],
-    ticketInfo: "",
+    ticketCode: "",
   });
 
   const renderDropdown = (content, size) => {
@@ -43,7 +44,7 @@ function HomeSearchTool() {
             aria-haspopup="true"
             aria-expanded="false"
           >
-            {content.detail}
+            {content.id === 3 ? content.detail.date : content.detail}
           </button>
           <div
             className="scrollBarStyle dropdown-menu"
@@ -97,12 +98,18 @@ function HomeSearchTool() {
       let { movie, theater, ngayGioChieuTheoPhim } = state;
       if (movie.detail !== "Phim" && theater.detail !== "Rạp") {
         // Chuyển mảng chứa arr ngày giờ chiếu từ định dạng ISO thành định dạng yyyy-mm-dd và gán cho mảng mới
-        let listScreenings = ngayGioChieuTheoPhim.map((date) => {
-          return handleExchangeDateString(date, "date");
+        let listScreenings = ngayGioChieuTheoPhim.map((item) => {
+          const tempString = handleExchangeDateString(
+            item.ngayChieuGioChieu,
+            "date"
+          );
+          return { date: tempString, maLichChieu: item.maLichChieu };
         });
         // Lọc lại mảng, cắt bỏ các ngày bị trùng lặp
-        for (let index = 0; index < listScreenings.length; index++) {
-          while (listScreenings[index] === listScreenings[index + 1]) {
+        for (let index = 0; index < listScreenings.length - 1; index++) {
+          while (
+            listScreenings[index].date === listScreenings[index + 1].date
+          ) {
             listScreenings.splice(index + 1, 1);
           }
         }
@@ -113,7 +120,7 @@ function HomeSearchTool() {
               key={index}
               onClick={() => handleChoosing(item, id)}
             >
-              {item}
+              {item.date}
             </button>
           );
         });
@@ -128,14 +135,18 @@ function HomeSearchTool() {
       if (
         movie.detail !== "Phim" &&
         theater.detail !== "Rạp" &&
-        date.detail !== "Ngày xem"
+        date.detail.date !== "Ngày xem"
       ) {
-        let tempListDate = ngayGioChieuTheoPhim.map((item) =>
-          handleExchangeDateString(item, "date/time")
-        );
+        let tempListDate = ngayGioChieuTheoPhim.map((item) => {
+          const tempObj = handleExchangeDateString(
+            item.ngayChieuGioChieu,
+            "date/time"
+          );
+          return { dateTime: tempObj, maLichChieu: item.maLichChieu };
+        });
         for (let object of tempListDate) {
-          if (object.date === date.detail) {
-            timeList.push(object.time);
+          if (object.dateTime.date === date.detail.date) {
+            timeList.push(object);
           }
         }
         return timeList.map((time, index) => (
@@ -144,7 +155,7 @@ function HomeSearchTool() {
             key={index}
             onClick={() => handleChoosing(time, id)}
           >
-            {time}
+            {time.dateTime.time}
           </button>
         ));
       }
@@ -161,32 +172,37 @@ function HomeSearchTool() {
       case 1:
         if (item.tenPhim === state.movie.detail) return;
         setstate({
-          ...state,
           movie: {
-            ...state.movie, //nhớ là phải copy lại, vì movie cũng là 1 cái object
+            ...state.movie,
             detail: item.tenPhim,
           },
           theater: {
-            ...state.theater,
+            id: 2,
             detail: "Rạp",
           },
           date: {
-            ...state.date,
-            detail: "Ngày xem",
+            id: 3,
+            detail: { date: "Ngày xem", maLichChieu: "" },
           },
           time: {
-            ...state.time,
+            id: 4,
             detail: "Suất chiếu",
           },
-          ticketInfo: "",
+          ngayGioChieuTheoPhim: [],
+          ticketCode: "",
         });
         dispatch(actGetMovieDetailsApi(item.maPhim));
         break;
       case 2:
-        let cacSuatChieuHienCo = item.cumRapChieu.map((rap) => {
-          return rap.lichChieuPhim.map((thongTinSuatChieu) => {
-            return thongTinSuatChieu.ngayChieuGioChieu;
+        let cacSuatChieuHienCo = [];
+        item.cumRapChieu.forEach((rap) => {
+          const tempArr = rap.lichChieuPhim.map((thongTinSuatChieu) => {
+            return {
+              ngayChieuGioChieu: thongTinSuatChieu.ngayChieuGioChieu,
+              maLichChieu: thongTinSuatChieu.maLichChieu,
+            };
           });
+          cacSuatChieuHienCo.push(...tempArr);
         });
         let rapDangChon = item.cumRapChieu.map((rap) => rap.tenCumRap);
         if (rapDangChon[0] === state.theater.detail) return;
@@ -196,20 +212,20 @@ function HomeSearchTool() {
             ...state.theater,
             detail: rapDangChon[0],
           },
+          ngayGioChieuTheoPhim: [...cacSuatChieuHienCo],
           date: {
-            ...state.date,
-            detail: "Ngày xem",
+            id: 3,
+            detail: { date: "Ngày xem", maLichChieu: "" },
           },
           time: {
-            ...state.time,
+            id: 4,
             detail: "Suất chiếu",
           },
-          ticketInfo: "",
-          ngayGioChieuTheoPhim: cacSuatChieuHienCo[0],
+          ticketCode: "",
         });
         break;
       case 3:
-        if (item === state.date.detail) return;
+        if (item.date === state.date.detail.date) return;
         setstate({
           ...state,
           date: {
@@ -217,26 +233,20 @@ function HomeSearchTool() {
             detail: item,
           },
           time: {
-            ...state.time,
+            id: 4,
             detail: "Suất chiếu",
           },
-          ticketInfo: "",
+          ticketCode: "",
         });
         break;
       case 4:
-        let { movie, theater, date, time } = state;
         setstate({
           ...state,
           time: {
             ...state.time,
-            detail: item,
+            detail: item.dateTime.time,
           },
-          ticketInfo: {
-            movie: movie.detail,
-            theater: theater.detail,
-            date: date.detail,
-            time: time.detail,
-          },
+          ticketCode: item.maLichChieu,
         });
         break;
       default:
@@ -251,9 +261,19 @@ function HomeSearchTool() {
       {renderDropdown(state.date, "col-2")}
       {renderDropdown(state.time, "col-2")}
       <div className="col-2">
-        {state.ticketInfo !== "" ? (
+        {state.ticketCode !== "" ? (
           <button className="btn text-white btnMuaVeActivated">
-            MUA VÉ NGAY
+            <Link
+              to={`/checkout/${state.ticketCode}`}
+              style={{
+                display: "block",
+                color: "inherit",
+                width: "100%",
+                padding: "9px 22px",
+              }}
+            >
+              MUA VÉ NGAY
+            </Link>
           </button>
         ) : (
           <button className="btn btn-primary btnMuaVe" disabled>

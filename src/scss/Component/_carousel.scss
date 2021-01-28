@@ -56,3 +56,9 @@
     }
   }
 }
+@media (max-width: 886px) {
+  #filmsCarousel .carousel-control-prev,
+  #filmsCarousel .carousel-control-next {
+    width: auto;
+  }
+}

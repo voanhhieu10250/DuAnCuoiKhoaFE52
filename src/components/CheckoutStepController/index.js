@@ -43,7 +43,7 @@ const CheckoutStepController = () => {
                 }
                 alt="avatar"
               />
-              <span>{userAccount.hoTen || "Tài khoản"}</span>
+              <span>{userAccount ? userAccount.hoTen : "Tài khoản"}</span>
             </p>
           </div>
         </StepRightSide>

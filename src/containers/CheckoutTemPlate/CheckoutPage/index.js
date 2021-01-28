@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import { actGetDetailCinemaRoom } from "../../../redux/actions/actGetDetailCinemaRoom";
@@ -10,14 +10,17 @@ import SeatCheckout from "./seatCheckout";
 import { BookedSeatsContext } from "../../../contexts";
 
 const CheckoutPage = () => {
+  const firstTimeRender = useRef(true);
   const [bookedSeats, setBookedSeat] = useState([]);
   const account = JSON.parse(localStorage.getItem("UserAccount"));
   const dispatch = useDispatch();
   const { id } = useParams();
+  const loadingListCinema = useSelector(
+    (state) => state.ListCinemaSystemReducer.loading
+  );
   const detailRoomLoading = useSelector(
     (state) => state.DetailCinemaRoomReducer.loading
   );
-  const detailRoom = useSelector((state) => state.DetailCinemaRoomReducer.data);
   const errDetailRoom = useSelector(
     (state) => state.DetailCinemaRoomReducer.err
   );
@@ -31,13 +34,17 @@ const CheckoutPage = () => {
     SetPathNameToLocal();
     dispatch(actGetDetailCinemaRoom(id));
     dispatch(actGetListCinemaSystemApi());
-    return () => {};
+    firstTimeRender.current = false;
+    // return () => {
+    //   firstTimeRender.current = true;
+    // };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (errDetailRoom || !account)
     return <Redirect to={errDetailRoom ? "/" : "/login"} />;
-  if (detailRoomLoading || !detailRoom) return <Loader />;
+  if (detailRoomLoading || loadingListCinema || firstTimeRender.current)
+    return <Loader />;
 
   return (
     <div className="p-0">

@@ -6,7 +6,7 @@
     right: 0;
     width: 100%;
     height: 60px;
-    background-color: $color-white-1;
+    background-color: $color-white-0;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
     z-index: 9;
     transition: all 0.2s;
@@ -14,6 +14,7 @@
       padding-left: 4px;
       padding-right: 30px;
       .navbar-brand {
+        background-color: $color-white-0;
         img {
           width: 50px;
         }
@@ -95,6 +96,41 @@
           background-color: #888;
         }
       }
+    }
+  }
+}
+@media (max-width: 886px) {
+  #navbarHeader {
+    .logo-pd {
+      height: 100%;
+      .navbar-brand {
+        height: inherit;
+        padding: 0;
+        img {
+          height: inherit;
+        }
+      }
+    }
+    .col-md-4 {
+      background-color: $color-white-0;
+    }
+    .userAccount {
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      #userBtn .username {
+        display: none;
+        @media (max-width: 767px) {
+          display: inline-block;
+        }
+      }
+    }
+    #account #logoutBtn {
+      top: 0;
+      transition: 0.5s all ease;
+    }
+    .navbar-toggler {
+      position: absolute;
+      right: 10px;
     }
   }
 }

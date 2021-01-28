@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import TimeCounter from "./timer";
 import screen from "../../../img/screen.png";
 import SeatComponent from "./seatComponent";
+import cineLogo from "../../../img/icons/cinemaLogo.png";
 
 const SeatCheckout = () => {
   const seatsPerRow = 16;
@@ -46,14 +47,13 @@ const SeatCheckout = () => {
   };
 
   const cinemaLogo = () => {
-    const cinema = listCinema.find(
-      (item) =>
-        detailRoom.thongTinPhim.tenCumRap
-          .toLowerCase()
-          .search(item.tenHeThongRap.toLowerCase()) !== -1
-    );
-    localStorage.setItem("cinema", cinema.logo);
-    return cinema.logo;
+    const cinema = listCinema.find((item) => {
+      let a = detailRoom.thongTinPhim.tenCumRap.toLowerCase().slice(0, 2);
+      let b = item.tenHeThongRap.toLowerCase().slice(0, 2);
+      return a === b;
+    });
+    localStorage.setItem("cinema", !cinema ? cineLogo : cinema.logo);
+    return !cinema ? cineLogo : cinema.logo;
   };
 
   const openRefreshModal = useCallback(() => {

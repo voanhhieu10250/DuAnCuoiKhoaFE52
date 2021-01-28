@@ -73,7 +73,7 @@ export default function ListMovieTemplate(props) {
       index++
     ) {
       tempList.push(
-        <div className="content__item px-0 col-lg-3" key={index}>
+        <div className="content__item px-0 col-lg-3 col-md-4 col-6" key={index}>
           <Movie item={listMovie[index]} />
         </div>
       );
@@ -86,7 +86,7 @@ export default function ListMovieTemplate(props) {
     // Dùng vòng lặp for để thực hiện phép tính phức tạp, như vậy sẽ tránh đc trường hợp các element bị trùng key
     for (let item = index * 8; item < index * 8 + 8; item++) {
       tempListMovie.push(
-        <div className="content__item px-0 col-lg-3" key={item}>
+        <div className="content__item px-0 col-lg-3 col-md-4 col-6" key={item}>
           <Movie item={listMovie[item]} />
         </div>
       );

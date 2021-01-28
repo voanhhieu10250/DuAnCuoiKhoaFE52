@@ -2,13 +2,20 @@ import { useState } from "react";
 
 export const useForm = (initialInput) => {
   const [formState, setFormState] = useState(initialInput);
-  // lưu ý là name của input tag không được bắt đầu bằng chữ in hoa
+  // lưu ý là name của input tag không được bắt đầu bằng chữ in hoa. Tên tham số truyền vào phải
+  //trùng với name của input
   return [
     formState,
     (e) => {
       setFormState({
         ...formState,
         [e.target.name]: e.target.value,
+      });
+    },
+    (field) => {
+      setFormState({
+        ...formState,
+        [field]: "",
       });
     },
   ];

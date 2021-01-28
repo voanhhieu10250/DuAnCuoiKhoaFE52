@@ -9,6 +9,7 @@ import {
 import exclamation from "../../../img/icons/exclamation.png";
 import zaloLogo from "../../../img/icons/ZaloPay.jpg";
 import CCicon from "../../../img/icons/CCicon.png";
+import removeIcon from "../../../img/icons/remove.png";
 import { actPostBookedSeat } from "../../../redux/actions/actPostBookedSeats";
 import { useHistory } from "react-router-dom";
 
@@ -21,7 +22,7 @@ const RightCheckout = () => {
   const [onToggle, setOnToggle] = useState(false);
   const [checked, setChecked] = useState("ZaloPay");
   const [openConfirm, setOpenConfirm] = useState(false);
-  const [{ email, phone }, setFormState] = useForm({
+  const [{ email, phone }, setFormState, resetFormField] = useForm({
     email: account.email,
     phone: "",
   });
@@ -127,6 +128,16 @@ const RightCheckout = () => {
                 required
               />
               <label htmlFor="emailCheckout">E-mail</label>
+              <div
+                className="clear_input col-sm-2 col-2"
+                style={{ display: !email ? "none" : "block" }}
+              >
+                <img
+                  src={removeIcon}
+                  alt="remove button"
+                  onClick={() => resetFormField("email")}
+                />
+              </div>
             </div>
             <div
               className="inputError"
@@ -155,6 +166,16 @@ const RightCheckout = () => {
                 required
               />
               <label htmlFor="phoneCheckout">Phone</label>
+              <div
+                className="clear_input col-sm-2 col-2"
+                style={{ display: !phone ? "none" : "block" }}
+              >
+                <img
+                  src={removeIcon}
+                  alt="remove button"
+                  onClick={() => resetFormField("phone")}
+                />
+              </div>
             </div>
             <div
               className="inputError"

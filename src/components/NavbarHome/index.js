@@ -161,7 +161,7 @@ function NavbarHome() {
           </div>
         </div>
         {/* phần navbar phải */}
-        <div className="col-md-4 pr-0">
+        <div className="col-md-4 pr-0 userAccount">
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item" id="account">
@@ -172,7 +172,7 @@ function NavbarHome() {
                         src={`https://i.pravatar.cc/150?u=${userAccount.taiKhoan}`}
                         alt="avatar"
                       />
-                      <p className="white m-0">{userAccount.hoTen}</p>
+                      <p className="white m-0 username">{userAccount.hoTen}</p>
                     </button>
                     <div id="logoutBtn">
                       <button onClick={handleLogout}>Đăng xuất</button>

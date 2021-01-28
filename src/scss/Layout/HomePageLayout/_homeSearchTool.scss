@@ -73,8 +73,10 @@
     }
   }
   .btnMuaVeActivated {
+    display: block;
     @extend .btnMuaVe;
     background-color: $color-orange-0;
+    padding: 0 !important;
     &:hover {
       background-color: #b30000;
     }
