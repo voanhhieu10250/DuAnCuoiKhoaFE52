@@ -4,8 +4,9 @@ import "./App.css";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Loader from "./components/Loader";
 import AdminTemplate from "./containers/AdminTemplate";
+import ChechoutTemplate from "./containers/CheckoutTemPlate";
 import HomeTemplate from "./containers/HomeTemplate";
-import { routesAdmin, routesHome } from "./routes";
+import { routesAdmin, routesHome, routesCheckout } from "./routes";
 
 const AuthPage = React.lazy(() =>
   import("./containers/AdminTemplate/AuthPage")
@@ -13,15 +14,25 @@ const AuthPage = React.lazy(() =>
 const LoginPage = React.lazy(() =>
   import("./containers/HomeTemplate/LoginPage")
 );
-const CheckoutPage = React.lazy(() =>
-  import("./containers/HomeTemplate/CheckoutPage")
-);
 
 function App() {
   const showLayoutHome = (routes) => {
     if (routes && routes.length > 0) {
       return routes.map((item, index) => (
         <HomeTemplate
+          key={index}
+          exact={item.exact}
+          path={item.path}
+          Component={item.component}
+        />
+      ));
+    }
+  };
+
+  const showLayoutCheckout = (routes) => {
+    if (routes && routes.length > 0) {
+      return routes.map((item, index) => (
+        <ChechoutTemplate
           key={index}
           exact={item.exact}
           path={item.path}
@@ -56,13 +67,10 @@ function App() {
             <Switch>
               {showLayoutHome(routesHome)}
               {showLayoutAdmin(routesAdmin)}
+              {showLayoutCheckout(routesCheckout)}
               <Route exact={false} path="/login" component={LoginPage} />
               <Route exact={false} path="/auth" component={AuthPage} />
-              <Route
-                exact={false}
-                path="/checkout/:id"
-                component={CheckoutPage}
-              />
+
               <Route path="" render={() => <Redirect to="/" />} />
             </Switch>
           </Suspense>

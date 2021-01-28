@@ -1,10 +1,10 @@
-import React, { Fragment, useCallback, useState } from "react";
+import React, { Fragment, memo, useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import TimeCounter from "./timer";
 import screen from "../../../img/screen.png";
 import SeatComponent from "./seatComponent";
 
-const SeatCheckout = ({ setSeat }) => {
+const SeatCheckout = () => {
   const seatsPerRow = 16;
   const listCinema = useSelector((state) => state.ListCinemaSystemReducer.data);
   const detailRoom = useSelector((state) => state.DetailCinemaRoomReducer.data);
@@ -12,7 +12,7 @@ const SeatCheckout = ({ setSeat }) => {
 
   const renderSeats = () => {
     const listSeat = detailRoom.danhSachGhe.map((item, index) => (
-      <SeatComponent currentSeat={item} key={index} setSeat={setSeat} />
+      <SeatComponent currentSeat={item} key={index} />
     ));
     const listRow = [];
     for (let i = 0; i < listSeat.length / seatsPerRow; i++) {
@@ -29,14 +29,14 @@ const SeatCheckout = ({ setSeat }) => {
           >
             {String.fromCharCode(i + 65)}
           </div>
-          {renderSeatPerRow(i, listSeat)}
+          {pushSeatToRow(i, listSeat)}
         </div>
       );
     }
     return listRow;
   };
 
-  const renderSeatPerRow = (i, listSeat) => {
+  const pushSeatToRow = (i, listSeat) => {
     const tempList = [];
     for (let y = i * seatsPerRow; y < i * seatsPerRow + seatsPerRow - 1; y++) {
       if (!listSeat[y]) break;
@@ -52,6 +52,7 @@ const SeatCheckout = ({ setSeat }) => {
           .toLowerCase()
           .search(item.tenHeThongRap.toLowerCase()) !== -1
     );
+    localStorage.setItem("cinema", cinema.logo);
     return cinema.logo;
   };
 
@@ -127,7 +128,38 @@ const SeatCheckout = ({ setSeat }) => {
                 </div>
               </div>
             </div>
-            <div className="noteSeat"></div>
+            <div className="noteSeat">
+              <div className="typeSeats" style={{ marginTop: 5 }}>
+                <div className="seatType">
+                  <div className="seatDemo">
+                    <div className="item1" />
+                    <div className="item2" />
+                  </div>
+                  <div className="seatname">Ghế thường</div>
+                </div>
+                <div className="seatType">
+                  <div className="seatDemo vipSeat">
+                    <div className="item1" />
+                    <div className="item2" />
+                  </div>
+                  <div className="seatname">Ghế VIP</div>
+                </div>
+                <div className="seatType">
+                  <div className="seatDemo chosen_seat">
+                    <div className="item1" />
+                    <div className="item2" />
+                  </div>
+                  <div className="seatname">Ghế đang chọn</div>
+                </div>
+                <div className="seatType mx-0">
+                  <div className="seatDemo unavail">
+                    <div className="item1" />
+                    <div className="item2" />
+                  </div>
+                  <div className="seatname">Ghế đã có người chọn</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -142,4 +174,4 @@ const SeatCheckout = ({ setSeat }) => {
   );
 };
 
-export default SeatCheckout;
+export default memo(SeatCheckout);

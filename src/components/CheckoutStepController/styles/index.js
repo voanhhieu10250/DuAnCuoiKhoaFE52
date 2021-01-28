@@ -8,17 +8,46 @@ export const StepCheckout = styled.div`
   top: -1px;
   left: 0;
   height: 80px;
-  width: 75%;
+  width: ${(props) => (props.fullSize ? "100%" : "75%")};
+  @media (min-width: 480px) and (max-width: 768px) {
+    height: 60px;
+    width: 100%;
+  }
 `;
 
 export const StepLeftSide = styled.div`
   float: left;
-  & ul {
+  @media (min-width: 480px) and (max-width: 768px) {
+    width: 100%;
+    text-align: center;
+    height: 60px;
+    position: relative;
+  }
+  .closeBtn {
+    display: none;
+    @media (min-width: 480px) and (max-width: 768px) {
+      display: block;
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  ul {
     margin: 0;
     padding-left: 40px;
+    @media (min-width: 480px) and (max-width: 768px) {
+      padding: 0;
+    }
     & li.active {
       color: #fb4226;
       position: relative;
+
+      @media (min-width: 480px) and (max-width: 768px) {
+        display: block;
+        color: #000;
+        line-height: 60px;
+      }
       &::after {
         content: "";
         position: absolute;
@@ -26,6 +55,9 @@ export const StepLeftSide = styled.div`
         width: calc(100% - 60px);
         left: 50%;
         transform: translateX(-50%);
+        @media (min-width: 480px) and (max-width: 768px) {
+          display: none;
+        }
       }
     }
     & li {
@@ -35,12 +67,18 @@ export const StepLeftSide = styled.div`
       line-height: 80px;
       font-size: 14px;
       text-transform: uppercase;
-      @media (max-width: 1500px) and (min-width: 1024px) {
-        font-size: 12px;
-      }
       .stepNumber {
         font-size: 18px;
         margin-right: 5px;
+        @media (min-width: 480px) and (max-width: 768px) {
+          font-size: 14px;
+        }
+      }
+      @media (min-width: 1024px) and (max-width: 1500px) {
+        font-size: 12px;
+      }
+      @media (min-width: 480px) and (max-width: 768px) {
+        display: none;
       }
     }
   }
@@ -61,6 +99,11 @@ export const StepRightSide = styled.div`
     & .titleDisplay {
       color: #9b9b9b;
       margin: inherit;
+      span {
+        @media (min-width: 480px) and (max-width: 768px) {
+          display: none;
+        }
+      }
       & .btnLogin {
         margin-right: 5px;
         height: auto;

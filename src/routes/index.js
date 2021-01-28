@@ -1,5 +1,4 @@
 import React from "react";
-import DashboardPage from "../containers/AdminTemplate/Dashboard";
 
 const routesHome = [
   {
@@ -16,11 +15,30 @@ const routesHome = [
   },
 ];
 
+const routesCheckout = [
+  {
+    exact: false,
+    path: "/checkout/result/",
+    component: React.lazy(() =>
+      import("../containers/CheckoutTemPlate/BookedResultPage")
+    ),
+  },
+  {
+    exact: false,
+    path: "/checkout/:id",
+    component: React.lazy(() =>
+      import("../containers/CheckoutTemPlate/CheckoutPage")
+    ),
+  },
+];
+
 const routesAdmin = [
   {
     exact: false,
     path: "/dashboard",
-    component: DashboardPage,
+    component: React.lazy(() =>
+      import("../containers/AdminTemplate/Dashboard")
+    ),
   },
 ];
-export { routesHome, routesAdmin };
+export { routesHome, routesAdmin, routesCheckout };

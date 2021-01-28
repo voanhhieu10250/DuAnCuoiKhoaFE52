@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { BookedSeatsContext } from "../../../contexts";
 
-const SeatComponent = ({ currentSeat, setSeat }) => {
+const SeatComponent = ({ currentSeat }) => {
+  const { setBookedSeat } = useContext(BookedSeatsContext);
   const [booked, setBooked] = useState(false);
 
   const handleClickSeat = (item) => {
     setBooked(!booked);
-    setSeat((bookedSeats) => {
+    setBookedSeat((bookedSeats) => {
       const foundedSeat = bookedSeats
         .map((item) => item.tenGhe)
         .indexOf(currentSeat.tenGhe);
@@ -22,7 +24,7 @@ const SeatComponent = ({ currentSeat, setSeat }) => {
       className={`seat${currentSeat.loaiGhe === "Thuong" ? "" : " vipSeat"}${
         !currentSeat.daDat ? "" : " unavail"
       }${!booked ? "" : " chosen_seat"}`}
-      onClick={() => handleClickSeat(currentSeat)}
+      onClick={() => !currentSeat.daDat && handleClickSeat(currentSeat)}
     >
       <div className="item1" />
       <div className="item2" />

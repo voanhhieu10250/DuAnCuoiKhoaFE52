@@ -1,0 +1,262 @@
+#successCheckout {
+  margin-left: 26%;
+  margin-top: 110px;
+  float: left;
+  width: 74%;
+  .title {
+    text-align: center;
+    font-size: 24px;
+    font-family: "SF Medium";
+    color: $color-gray-3 !important;
+    margin-bottom: 35px;
+  }
+  .mobilePoster {
+    display: none;
+    .styleBlur {
+      position: relative;
+      padding-top: 40%;
+      background-position: center;
+      background-size: cover;
+      .styleGradient {
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+      }
+    }
+  }
+  .ticketInfo {
+    margin: auto;
+    max-width: 400px;
+    height: auto;
+    box-shadow: 0 10px 20px 0 rgb(0, 0, 0 / 15%);
+    border: 2px solid $color-white-5;
+    .infomationTicket {
+      padding-top: 30px;
+      padding-left: 20px;
+      padding-right: 20px;
+      .filmname {
+        margin-bottom: 10px;
+        font-size: 22px;
+      }
+      .addressTicket {
+        &::before {
+          display: table;
+          content: " ";
+          clear: both;
+        }
+        .contentCinema {
+          max-width: 250px;
+          float: left;
+          .cinema {
+            margin-top: 1px;
+            margin-bottom: 5px;
+          }
+          .address {
+            line-height: 20px;
+            font-size: 14px;
+            color: $color-gray-1 !important;
+          }
+        }
+        .logoCinema {
+          float: right;
+          text-align: right;
+        }
+      }
+      .dateTicket {
+        margin-top: 15px;
+        .row {
+          width: 100%;
+        }
+        .datetickettitle {
+          padding-left: 0;
+          font-size: 14px;
+          color: $color-gray-3 !important;
+        }
+        .dateticketcontent {
+          padding-left: 0;
+          font-size: 18px;
+        }
+      }
+      .chairTicket {
+        margin-top: 30px;
+        .chairtickettitle {
+          font-size: 14px;
+          color: $color-gray-3 !important;
+        }
+        .chairticketcontent {
+          font-size: 18px;
+        }
+      }
+    }
+    .divide {
+      position: relative;
+      padding-bottom: 2px;
+      margin-top: 30px;
+      background-image: linear-gradient(
+        to left,
+        $color-white-5 60%,
+        rgba(255, 255, 255, 0) 0
+      );
+      background-size: 30px 3px;
+      background-repeat: repeat-x;
+      .halfcircleleft,
+      .halfcircleright {
+        position: absolute;
+        background-color: #d5d5d5 !important;
+        content: "";
+        height: 20px;
+        width: 10px;
+        top: -9px;
+      }
+      .halfcircleleft {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        left: 0;
+      }
+      .halfcircleright {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        right: 0;
+      }
+    }
+    .codecart {
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 30px;
+      padding-top: 30px;
+      .clear {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      .leftcodecart {
+        width: 30%;
+        float: left;
+        .codeqr {
+          width: 128px;
+          height: 128px;
+        }
+      }
+      .rightcodecart {
+        float: left;
+        width: 70%;
+        padding-left: 40px;
+        padding-top: 3px;
+        .titlecode {
+          color: $color-gray-3 !important;
+          font-size: 14px;
+        }
+        .contentcode {
+          max-width: 160px;
+          word-wrap: break-word;
+          font-family: "SF Medium";
+          font-size: 24px;
+          color: $color-orange-0;
+        }
+        .notecode {
+          margin-top: 20px;
+          color: $color-gray-3 !important;
+          font-size: 14px;
+          line-height: 24px;
+          letter-spacing: 0.44px;
+        }
+      }
+    }
+  }
+  .space {
+    margin-top: 25px;
+    transition: margin 0.3s ease;
+  }
+  .homeBtn {
+    cursor: pointer;
+    text-align: center;
+    margin: auto;
+    border: 1px solid #979797;
+    border-radius: 4px;
+    font-size: 18px;
+    color: $color-gray-3 !important;
+    width: 320px;
+    height: 60px;
+    padding-top: 15px;
+    &:hover {
+      background-color: $color-orange-0 !important;
+      border-color: $color-orange-0;
+      color: $color-white-0 !important;
+    }
+  }
+  .contact {
+    margin-top: 30px;
+    text-align: center;
+    .note {
+      font-size: 14px;
+      color: #9b9b9b !important;
+    }
+    .hot {
+      margin-top: 20px;
+      .hotline {
+        display: inline-block;
+        .hotlineTitle {
+          text-align: right;
+          line-height: 0;
+          font-size: 18px;
+          color: $color-gray-1 !important;
+          margin-bottom: 10px;
+        }
+        .costcall {
+          font-size: 10px;
+          color: red;
+          margin-bottom: 0px;
+        }
+      }
+      .phone {
+        display: inline-block;
+        font-size: 36px;
+      }
+    }
+  }
+}
+@media (min-width: 1024px) and (max-width: 1500px) {
+  #successCheckout {
+    .title {
+      font-size: 24px;
+    }
+  }
+}
+@media (min-width: 480px) and (max-width: 768px) {
+  #successCheckout {
+    margin-top: 60px !important;
+    margin-left: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    background: #d5d5d5 !important;
+    height: calc(100% - 60px);
+    .contentFull .title {
+      display: none !important;
+    }
+    .homeBtn,
+    .contact {
+      display: none !important;
+    }
+    .mobilePoster {
+      display: block !important;
+    }
+    .ticketInfo {
+      border: none !important;
+      background: #fff !important;
+      margin-top: 10% !important;
+      .infomationTicket {
+        .filmname {
+          font-size: 22px;
+          .spanRed {
+            font-size: 16px;
+          }
+        }
+        .addressTicket .contentCinema .address {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

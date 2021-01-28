@@ -56,3 +56,10 @@ export const CINEMA_ROOM_DETAILS_SUCCESS =
   "DetailCinemaRoomReducer/CINEMA_ROOM_DETAILS_SUCCESS";
 export const CINEMA_ROOM_DETAILS_FAILED =
   "DetailCinemaRoomReducer/CINEMA_ROOM_DETAILS_FAILED";
+
+export const POST_BOOKED_SEATS_REQUEST =
+  "PostBookedSeatsReducer/POST_BOOKED_SEATS_REQUEST";
+export const POST_BOOKED_SEATS_SUCCESS =
+  "PostBookedSeatsReducer/POST_BOOKED_SEATS_SUCCESS";
+export const POST_BOOKED_SEATS_FAILED =
+  "PostBookedSeatsReducer/POST_BOOKED_SEATS_FAILED";
