@@ -24,7 +24,7 @@ const RightCheckout = () => {
   const [openConfirm, setOpenConfirm] = useState(false);
   const [{ email, phone }, setFormState, resetFormField] = useForm({
     email: account.email,
-    phone: "",
+    phone: account.soDT,
   });
   const validEmail = validateEmail(email);
   const validPhone = validateVnPhoneNum(phone);

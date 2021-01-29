@@ -49,6 +49,10 @@ export const LOGIN_PAGE_REQUEST = "UserLoginReducer/LOGIN_PAGE_REQUEST";
 export const LOGIN_PAGE_SUCCESS = "UserLoginReducer/LOGIN_PAGE_SUCCESS";
 export const LOGIN_PAGE_FAILED = "UserLoginReducer/LOGIN_PAGE_FAILED";
 
+export const POST_NEW_USER_REQUEST = "PostNewUserReducer/POST_NEW_USER_REQUEST";
+export const POST_NEW_USER_SUCCESS = "PostNewUserReducer/POST_NEW_USER_SUCCESS";
+export const POST_NEW_USER_FAILED = "PostNewUserReducer/POST_NEW_USER_FAILED";
+
 // CHECKOUT_PAGE
 export const CINEMA_ROOM_DETAILS_REQUEST =
   "DetailCinemaRoomReducer/CINEMA_ROOM_DETAILS_REQUEST";
