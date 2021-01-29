@@ -41,6 +41,7 @@ function NavbarHome() {
 
   const handleLogout = () => {
     localStorage.removeItem("UserAccount");
+    localStorage.removeItem("UserAdmin");
     window.location.reload();
   };
 

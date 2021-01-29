@@ -15,8 +15,16 @@ export const actLoginApi = (user, history, pathname) => {
         data: user,
       });
       dispatch(actLoginPageSuccess(res.data));
-      localStorage.setItem("UserAccount", JSON.stringify(res.data));
-      history.push(pathname);
+      if (res.data.maLoaiNguoiDung === "QuanTri") {
+        localStorage.setItem("UserAdmin", JSON.stringify(res.data));
+      }
+      if (res.data.maLoaiNguoiDung !== "QuanTri" && pathname === "/dashboard") {
+        alert("Không có quyền truy cập!");
+        history.push("/");
+      } else {
+        localStorage.setItem("UserAccount", JSON.stringify(res.data));
+        history.push(pathname);
+      }
     } catch (err) {
       dispatch(actLoginPageFailed(err));
     }

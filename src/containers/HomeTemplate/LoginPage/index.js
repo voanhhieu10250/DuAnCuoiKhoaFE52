@@ -20,6 +20,7 @@ const LoginPage = () => {
   const pathname = localStorage.getItem("location");
   const loading = useSelector((state) => state.userLoginReducer.loading);
   const err = useSelector((state) => state.userLoginReducer.err);
+  const loadingRegis = useSelector((state) => state.PostNewUserReducer.loading);
   const regisSuccess = useSelector((state) => state.PostNewUserReducer.data);
   const regisErr = useSelector((state) => state.PostNewUserReducer.err);
   const userExisted = localStorage.getItem("UserAccount");
@@ -65,6 +66,7 @@ const LoginPage = () => {
   };
   const handlSubmitRegis = (e) => {
     e.preventDefault();
+    if (loadingRegis) return;
     if (!taiKhoanRegis || !matKhauRegis || !hoTen || !email || !soDt) {
       setInputErr(true);
       return;
@@ -194,7 +196,9 @@ const LoginPage = () => {
           {regisSuccess ? (
             <s.SubmitBtn>Bắt đầu đăng nhập!</s.SubmitBtn>
           ) : (
-            <s.SubmitBtn className="mt-1">Đăng ký</s.SubmitBtn>
+            <s.SubmitBtn className="mt-1">
+              {loadingRegis ? "Loading ..." : "Đăng ký"}
+            </s.SubmitBtn>
           )}
         </s.RegisForm>
       </s.FormGroups>

@@ -39,7 +39,6 @@ export const FormGroups = styled.div`
 export const LoginForm = styled.form`
   opacity: ${(props) => (props.hideTag ? 0 : 1)};
   transition: 0.2s ease all;
-  /* display: ${(props) => (props.hideTag ? "none" : "block")}; */
 `;
 
 export const ToHome = styled(Link)`

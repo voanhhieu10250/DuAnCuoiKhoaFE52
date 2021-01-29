@@ -1,11 +1,11 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import NavbarAdmin from "../../components/NavbarAdmin";
+import SideBarAdmin from "../../components/SideBarAdmin";
 
 function AdminLayout(props) {
   return (
     <div>
-      <NavbarAdmin />
+      <SideBarAdmin />
       {props.children}
     </div>
   );
