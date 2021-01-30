@@ -47,7 +47,7 @@ const RightCheckout = () => {
       maVe: bookedDate,
     };
     localStorage.setItem("ticket", JSON.stringify(ticketData));
-    dispatch(actPostBookedSeat(data, account.accessToken, history));
+    dispatch(actPostBookedSeat(data, history));
   };
 
   const handleSubmit = () => {

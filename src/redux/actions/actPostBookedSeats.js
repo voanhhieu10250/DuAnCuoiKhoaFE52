@@ -1,22 +1,19 @@
-import Axios from "axios";
+import { swaggerInstance } from "../../Axios";
 import {
   POST_BOOKED_SEATS_FAILED,
   POST_BOOKED_SEATS_REQUEST,
   POST_BOOKED_SEATS_SUCCESS,
 } from "../constants";
 
-export const actPostBookedSeat = (data, accessToken, history) => {
+export const actPostBookedSeat = (data, history) => {
   return async (dispatch) => {
     try {
       dispatch(actPostBookedSeatRequest());
       history.push("/checkout/result/");
-      const res = await Axios({
-        url: `https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe`,
+      const res = await swaggerInstance({
+        url: `/QuanLyDatVe/DatVe`,
         method: "POST",
         data,
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
       });
       dispatch(actPostBookedSeatSuccess(res.data));
     } catch (error) {

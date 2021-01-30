@@ -3,13 +3,13 @@ import {
   PUT_MOVIE_REVIEW_REQUEST,
   PUT_MOVIE_REVIEW_SUCCESS,
 } from "../constants";
-import Axios from "axios";
+import { mockapiInstance } from "../../Axios";
 
 export const actPutMovieReview = (data, maPhim) => {
   return (dispatch) => {
     dispatch(actPutMovieReviewRequest());
-    Axios({
-      url: `https://5fdf6cfdeca1780017a30c6d.mockapi.io/MovieReview/${maPhim}`,
+    mockapiInstance({
+      url: `/${maPhim}`,
       method: "PUT",
       data,
     })

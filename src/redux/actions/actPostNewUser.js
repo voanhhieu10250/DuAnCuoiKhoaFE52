@@ -1,4 +1,4 @@
-import Axios from "axios";
+import { swaggerInstance } from "../../Axios";
 import {
   POST_NEW_USER_FAILED,
   POST_NEW_USER_REQUEST,
@@ -8,8 +8,8 @@ import {
 export const actPostNewUserApi = (data) => async (dispatch) => {
   try {
     dispatch(actPostNewUserRequest());
-    const res = await Axios({
-      url: "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy",
+    const res = await swaggerInstance({
+      url: "/QuanLyNguoiDung/DangKy",
       method: "POST",
       data,
     });

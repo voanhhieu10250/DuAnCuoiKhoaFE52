@@ -1,4 +1,4 @@
-import Axios from "axios";
+import { mockapiInstance } from "../../Axios";
 import {
   MOVIE_REVIEW_FAILED,
   MOVIE_REVIEW_SUCCESS,
@@ -8,8 +8,8 @@ import {
 export const actGetMovieReview = (maPhim) => {
   return (dispatch) => {
     dispatch(actMovieReviewRequest());
-    Axios({
-      url: `https://5fdf6cfdeca1780017a30c6d.mockapi.io/MovieReview/${maPhim}`,
+    mockapiInstance({
+      url: `/${maPhim}`,
       method: "GET",
     })
       .then((res) => {

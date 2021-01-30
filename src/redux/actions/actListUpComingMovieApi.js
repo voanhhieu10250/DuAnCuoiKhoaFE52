@@ -1,4 +1,4 @@
-import Axios from "axios";
+import { swaggerInstance } from "../../Axios";
 
 import {
   LIST_UPCOMING_MOVIE_REQUEST,
@@ -9,9 +9,8 @@ import {
 export const actListUpComingMovieApi = () => {
   return (dispatch) => {
     dispatch(actListUpComMovieRequest());
-    Axios({
-      url:
-        "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP00",
+    swaggerInstance({
+      url: "/QuanLyPhim/LayDanhSachPhim?maNhom=GP00",
       method: "GET",
     })
       .then((result) => dispatch(actListUpComMovieSuccess(result.data)))

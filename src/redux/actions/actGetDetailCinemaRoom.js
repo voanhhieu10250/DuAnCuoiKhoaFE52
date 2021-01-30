@@ -1,4 +1,4 @@
-import Axios from "axios";
+import { swaggerInstance } from "../../Axios";
 import {
   CINEMA_ROOM_DETAILS_FAILED,
   CINEMA_ROOM_DETAILS_REQUEST,
@@ -8,8 +8,8 @@ import {
 export const actGetDetailCinemaRoom = (maLichChieu) => {
   return (dispatch) => {
     dispatch(actGetDetailCinemaRoomRequest());
-    Axios({
-      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`,
+    swaggerInstance({
+      url: `/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`,
       method: "GET",
     })
       .then((res) => {
