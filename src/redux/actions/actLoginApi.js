@@ -20,6 +20,9 @@ export const actLoginApi = (user, history, pathname) => {
         swaggerInstance.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${res.data.accessToken}`;
+        const sidebarstate = JSON.parse(localStorage.getItem("sidebarstate"));
+        if (!sidebarstate)
+          localStorage.setItem("sidebarstate", JSON.stringify(true));
       }
       if (res.data.maLoaiNguoiDung !== "QuanTri" && pathname === "/dashboard") {
         alert("Không có quyền truy cập!");

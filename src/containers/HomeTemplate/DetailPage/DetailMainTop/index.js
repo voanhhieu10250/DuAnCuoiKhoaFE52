@@ -84,7 +84,7 @@ function DetailMainTop() {
   const handleOnClick = () => {
     document.getElementById("lichChieu").click();
     scroller.scrollTo("contentDetailMain", {
-      duration: 800,
+      duration: 300,
       smooth: true,
       offset: -65,
     });

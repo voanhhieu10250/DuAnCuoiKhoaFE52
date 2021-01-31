@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 
 export const Sideboard = styled.div`
+  color: ${(p) => p.colorPalette.fontColorSelected};
   position: relative;
   box-shadow: 0 0 15px rgb(0 0 0 / 30%);
   width: ${(p) => (p.isSideBarOpen ? "20%" : "5%")};
@@ -8,8 +9,8 @@ export const Sideboard = styled.div`
   min-width: 80px;
   background-image: linear-gradient(
       315deg,
-      rgba(252, 82, 150, 0.8) 0%,
-      rgba(246, 112, 98, 0.8) 74%
+      ${(p) => p.colorPalette.bgColor1} 0%,
+      ${(p) => p.colorPalette.bgColor2} 74%
     ),
     url(${(p) => p.bgImage});
   background-size: cover;
@@ -71,21 +72,29 @@ export const MenuItem = styled.div`
   padding: 6px 20px;
   font-weight: 600;
   white-space: nowrap;
-  color: ${(p) => (p.isSelected ? "#fff" : "rgba(19, 15, 64)")};
+  color: ${(p) =>
+    p.isSelected ? p.colorPalette.fontColorSelected : p.colorPalette.fontColor};
   transition: 0.1s ease-in all;
   ${(p) =>
     p.isSelected &&
     !p.isSideBarOpen &&
     css`
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: ${p.colorPalette.selectedBackgroundCollapsedMode ===
+      "dark"
+        ? "rgba(0,0,0,0.6)"
+        : "rgba(255,255,255,0.6)"};
     `};
   &:hover {
-    color: #fff;
+    color: ${(p) => p.colorPalette.fontColorSelected};
     transition: 0.1s ease-in all;
   }
   &::after {
     content: "";
-    border: 1px solid ${(p) => (p.isSelected ? "#fff" : "rgba(255, 112, 85)")};
+    border: 1px solid
+      ${(p) =>
+        p.isSelected
+          ? p.colorPalette.fontColorSelected
+          : p.colorPalette.dividerColor};
     display: ${(p) =>
       p.isSideBarOpen && p.isSelected && p.isOpen ? "none" : "block"};
     margin: 8px 0 4px;
@@ -131,10 +140,17 @@ export const SubMenuItemContainer = styled.div`
 `;
 
 export const SubMenuItem = styled.p`
-  color: rgba(19, 15, 64);
+  color: ${(p) =>
+    p.selected ? p.colorPalette.fontColorSelected : p.colorPalette.fontColor};
+  ${(p) =>
+    p.selected &&
+    css`
+      letter-spacing: 1.5px;
+      font-weight: bold;
+    `}
   cursor: pointer;
   &:hover {
-    color: #fff;
+    color: ${(p) => p.colorPalette.fontColorSelected};
   }
 `;
 
@@ -142,7 +158,11 @@ export const SubMenuItem = styled.p`
 export const DropdownIcon = styled.span`
   position: absolute;
   top: ${(p) => (p.isOpen ? "9px" : "13px")};
-  border: solid ${(p) => (p.isSelected ? "#fff" : "rgba(19, 15, 64)")};
+  border: solid
+    ${(p) =>
+      p.isSelected
+        ? p.colorPalette.fontColorSelected
+        : p.colorPalette.fontColor};
   border-width: 0 1px 1px 0;
   padding: 3px;
   transform: ${(p) => (p.isOpen ? "rotate(45deg)" : "rotate(225deg)")};
