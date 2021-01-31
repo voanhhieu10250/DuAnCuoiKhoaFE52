@@ -8,26 +8,25 @@ import BgImage from "../../img/bgside.jpg";
 const widthWillCollapse = 824;
 
 const SideBarAdmin = ({ memuItems = [] }) => {
-  const sidebarstate = localStorage.getItem("sidebarstate");
+  const sidebarstate = JSON.parse(localStorage.getItem("sidebarstate"));
   const location = useLocation();
   const firstRender = useRef(true);
   const UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
   const [selected, setSelectedMenuItem] = useState(location.pathname);
-  const [isSideBarOpen, setSideBarOpen] = useState(true);
-  const [isTagClose, setTagClose] = useState(false);
+  const [isSideBarOpen, setSideBarOpen] = useState(sidebarstate);
+  const [isTagClose, setTagClose] = useState(!sidebarstate);
   const [subMenuState, setSubMenuState] = useState({});
 
   // update of header state
   useEffect(() => {
     if (window.innerWidth < widthWillCollapse && firstRender.current) {
-      setSideBarOpenState(false);
+      setSideBarOpen(false);
       setTagClose(true);
     }
     if (!firstRender.current) {
       if (isSideBarOpen) setTimeout(() => setTagClose(false), [200]);
       else setTagClose(true);
     }
-
     firstRender.current = false;
   }, [isSideBarOpen]);
 
@@ -35,9 +34,9 @@ const SideBarAdmin = ({ memuItems = [] }) => {
   useEffect(() => {
     const updateWindowWidth = () => {
       if (window.innerWidth < widthWillCollapse && isSideBarOpen)
-        setSideBarOpenState(false);
+        setSideBarOpen(false);
       if (window.innerWidth >= widthWillCollapse && !isSideBarOpen)
-        setSideBarOpenState(true);
+        setSideBarOpen(true);
     };
     window.addEventListener("resize", updateWindowWidth);
     return () => {
@@ -105,11 +104,6 @@ const SideBarAdmin = ({ memuItems = [] }) => {
     );
   });
 
-  const setSideBarOpenState = (state) => {
-    if (sidebarstate !== state) localStorage.setItem("sidebarstate", state);
-    setSideBarOpen(state);
-  };
-
   const handleClickItemMenu = (to, index) => {
     setSelectedMenuItem(to);
     if (subMenuState.hasOwnProperty(index)) {
@@ -136,7 +130,8 @@ const SideBarAdmin = ({ memuItems = [] }) => {
       <s.TogglerContainer
         onClick={() => {
           if (window.innerWidth < widthWillCollapse) return;
-          setSideBarOpenState(!isSideBarOpen);
+          localStorage.setItem("sidebarstate", JSON.stringify(!isSideBarOpen));
+          setSideBarOpen(!isSideBarOpen);
         }}
       >
         <s.Toggler />

@@ -41,8 +41,7 @@ const memuItems = [
     ],
   },
 ];
-
-function AdminLayout(props) {
+export function AdminLayout(props) {
   return (
     <App>
       <SideBarAdmin memuItems={memuItems} />

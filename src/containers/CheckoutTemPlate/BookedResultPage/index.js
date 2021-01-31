@@ -1,14 +1,17 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import Loader from "../../../components/Loader";
 import qrCode from "../../../img/icons/qr_img.png";
+import { actPostBookedSeatFailed } from "../../../redux/actions/actPostBookedSeats";
 
 const BookedResult = () => {
+  const dispatch = useDispatch();
   const postLoading = useSelector(
     (state) => state.PostBookedSeatsReducer.loading
   );
-  const postStatus = useSelector((state) => state.PostBookedSeatsReducer.data);
+  const postData = useSelector((state) => state.PostBookedSeatsReducer.data);
+  const postErr = useSelector((state) => state.PostBookedSeatsReducer.err);
   const account = JSON.parse(localStorage.getItem("UserAccount"));
   const bookedTicket = JSON.parse(localStorage.getItem("ticket"));
   const cinemaLogo = localStorage.getItem("cinema");
@@ -17,12 +20,19 @@ const BookedResult = () => {
     return () => {
       localStorage.removeItem("cinema");
       localStorage.removeItem("ticket");
+      dispatch(actPostBookedSeatFailed(null));
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!bookedTicket || !cinemaLogo || !account || (!postStatus && !postLoading))
-    return <Redirect to="/" />;
-  if (postLoading) return <Loader />;
+  if (!bookedTicket || !cinemaLogo || !account) return <Redirect to="/" />;
+  if (postErr) {
+    alert("Token đã hết hạn. Vui lòng đăng nhập lại.");
+    localStorage.removeItem("UserAccount");
+    localStorage.removeItem("UserAdmin");
+    return <Redirect to="/login" />;
+  }
+  if (postLoading || !postData) return <Loader />;
 
   return (
     <div id="successCheckout">

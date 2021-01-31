@@ -8,6 +8,7 @@ import Loader from "../../../components/Loader";
 import RightCheckout from "./rightCheckout";
 import SeatCheckout from "./seatCheckout";
 import { BookedSeatsContext } from "../../../contexts";
+import { swaggerInstance } from "../../../Axios";
 
 const CheckoutPage = () => {
   const firstTimeRender = useRef(true);
@@ -32,12 +33,12 @@ const CheckoutPage = () => {
 
   useEffect(() => {
     SetPathNameToLocal();
+    swaggerInstance.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${account.accessToken}`;
     dispatch(actGetDetailCinemaRoom(id));
     dispatch(actGetListCinemaSystemApi());
     firstTimeRender.current = false;
-    // return () => {
-    //   firstTimeRender.current = true;
-    // };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

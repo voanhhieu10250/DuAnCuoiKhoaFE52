@@ -66,8 +66,8 @@ function App() {
           <Suspense fallback={<Loader />}>
             <Switch>
               {showLayoutHome(routesHome)}
-              {showLayoutAdmin(routesAdmin)}
               {showLayoutCheckout(routesCheckout)}
+              {showLayoutAdmin(routesAdmin)}
               <Route exact={false} path="/login" component={LoginPage} />
               <Route exact={false} path="/auth" component={AuthPage} />
 
