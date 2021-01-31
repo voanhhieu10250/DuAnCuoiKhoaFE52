@@ -40,5 +40,47 @@ const routesAdmin = [
       import("../containers/AdminTemplate/Dashboard")
     ),
   },
+  {
+    exact: false,
+    path: "/profile",
+    component: React.lazy(() =>
+      import("../containers/AdminTemplate/ProfilePage")
+    ),
+  },
+  {
+    exact: false,
+    path: "/manage/users",
+    component: React.lazy(() =>
+      import("../containers/AdminTemplate/UsersManagePage")
+    ),
+  },
+  {
+    exact: false,
+    path: "/manage/tickets",
+    component: React.lazy(() =>
+      import("../containers/AdminTemplate/TicketsManagePage")
+    ),
+  },
+  {
+    exact: false,
+    path: "/manage/films",
+    component: React.lazy(() =>
+      import("../containers/AdminTemplate/FilmsManagePage")
+    ),
+  },
+  {
+    exact: false,
+    path: "/manage/cinemas",
+    component: React.lazy(() =>
+      import("../containers/AdminTemplate/CinemasManagePage")
+    ),
+  },
+  {
+    exact: false,
+    path: "/manage",
+    component: React.lazy(() =>
+      import("../containers/AdminTemplate/ManagePage")
+    ),
+  },
 ];
 export { routesHome, routesAdmin, routesCheckout };
