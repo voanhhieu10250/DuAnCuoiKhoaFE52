@@ -23,11 +23,6 @@ const listTask = [
       "Lấy thông tin người dùng",
     ],
   },
-  {
-    name: "Tickets",
-    to: "/admin/manage/tickets",
-    feature: ["Lấy danh sách phòng vé", "Đặt lịch chiếu", "Đặt vé"],
-  },
 ];
 
 const ManagePage = () => {

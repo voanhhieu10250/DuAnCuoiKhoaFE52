@@ -39,10 +39,6 @@ export function AdminLayout() {
           to: `${url}/manage/users`,
         },
         {
-          name: "Tickets",
-          to: `${url}/manage/tickets`,
-        },
-        {
           name: "Films",
           to: `${url}/manage/films`,
         },

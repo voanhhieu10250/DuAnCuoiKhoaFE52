@@ -54,13 +54,6 @@ const routesAdmin = [
   },
   {
     exact: false,
-    path: "/manage/tickets",
-    component: React.lazy(() =>
-      import("../containers/AdminTemplate/TicketsManagePage")
-    ),
-  },
-  {
-    exact: false,
     path: "/manage/films",
     component: React.lazy(() =>
       import("../containers/AdminTemplate/FilmsManagePage")

@@ -146,19 +146,6 @@ export default function Administrative() {
             </Link>
           </s.TaskBox>
         </s.SpecialBox>
-        <s.SpecialBox width="35%" margin="20px">
-          <s.TaskBox>
-            <Link to="/admin/manage/tickets">
-              <s.TaskTitle>Tickets</s.TaskTitle>
-              <s.Break color="#28291061" margin="10px" />
-              <s.TaskList>
-                <s.TaskItem>Tạo lịch chiếu</s.TaskItem>
-                <s.TaskItem>Lấy danh sách phòng vé</s.TaskItem>
-                <s.TaskItem Link>Xem thêm ...</s.TaskItem>
-              </s.TaskList>
-            </Link>
-          </s.TaskBox>
-        </s.SpecialBox>
       </s.ContainBottom>
       <s.Modal openModal={openModal}>
         <s.FadeDiv onClick={CloseModal} />
