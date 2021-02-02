@@ -5,11 +5,13 @@ import {
   LIST_MOVIE_SUCCESS,
 } from "../constants";
 
-export const actGetListMovieApi = () => {
+export const actGetListMovieApi = (maNhom = "GP10", tenPhim) => {
   return (dispatch) => {
     dispatch(actListMovieRequest());
     swaggerInstance({
-      url: "/QuanLyPhim/LayDanhSachPhim?maNhom=GP10",
+      url: `/QuanLyPhim/LayDanhSachPhim?maNhom=${maNhom}${
+        tenPhim ? `&tenPhim=${tenPhim}` : ""
+      }`,
       method: "GET",
     })
       .then((result) => {

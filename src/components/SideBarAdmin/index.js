@@ -143,6 +143,13 @@ const SideBarAdmin = ({ memuItems = [], colorPalette }) => {
     setSubMenuState({ ...subMenuCopy });
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("UserAdmin");
+    localStorage.removeItem("UserAccount");
+    localStorage.removeItem("sidebarstate");
+    history.go("/auth");
+  };
+
   return (
     <s.Sideboard
       bgImage={BgImage}
@@ -157,15 +164,7 @@ const SideBarAdmin = ({ memuItems = [], colorPalette }) => {
           />
           <s.UserBox headerClose={isTagClose}>
             <b>{UserAdmin?.hoTen}</b>
-            <p
-              type="button"
-              onClick={() => {
-                localStorage.removeItem("UserAdmin");
-                localStorage.removeItem("UserAccount");
-                localStorage.removeItem("sidebarstate");
-                history.push("/auth");
-              }}
-            >
+            <p type="button" onClick={handleLogout}>
               Đăng xuất
             </p>
           </s.UserBox>

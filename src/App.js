@@ -3,10 +3,10 @@ import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import "./App.css";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Loader from "./components/Loader";
-import AdminTemplate, { AdminLayout } from "./containers/AdminTemplate";
+import { AdminLayout } from "./containers/AdminTemplate";
 import ChechoutTemplate from "./containers/CheckoutTemPlate";
 import HomeTemplate from "./containers/HomeTemplate";
-import { routesAdmin, routesHome, routesCheckout } from "./routes";
+import { routesHome, routesCheckout } from "./routes";
 
 const AuthPage = React.lazy(() =>
   import("./containers/AdminTemplate/AuthPage")
@@ -42,19 +42,6 @@ function App() {
     }
   };
 
-  const showLayoutAdmin = (routes) => {
-    if (routes && routes.length > 0) {
-      return routes.map((item, index) => (
-        <AdminTemplate
-          key={index}
-          exact={item.exact}
-          path={item.path}
-          Component={item.component}
-        />
-      ));
-    }
-  };
-
   return (
     <BrowserRouter>
       <div>
@@ -67,10 +54,9 @@ function App() {
             <Switch>
               {showLayoutHome(routesHome)}
               {showLayoutCheckout(routesCheckout)}
-
+              <Route path="/admin" component={AdminLayout} />
               <Route exact={false} path="/login" component={LoginPage} />
               <Route exact={false} path="/auth" component={AuthPage} />
-              <AdminLayout>{showLayoutAdmin(routesAdmin)}</AdminLayout>
               <Route path="" render={() => <Redirect to="/" />} />
             </Switch>
           </Suspense>

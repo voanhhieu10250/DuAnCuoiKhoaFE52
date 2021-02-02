@@ -67,7 +67,7 @@ export const ItemContainer = styled.div`
 `;
 
 export const MenuItem = styled.div`
-  cursor: ${(p) => (p.isSelected && !p.hasSubMenu ? "default" : "pointer")};
+  cursor: pointer;
   position: relative;
   padding: 6px 20px;
   font-weight: 600;

@@ -28,10 +28,10 @@ export default function AuthPage() {
       return;
     }
     setErrInput(false);
-    dispatch(actLoginApi({ taiKhoan, matKhau }, history, "/dashboard"));
+    dispatch(actLoginApi({ taiKhoan, matKhau }, history, "/admin"));
   };
 
-  if (userAdmin) return <Redirect to="/dashboard" />;
+  if (userAdmin) return <Redirect to="/admin" />;
 
   return (
     <s.Background>

@@ -34,11 +34,9 @@ const routesCheckout = [
 
 const routesAdmin = [
   {
-    exact: false,
-    path: "/dashboard",
-    component: React.lazy(() =>
-      import("../containers/AdminTemplate/Dashboard")
-    ),
+    exact: true,
+    path: "/",
+    component: React.lazy(() => import("../containers/AdminTemplate/Admin")),
   },
   {
     exact: false,
@@ -66,13 +64,6 @@ const routesAdmin = [
     path: "/manage/films",
     component: React.lazy(() =>
       import("../containers/AdminTemplate/FilmsManagePage")
-    ),
-  },
-  {
-    exact: false,
-    path: "/manage/cinemas",
-    component: React.lazy(() =>
-      import("../containers/AdminTemplate/CinemasManagePage")
     ),
   },
   {

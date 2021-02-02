@@ -24,7 +24,7 @@ export const actLoginApi = (user, history, pathname) => {
         if (!sidebarstate)
           localStorage.setItem("sidebarstate", JSON.stringify(true));
       }
-      if (res.data.maLoaiNguoiDung !== "QuanTri" && pathname === "/dashboard") {
+      if (res.data.maLoaiNguoiDung !== "QuanTri" && pathname === "/admin") {
         alert("Không có quyền truy cập!");
         history.push("/");
       } else {
