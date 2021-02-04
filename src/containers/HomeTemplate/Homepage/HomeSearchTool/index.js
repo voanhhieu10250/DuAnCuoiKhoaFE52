@@ -108,7 +108,7 @@ function HomeSearchTool() {
         // Lọc lại mảng, cắt bỏ các ngày bị trùng lặp
         for (let index = 0; index < listScreenings.length - 1; index++) {
           while (
-            listScreenings[index].date === listScreenings[index + 1].date
+            listScreenings[index].date === listScreenings[index + 1]?.date
           ) {
             listScreenings.splice(index + 1, 1);
           }
