@@ -1,5 +1,5 @@
 import React, { Fragment, Suspense } from "react";
-import { Route } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 import CheckoutStepController from "../../components/CheckoutStepController";
 import Loader from "../../components/Loader";
 
@@ -16,13 +16,17 @@ const ChechoutTemplate = ({ Component, ...props }) => {
   return (
     <Route
       {...props}
-      render={(propsComponent) => (
-        <CheckoutLayout>
-          <Suspense fallback={<Loader />}>
-            <Component {...propsComponent} />
-          </Suspense>
-        </CheckoutLayout>
-      )}
+      render={(propsComponent) => {
+        if (localStorage.getItem("UserAccount"))
+          return (
+            <CheckoutLayout>
+              <Suspense fallback={<Loader />}>
+                <Component {...propsComponent} />
+              </Suspense>
+            </CheckoutLayout>
+          );
+        else return <Redirect to="/login" />;
+      }}
     />
   );
 };
