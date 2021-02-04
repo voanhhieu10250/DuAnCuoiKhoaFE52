@@ -33,11 +33,13 @@ const CheckoutPage = () => {
 
   useEffect(() => {
     SetPathNameToLocal();
-    swaggerInstance.defaults.headers.common[
-      "Authorization"
-    ] = `Bearer ${account.accessToken}`;
-    dispatch(actGetDetailCinemaRoom(id));
-    dispatch(actGetListCinemaSystemApi());
+    if (account) {
+      swaggerInstance.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${account.accessToken}`;
+      dispatch(actGetDetailCinemaRoom(id));
+      dispatch(actGetListCinemaSystemApi());
+    }
     firstTimeRender.current = false;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
