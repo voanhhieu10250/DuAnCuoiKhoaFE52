@@ -5,9 +5,10 @@ Original website is https://tix.vn/
 This clone is hosted at: https://duancuoikhoa-voanhhieu-fe52.herokuapp.com/
 (it might takes a few minutes to start the heroku server)
 
-admin accounts: 
-voanhhieu102
-123456
+admin accounts: {
+username: voanhhieu102, 
+password: 123456
+}
 
 ## HomePage ##
 
