@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useForm } from "../../../functions/useForm";
 import xController from "../../../img/icons/xController.png";
 import {
@@ -16,6 +16,7 @@ const errState = [
 ];
 
 export default function Administrative() {
+  const history = useHistory();
   const account = JSON.parse(localStorage.getItem("UserAdmin"));
   const [openModal, setOpenModal] = useState(false);
   const [formErr, setFormErr] = useState(errState[0]);
@@ -76,6 +77,13 @@ export default function Administrative() {
     );
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("UserAdmin");
+    localStorage.removeItem("UserAccount");
+    localStorage.removeItem("sidebarstate");
+    history.go("/auth");
+  };
+
   return (
     <s.Container>
       <s.ContainTop>
@@ -110,7 +118,7 @@ export default function Administrative() {
             </s.Button>
           </s.SpecialBox>
           <s.SpecialBox margin="12px 0 0 0">
-            <s.Button btnColor="#a75b50" color="#fff">
+            <s.Button btnColor="#a75b50" color="#fff" onClick={handleLogout}>
               Đăng xuất
             </s.Button>
           </s.SpecialBox>

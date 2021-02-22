@@ -9,7 +9,7 @@ export const actDeleteUserApi = (taiKhoan) => async (dispatch) => {
   try {
     dispatch(actDeleteUserRequest());
     const res = await swaggerInstance({
-      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`,
+      url: `/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`,
       method: "DELETE",
     });
     dispatch(actDeleteUserSuccess(res));

@@ -9,7 +9,7 @@ export const actDeleteMovieApi = (maPhim) => async (dispatch) => {
   try {
     dispatch(actDeleteMovieRequest());
     const res = await swaggerInstance({
-      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/XoaPhim?MaPhim=${maPhim}`,
+      url: `/QuanLyPhim/XoaPhim?MaPhim=${maPhim}`,
       method: "DELETE",
     });
     dispatch(actDeleteMovieSuccess(res.data));
